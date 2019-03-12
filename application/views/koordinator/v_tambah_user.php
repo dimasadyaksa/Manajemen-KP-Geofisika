@@ -91,7 +91,7 @@
 									<p style="padding-bottom: 10px"></p>
 									<div align="center">
 										<button type="button" class="btn btn-success">Tambah</button>
-										<button type="button" class="btn btn-warning"> Batal</button>
+										<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 									</div>
 									
 								</form>
@@ -136,7 +136,7 @@
 										<p style="padding-bottom: 10px"></p>
 										<div align="center">
 											<button type="button" class="btn btn-success">Update</button>
-											<button type="button" class="btn btn-warning"> Batal</button>
+											<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 										</div>
 
 									</form>
@@ -159,7 +159,7 @@
 									<a>Apakah anda yakin akan menghapus?</a>
 									<p style="padding-bottom: 10px"></p>
 									<div align="center">
-										<button type="button" class="btn btn-success">Batal</button>
+										<button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
 										<button type="button" class="btn btn-danger">Delete</button>
 									</div>
 								</div>
