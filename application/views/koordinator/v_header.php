@@ -1,6 +1,7 @@
 <head>
     <title>Manajemen KP Geofisika</title>
     <script src="<?php echo base_url()?>assets/js/jquery_004.js"></script> 
+    <script src="<?php echo base_url()?>assets/js/koor.js"></script> 
     <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css.css" type="text/css" media="screen">

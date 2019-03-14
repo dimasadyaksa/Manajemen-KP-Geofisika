@@ -6,7 +6,7 @@
     
     </div>
     <div class="box-body">
-        <!--Konten diisi di dalam sini-->
+        <!-- Buat Dashboard Mahasiswa -->
     </div>
 </div>
 </div>
