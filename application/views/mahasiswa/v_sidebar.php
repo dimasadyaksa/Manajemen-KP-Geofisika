@@ -22,7 +22,7 @@
 
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-header">Kerja Praktik </a>  
-    <a href="#" class="list-group-item "><i class="fa fa-book tab10" aria-hidden="true"></i>Tempat Praktik</a>
+    <a href="<?php echo site_url('Mahasiswa/TPraktik')?>" class="list-group-item "><i class="fa fa-book tab10" aria-hidden="true"></i>Tempat Praktik</a>
     <a href="<?php echo site_url('Mahasiswa/PLapangan')?>" class="list-group-item "><i class="fa fa-calendar tab10" aria-hidden="true"></i>Pembimbing Lapangan</a>
   </div>
 </div>
