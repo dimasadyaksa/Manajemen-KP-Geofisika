@@ -36,13 +36,29 @@
                     </div>
 
                 </form>
-                <div class="box-footer">
-                    <button class="btn btn-danger pull-right"><i class="fa fa-save"></i> Simpan</button>
-                </div>
-                
+                    <div class="text-right">
+                        <button class="btn btn-danger"><i class="fa fa-save"></i> Simpan</button>
+                    </div>
             </div>
-            
-            
+            <p style="padding-top: 30px"></p>
+            <table class="table table-hovered">
+                <thead>
+                    <th class="text-left">No</th>
+                    <th class="text-left">Nama</th>
+                    <th class="text-left">Username</th>
+                    <th class="text-left">Password</th>
+                    <th class="text-left">Email</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Hasibuan</td>
+                        <td>Hasi</td>
+                        <td>****</td>
+                        <td>hasi@gmail.com</td>
+                    </tr>
+                </tbody>
+            </table>            
         </div>
     </div>
 </div>
