@@ -1,1 +1,1 @@
-# Manajemen-KP-Geofisika
+# Aplikasi Manajemen KP Teknik Geofisika
