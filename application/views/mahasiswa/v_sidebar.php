@@ -9,14 +9,14 @@
 
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-header">Menu</a>
-    <a href="#" class="list-group-item ">
-      <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Submenu 1</a>
-    <a href="#" class="list-group-item ">
-      <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Submenu 2</a>
+    <a href="<?php echo site_url('Mahasiswa/DataDiri')?>" class="list-group-item ">
+      <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Data Diri </a>
+    <a href="<?php echo site_url('Mahasiswa/LogBook')?>" class="list-group-item ">
+      <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Log Book </a>
     <a href="#" class="list-group-item ">
       <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Submenu 3</a>
     <a href="#" class="list-group-item ">
-      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Penilaian</a>
+      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Penilaian </a>
     
   </div>
 

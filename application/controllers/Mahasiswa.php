@@ -7,6 +7,18 @@ class Mahasiswa extends CI_Controller {
 	{
 		$this->load->view('mahasiswa/index');
 	}
+	public function datadiri()
+	{
+		$this->load->view('mahasiswa/v_header');
+		$this->load->view('mahasiswa/v_sidebar');
+		$this->load->view('mahasiswa/v_datadiri');
+	}
+	public function logbook()
+	{
+		$this->load->view('mahasiswa/v_header');
+		$this->load->view('mahasiswa/v_sidebar');
+		$this->load->view('mahasiswa/v_logbook');
+	}
 	public function PLapangan()
 	{
 		$this->load->view('mahasiswa/v_header');
