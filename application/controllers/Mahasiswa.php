@@ -13,5 +13,11 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_pembimbing_lapangan');
 	}
+	public function TPraktik()
+	{
+		$this->load->view('mahasiswa/v_header');
+		$this->load->view('mahasiswa/v_sidebar');
+		$this->load->view('mahasiswa/v_tempatPraktik');
+	}
 }
 	
