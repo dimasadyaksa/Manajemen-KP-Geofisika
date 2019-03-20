@@ -8,7 +8,7 @@
     <div class="box-body">
     	<h4 style="text-align: center;">Daftar Nama Perusahaan Tempat Kerja Praktik</h4>
     	<br>
-        <table class="table table-hoverd">
+        <table class="table table-hover">
         	<thead>
         		<th class="text-left">No</th>
         		<th class="text-left">Nama perusahaan</th>
