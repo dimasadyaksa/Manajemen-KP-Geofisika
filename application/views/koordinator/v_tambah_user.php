@@ -5,7 +5,7 @@
 			<div class="box-body">
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>
 				<p style="padding-bottom: 10px"></p>
-				<table class="table table-hover">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th class="text-left">No</th>
