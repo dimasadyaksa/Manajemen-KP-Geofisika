@@ -16,7 +16,7 @@
     <a href="#" class="list-group-item ">
       <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Submenu 3</a>
     <a href="#" class="list-group-item ">
-      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Submenu 4</a>
+      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Penilaian</a>
     
   </div>
 

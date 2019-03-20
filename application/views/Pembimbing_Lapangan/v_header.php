@@ -5,9 +5,9 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/font-awesome.css" media="screen">
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/font-awesome.css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/dataTables.css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/validationEngine.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/datepicker3.css" type="text/css" media="screen">

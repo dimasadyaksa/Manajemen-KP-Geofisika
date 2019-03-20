@@ -1,6 +1,11 @@
+<?php $this->load->view('koordinator/v_header');?>
+<?php $this->load->view('koordinator/v_sidebar');?>
+<div class="col-md-9">
+	<div class="box box-success">
 		<div class="box-header">
 			<i class="fa fa-user-circle" aria-hidden="true"></i>
-			<h1 class="box-title text-center">Tambah Pengguna Sistem Manajamen Kerja Praktik</h1>
+			<h1 class="box-title text-center">Tambah Pengguna Sistem Manajamen Kerja Praktik</h>
+
 			</div>
 			<div class="box-body">
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>
@@ -161,3 +166,5 @@
 							</div>
 
 						</div>
+					</div>
+				</div>
