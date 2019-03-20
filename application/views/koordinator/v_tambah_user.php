@@ -1,6 +1,6 @@
 		<div class="box-header">
 			<i class="fa fa-user-circle" aria-hidden="true"></i>
-			<h1 class="box-title text-center">Tambah Pengguna Sistem Manajamen Kerja Praktik</h>
+			<h1 class="box-title text-center">Tambah Pengguna Sistem Manajamen Kerja Praktik</h1>
 			</div>
 			<div class="box-body">
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>

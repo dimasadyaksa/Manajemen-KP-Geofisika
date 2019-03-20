@@ -1,11 +1,8 @@
 function loadTambahUser() {
 	 
-	 $.post("tambahUser","",function(data){
+	 $.post("koordinator/tambahUser","",function(data){
              $('#isi').html(data);
-            /* if (!$('#tambahuser').hasClass('active')){
-             	 $('#tambahuser').addClass('active');
-             	 $('#tambahkp').removeClass('active');
-             }*/
+            
              active('tambahuser');
           }); 
 }
@@ -19,13 +16,10 @@ function profil() {
 }
 
 function loadTambahKP() {
-	 $.post("tempatKP","",function(data){
+	 $.post("koordinator/tempatKP","",function(data){
              $('#isi').html(data);
              active('tambahkp');
-           /*  if (!$('#tambahkp').hasClass('active')){
-             	 $('#tambahkp').addClass('active');
-             	 $('#tambahuser').removeClass('active');
-             }*/
+           
      }); 
 }
 
@@ -35,20 +29,20 @@ function daftar(no) {
 	};
 	var menu;
 	if(no==1){
-		menu='mhs'
+		menu='daftarMhs'
 	}else if (no==2){
-		menu='dsp';
+		menu='daftarDp';
 	}else{
-		menu='dspl';
+		menu='daftarDpl';
 	}
-	 $.post("daftar",x,function(data){
+	 $.post("koordinator/"+menu,x,function(data){
              $('#isi').html(data);
              active(menu);
      }); 
 }
 
 function active(param) {
-	var menu = ['profil','dash','mhs','dsp','dspl','tambahuser','tambahkp'];
+	var menu = ['profil','dash','daftarMhs','daftarDp','daftarDpl','tambahuser','tambahkp'];
 	for (var i = 0; i < menu.length; i++) {
 		if (menu[i]==param){
            $('#'+menu[i]).addClass('active');
