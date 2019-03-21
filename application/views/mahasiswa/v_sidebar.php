@@ -13,11 +13,6 @@
       <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Data Diri </a>
     <a href="<?php echo site_url('Mahasiswa/LogBook')?>" class="list-group-item ">
       <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Log Book </a>
-    <a href="#" class="list-group-item ">
-      <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Submenu 3</a>
-    <a href="#" class="list-group-item ">
-      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Penilaian </a>
-    
   </div>
 
   <div class="list-group">
