@@ -1,3 +1,3 @@
-<?php $this->load->view('pembimbing_d/v_header');?>
-<?php $this->load->view('pembimbing_d/v_sidebar');?>
-<?php $this->load->view('pembimbing_d/v_body');?>
+<?php $this->load->view('pembimbing/v_header');?>
+<?php $this->load->view('pembimbing/v_sidebar');?>
+<?php $this->load->view('pembimbing/v_body');?>

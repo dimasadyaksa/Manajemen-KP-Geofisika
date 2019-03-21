@@ -1,10 +1,9 @@
-<head>
-    <title>Login</title>
-    <link rel="shortcut icon" type="image/png" href="http://kuliah.itera.ac.id/theme/image.php/boost/theme/1539680338/faviconl; charset=utf-8"></link>
-
-
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://kuliah.itera.ac.id/theme/styles.php/boost/1539680338_1/all">
+<html dir="ltr" lang="en" xml:lang="en" class="yui3-js-enabled"><head>
+    <link rel="shortcut icon" href="http://kuliah.iter    <title>Login . Manajemen KP Geofisika</title>
+a.ac.id/theme/image.php/boost/theme/1539680338/faviconl; charset=utf-8">
+<meta name="keywords" content="moodle, Manajemen KP Geofisika: Log in to the site">
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script charset="utf-8" id="yui_3_17_2_1_1552487088998_8" src="http://kuliah.itera.ac.id/theme/yui_combo.php?m/1539680338/core/event/event-min.js&amp;m/1539680338/filter_mathjaxloader/loader/loader-min.js" async=""></script><script cha">
+    <meta http-equiv="Content-Type" content="text/htmrset="utf-8" id="yui_3_17_2_1_1552487088998_18" src="http://kuliah.itera.ac.id/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="http://kuliah.itera.ac.id/theme/styles.php/boost/1539680338_1/all">
 <script type="text/javascript">
 
 
@@ -49,7 +48,7 @@
                                 <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked">
                                 <label for="rememberusername">Remember username</label>
                             </div>
-                            
+
                         <button type="submit" name="submit" class="btn btn-primary btn-block mt-3" id="loginbtn">Log in</button>
                     </form>
                 </div>

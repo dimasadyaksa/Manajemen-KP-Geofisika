@@ -18,10 +18,10 @@
   </div>
 
   <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-header">Sistem</a> 
-    <a href="javascript:loadTambahUser()"  class="list-group-item " id="tambahuser"><i class="fa fa-user-circle tab10" aria-hidden="true"></i>Tambah User</a>
-    <a href="javascript:loadTambahKP()" class="list-group-item " id="tambahkp"><i class="fa fa-calendar tab10" aria-hidden="true"></i>Tempat Kerja Praktik</a>
+    <a href="#" class="list-group-item list-group-item-header">Sistem</a>  
     
+    <a href="javascript:loadTambahUser()"  class="list-group-item " id="tambahuser"><i class="fa fa-user-circle tab10" aria-hidden="true"></i>Tambah User</a>
 
+    <a href="javascript:loadTambahKP()" class="list-group-item " id="tambahkp"><i class="fa fa-calendar tab10" aria-hidden="true"></i>Tempat Kerja Praktik</a>
   </div>
 </div>

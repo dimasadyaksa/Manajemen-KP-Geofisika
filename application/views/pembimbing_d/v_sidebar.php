@@ -9,16 +9,14 @@
 
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-header">Menu</a>
-    <a href="#" class="list-group-item">
+    <a href="penilaian" class="list-group-item ">
       <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Penilaian</a>
-    <a href="#" class="list-group-item ">
+    <a href="pengajuan" class="list-group-item ">
       <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Pengajuan</a>
-    <a href="<?php echo site_url('Pembimbing_Dosen/daftar_logbook')?>" class="list-group-item ">
+    <a href="#" class="list-group-item ">
       <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Logbook</a>
-    <a href="<?php echo site_url('Pembimbing_Dosen/daftar_mahasiswa')?>" class="list-group-item">
+    <a href="#" class="list-group-item ">
       <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Daftar Mahasiwa</a>
     
   </div>
-
-  
 </div>
