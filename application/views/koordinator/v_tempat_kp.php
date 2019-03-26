@@ -26,8 +26,8 @@
 				<td>+62 85678899</td>
 				<td>Lampung</td>
 				<td>
-					<button type="button" data-toggle="modal" data-target="#delete_tempatKP" class="btn btn-danger">Delete</button>
 					<button type="button" data-toggle="modal" data-target="#update_tempatKP" class="btn btn-info">Edit</button>
+					<button type="button" data-toggle="modal" data-target="#delete_tempatKP" class="btn btn-danger">Delete</button>
 				</td>
 			</tr>
 		</tbody>
