@@ -5,6 +5,8 @@
 			<div class="box-body">
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>
 				<p style="padding-bottom: 10px"></p>
+				<h4 style="text-align: center;">Daftar User Sistem</h4>
+				<br>
 				<table class="table table-hover">
 					<thead>
 						<tr>
