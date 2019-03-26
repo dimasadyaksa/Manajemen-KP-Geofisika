@@ -13,7 +13,6 @@
 						<th class="text-left">Bidang</th>
 						<th class="text-left">Kontak Perushaan</th>
 						<th class="text-left">Alamat Perushaan</th>
-					
 					</tr>
 				</thead>
 				<tbody>

@@ -45,7 +45,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="http://sso.itera.ac.id/" target="_blank"><i class="fa fa-user"></i> Nama User</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                        <li><a href="index"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                     </ul>
       </div>  
   </nav>
