@@ -44,42 +44,10 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?=site_url('login')?>">
-              <i class="fa fa-user"> Login</i>
-                </a>
-            </li>
-        </ul>
+            <li><a href="http://sso.itera.ac.id/" target="_blank"><i class="fa fa-user"></i> Nama User</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                    </ul>
       </div>  
   </nav>
 </div>
 </body>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Siapa Anda?</h4>
-      </div>
-      <div class="modal-body">
-        <a href="<?=site_url('Login')?>">
-          <button class="btn btn-success btn-lg">Mahasiswa</button>
-        </a>
-        <a href="<?=site_url('Login')?>">
-          <button class="btn btn-primary btn-lg">Dosen Pembimbing</button>
-        </a>
-        <a href="<?=site_url('Login')?>">
-          <button class="btn btn-info btn-lg">Pembimbing Lapangan</button>
-        </a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-

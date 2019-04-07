@@ -1,11 +1,12 @@
-<html dir="ltr" lang="en" xml:lang="en" class="yui3-js-enabled">
-<link rel="icon" type="image/png" href="https://www.itera.ac.id/wp-content/uploads/2019/01/logo-itera-oke-846x1024.png">
-<title>Login</title>
-<head>
-    <link rel="stylesheet" type="text/css" href="http://kuliah.itera.ac.id/theme/styles.php/boost/1539680338_1/all">
-
-
+<html dir="ltr" lang="en" xml:lang="en" class="yui3-js-enabled"><head>
+    <link rel="shortcut icon" href="http://kuliah.iter    <title>Login . Manajemen KP Geofisika</title>
+a.ac.id/theme/image.php/boost/theme/1539680338/faviconl; charset=utf-8">
+<meta name="keywords" content="moodle, Manajemen KP Geofisika: Log in to the site">
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script charset="utf-8" id="yui_3_17_2_1_1552487088998_8" src="http://kuliah.itera.ac.id/theme/yui_combo.php?m/1539680338/core/event/event-min.js&amp;m/1539680338/filter_mathjaxloader/loader/loader-min.js" async=""></script><script cha">
+    <meta http-equiv="Content-Type" content="text/htmrset="utf-8" id="yui_3_17_2_1_1552487088998_18" src="http://kuliah.itera.ac.id/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="http://kuliah.itera.ac.id/theme/styles.php/boost/1539680338_1/all">
 <script type="text/javascript">
+
+
 //]]>
 </script>
 
@@ -14,51 +15,43 @@
 <div id="page-wrapper">
 
 
+
     <div id="page" class="container-fluid mt--">
         <div id="page-content" class="row">
             <div id="region-main-box" class="col-12">
                 <section id="region-main" class="col-12">
                     <span class="notifications" id="user-notifications"></span>
-                    <div role="main"><span id="maincontent"></span>
-                        <div class="my-10 my-sm-10"></div>
+                    <div role="main"><span id="maincontent"></span><div class="my-10 my-sm-10"></div>
 <div class="row justify-content-center">
-<div class="col-xl-4 col-sm-8 ">
+<div class="col-xl-6 col-sm-8 ">
 <div class="card">
     <div class="card-block">
-             <h2><p align="center"><font face="Times New Roman"><strong><br>Silahkan Masuk<br></strong></font></p></h2>
+            <h2 class="card-header text-center"><img src="https://www.itera.ac.id/wp-content/uploads/2019/01/logo-itera-oke-846x1024.png" align="center" title="logo itera" alt="logo" height="100" width="100"><p align="center"><font face="Times New Roman"><strong>Manajemen KP<br> Geofisika</strong></font></p></h2>
 
 
             <div class="row justify-content-md-center">
-                <div class="col-md-8">
-                    <form class="mt-10" action="<?php echo site_url('Login/proses_login')?>" method="post">
-                                                
+                <div class="col-md-5">
+                    <form class="mt-3" method="post" id="login">
+                        <input id="anchor" type="hidden" name="anchor" value="">
+                        <script>document.getElementById('anchor').value = location.hash;</script>
                         <div class="form-group">
-                            <input type="text" name="username" id="username" class="form-control" value="" placeholder="Username / email" required autofocus>
+                            <label for="username" class="sr-only">
+                                    Username / email
+                            </label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Username / email">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password" required>
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password">
                         </div>
                             <div class="rememberpass mt-3">
-                                <input type="checkbox" name="rememberusername" id="rememberusername" value="1">
+                                <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked">
                                 <label for="rememberusername">Remember username</label>
                             </div>
 
-                        <button type="submit" name="login" class="btn btn-primary btn-block mt-7" id="loginbtn">Login</button>
-                        <br>
-                        <?php if(isset($pesan)){
-                            echo $pesan;
-                        }
-                        ?>
-                        <h4 style="text-align: center;"><font face="Times New Roman"><br>Manajemen KP<br>Geofisika</h4>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block mt-3" id="loginbtn">Log in</button>
                     </form>
                 </div>
-            
-
-</a>
-                    </div>
-
-                </div>
-            </div>
 </div>
 </a>
                     </div>
@@ -86,11 +79,8 @@
 
         <div class="logininfo">You are not logged in.</div>
 
-
     </div>
 </footer>
 
 
 </body></html>
-
-
