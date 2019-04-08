@@ -1,4 +1,4 @@
-  <style type="text/css">
+<style type="text/css">
     td{
       text-align: center;
     }
@@ -21,7 +21,7 @@
               <th class="text-left"><?php echo $a;?></th>
               <th class="text-left"><?php echo $b;?></th>
               <th class="text-left"><?php echo $c;?></th>
-              <?php if($role=="Mahasiswa"){
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<th class="text-left">Action</th>';
               }
               ?>
@@ -32,14 +32,14 @@
               <td class="text-left">1</td>
               <td class="text-left">Nandar</td>
               <td class="text-left">14115021</td>
-              <td class="text-left">2015</td>
-              <?php if($role=="Mahasiswa"){
+              <td class="text-left">A</td>
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
               </td>';
               }
               ?>
-              <?php if($role=="Mahasiswa"){
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-danger" data-toggle="modal"
                   data-target="#delete_user_popup">Delete</button>
@@ -52,14 +52,14 @@
               <td class="text-left">2</td>
               <td class="text-left">Dimas</td>
               <td class="text-left">14116047</td>
-              <td class="text-left">2016</td>
-              <?php if($role=="Mahasiswa"){
+              <td class="text-left">B</td>
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
               </td>';
               }
               ?>
-              <?php if($role=="Mahasiswa"){
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-danger" data-toggle="modal"
                   data-target="#delete_user_popup">Delete</button>
@@ -71,14 +71,15 @@
               <td class="text-left">3</td>
               <td class="text-left">Rade</td>
               <td class="text-left">141162086</td>
-              <td class="text-left">2016</td>
-              <?php if($role=="Mahasiswa"){
+              <td class="text-left">C</td>
+              
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
               </td>';
               }
               ?>
-              <?php if($role=="Mahasiswa"){
+              <?php if($role=="DosenPembimbingLapangan"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-danger" data-toggle="modal"
                   data-target="#delete_user_popup">Delete</button>
@@ -95,7 +96,6 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Detail <?php echo $role;?></h4>
-                <h4 class="modal-title">Hapus <?php echo $role;?></h4>
               </div>
               <div class="modal-body">
                 <!-- Data di dalam form nantinya akan otomatis terisi
@@ -105,18 +105,19 @@
                       <label for="nama">Nama</label>
                     </div>
                     <div class="form-group">
-                      <label for="Username">NIM</label>
+                      <label for="Username">NIP</label>
                     </div>
                     <div class="form-group">
-                      <label for="pwd">Angkatan</label>
+                      <label for="pwd">Perusahaan</label>
                     </div>
                     <div class="form-group">
-                      <label for="pwd">Tempat KP</label>
+                      <label for="pwd">Pemilik</label>
                     </div>
                     <p style="padding-bottom: 10px"></p>
                     <div align="center">
                       <button type="button" class="btn btn-success">Update</button>
                       <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+
                     </div>
                   </form>
                 </div>

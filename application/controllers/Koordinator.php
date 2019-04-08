@@ -58,8 +58,8 @@ class Koordinator extends CI_Controller {
 		$data['a'] = "Nama";
 		$data['b'] = "NIP";
 		$data['c'] = "Perusahaan";
-		$data['role'] = "Dosen Pembimbing Lapangan";
-		$string = $this->load->view('koordinator/v_daftar',$data, true);
+		$data['role'] = "DosenPembimbingLapangan";
+		$string = $this->load->view('koordinator/v_daftardosenlap',$data, true);
 		echo $string;
 	}
 }
