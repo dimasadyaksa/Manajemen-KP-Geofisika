@@ -7,7 +7,7 @@ class Koordinator extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('Pembimbingdosen_model');
+        $this->load->model('Pembimbinglapangan_model');
         $this->load->library('form_validation');
     }
 
@@ -81,17 +81,39 @@ class Koordinator extends CI_Controller {
         );
         $this->load->view('koordinator/v_header');
         $this->load->view('koordinator/v_sidebar');
-        $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data);
+        $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data); 
 	}
 
 	public function daftarDpl()
 	{
-		$data['judul'] = "Daftar Dosen Pembimbing Lapangan";
-		$data['a'] = "Nama";
-		$data['b'] = "NIP";
-		$data['c'] = "Perusahaan";
-		$data['role'] = "Dosen Pembimbing Lapangan";
-		$this->load->view('koordinator/v_daftar',$data, true);
+		$q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'Koordinator/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'Koordinator/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'Koordinator/index.html';
+            $config['first_url'] = base_url() . 'Koordinator/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Pembimbinglapangan_model->total_rows($q);
+        $pembimbinglapangan = $this->Pembimbinglapangan_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'pembimbinglapangan_data' => $pembimbinglapangan,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        
+        $this->load->view('Koordinator/v_daftardosenlap', $data);
 		
 	}
 	public function read($id) 
