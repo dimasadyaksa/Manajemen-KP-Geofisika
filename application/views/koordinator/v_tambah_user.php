@@ -18,40 +18,8 @@
 							<th class="text-left">Action</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Nandar</td>
-							<td>munand</td>
-							<td>********</td>
-							<td>Mahasiswa</td>
-							<td>
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Edit</button>
-								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_popup">Delete</button>
-							</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Dimas</td>
-							<td>username1</td>
-							<td>********</td>
-							<td>Pembimbing Lapangan</td>
-							<td>
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Edit</button>
-								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_popup">Delete</button>
-							</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Rade</td>
-							<td>username2</td>
-							<td>********</td>
-							<td>Pembimbing Dosen</td>
-							<td>
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Edit</button>
-								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_popup">Delete</button>
-							</td>
-						</tr>
+					<tbody id="list">
+						
 					</tbody>
 				</table>
 				<div class="modal fade" id="tambah_user_popup" role="dialog">
@@ -59,26 +27,30 @@
 						<!-- Modal content-->
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<button type="button" class="close"  data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Tambah User</h4>
 							</div>
 							<div class="modal-body">
 								<form action="/action_page.php">
 									<div class="form-group">
 										<label for="nama">Nama</label>
-										<input type="text" class="form-control" id="nama">
+										<input type="text" class="form-control" id="Nama">
 									</div>
 									<div class="form-group">
-										<label for="Username">Username</label>
-										<input type="text" class="form-control" id="Username">
+										<label for="Email">Email</label>
+										<input type="text" class="form-control" id="Email">
+									</div>
+									<div class="form-group">
+										<label for="pwd">NIM/NIP</label>
+										<input type="text" class="form-control" id="nim">
 									</div>
 									<div class="form-group">
 										<label for="pwd">Password</label>
-										<input type="text" class="form-control" id="pwd">
+										<input type="text" class="form-control" id="Password">
 									</div>
 									<div class="form-group">
 										<label for=statusUser>Status</label>
-										<select class="form-control">
+										<select class="form-control" id="status">
 											<option>-Pilih-</option>
 											<option>Mahasiswa</option>
 											<option>Pembimbing Dosen</option>
@@ -87,7 +59,7 @@
 									</div>
 									<p style="padding-bottom: 10px"></p>
 									<div align="center">
-										<button type="button" class="btn btn-success">Tambah</button>
+										<button type="button" onclick="addUser()" data-dismiss="modal" class="btn btn-success">Tambah</button>
 										<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 									</div>
 									

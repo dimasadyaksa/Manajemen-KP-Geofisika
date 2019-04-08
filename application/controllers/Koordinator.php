@@ -7,7 +7,11 @@ class Koordinator extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model('Koordinator_model');
         $this->load->model('Pembimbingdosen_model');
+        $this->load->model('Pembimbinglapangan_model');
+        $this->load->model('Mahasiswa_model');
+        $this->load->model('User_m');
         $this->load->library('form_validation');
     }
 
@@ -79,8 +83,6 @@ class Koordinator extends CI_Controller {
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('koordinator/v_header');
-        $this->load->view('koordinator/v_sidebar');
         $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data);
 	}
 
@@ -109,17 +111,97 @@ class Koordinator extends CI_Controller {
         }
     }
 
-    public function create() 
+    public function createUser() 
     {
         $data = array(
-		    'idUser' => set_value('idUser'),
-		    'Nama' => set_value('Nama'),
-		    'NIP' => set_value('NIP'),
-		    'kontak' => set_value('kontak'),
+		    'Email' => $this->input->post('email'),
+		    'Password' => $this->input->post('password'),
+		    'Status' => $this->input->post('status'),
 		);
-		$this->Koordinator_model->insert($data);
+
+		$this->User_m->insert($data);
+		/*if($this->input->post('status')=="Pembimbing Dosen"){
+			$this->createDp();
+		}elseif ($this->input->post('status')=="Pembimbing Lapangan") {
+			$this->createDpl();
+		}else{
+			$this->createMhs();
+		}*/
+    }
+
+    public function listUser()
+    {
+    	$data = $this->User_m->get_all();
+    	$i = 0;
+    	foreach ($data as $row)
+		{
+			$i++;
+			echo '<tr>
+							<td>'.$i.'</td>
+							<td>'.$row->email.'</td>
+							<td>'.$row->password.'</td>
+							<td>'.$row->status.'</td>
+							<td>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Edit</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_popup">Delete</button>
+					</td>
+				</tr>';
+	       
+		}
+    }
+
+    public function listMhs()
+    {
+    	$data = $this->Mahasiswa_model->get_all();
+    	$i = 0;
+    	foreach ($data as $row)
+		{
+			$i++;
+			echo '<tr>
+              <td class="text-left">'.$i.'</td>
+              <td class="text-left">'.$row->Nama.'</td>
+              <td class="text-left">'.$row->NIM.'</td>
+              <td class="text-left">'.$row->Angkatan.'</td>
+              <td class="text-left">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
+              </td>
+              </tr>';
+	       
+		}
+    }
+
+    public function createMhs() 
+    {
+    	$id = $this->User_m->lastID();
+        $data = array(
+        	'idUser' =>$id,
+		    'Nama' => $this->input->post('Nama')
+		);
+		$this->Mahasiswa_model->insert($data);
     }
     
+    public function createDp() 
+    {
+    	$id =$this->User_m->lastID();
+        $data = array(
+        	'idUser'=>$id,
+		    'Nama' => $this->input->post('Nama')
+		);
+		$this->Pembimbingdosen_model->insert($data);
+    }
+
+    public function createDpl() 
+    {
+    	$id = $this->User_m->lastID();
+    	echo $id['idUser'];
+        $data = array(
+        	'idDosenL'=>$id,
+		    'Nama' => $this->input->post('Nama'),
+		    'Email' => $this->input->post('email')
+		);
+		$this->Pembimbinglapangan_model->insert($data);
+    }
+
     public function create_action() 
     {
         $this->_rules();

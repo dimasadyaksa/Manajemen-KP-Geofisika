@@ -4,7 +4,8 @@ function loadTambahUser() {
              $('#isi').html(data);
             
              active('tambahuser');
-          }); 
+          });
+    updateList(); 
 }
 
 function dashboard() {
@@ -35,12 +36,47 @@ function daftar(no) {
 	}else{
 		menu='daftarDpl';
 	}
-	 $.post("koordinator/"+menu,x,function(data){
+	 $.post('koordinator/'+menu,x,function(data){
              $('#isi').html(data);
+		     if(no==1){
+		     	listmhs();
+		     }
              active(menu);
      }); 
 }
 
+function addUser(){
+	var Nim = document.getElementById('nim').value;
+	var Nama = document.getElementById('Nama').value;
+	var email = document.getElementById('Email').value;
+	var password = document.getElementById('Password').value;
+	var option = document.getElementById("status");
+	var i = option.selectedIndex;
+	var status = option.options[i].text; 
+	var data = {
+		'Nim' : Nim,
+		'Nama': Nama,
+		'email': email,
+		'password': password,
+		'status': status
+	}
+	console.log(data);
+	 $.post("koordinator/createUser",data,function(data){
+	 	console.log("Berhasil");
+     }); 
+     updateList();
+}
+
+function updateList() {
+	$.post("koordinator/listUser",'',function(data){
+             $('#list').html(data);
+     });
+}
+function listmhs() {
+	$.post("koordinator/listMhs",'',function(data){
+             $('#dftr').html(data);
+     });
+}
 function active(param) {
 	var menu = ['profil','dash','daftarMhs','daftarDp','daftarDpl','tambahuser','tambahkp'];
 	for (var i = 0; i < menu.length; i++) {

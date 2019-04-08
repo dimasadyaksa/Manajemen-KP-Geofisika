@@ -27,44 +27,8 @@
               ?>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="text-left">1</td>
-              <td class="text-left">Nandar</td>
-              <td class="text-left">14115021</td>
-              <td class="text-left">2015</td>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
-              </td>';
-              }
-              ?>
-              
-            </tr>
-            <tr>
-              <td class="text-left">2</td>
-              <td class="text-left">Dimas</td>
-              <td class="text-left">14116047</td>
-              <td class="text-left">2016</td>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
-              </td>';
-              }
-              ?>
-            </tr>
-            <tr>
-              <td class="text-left">3</td>
-              <td class="text-left">Rade</td>
-              <td class="text-left">141162086</td>
-              <td class="text-left">2016</td>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
-              </td>';
-              }
-              ?>
-            </tr>
+          <tbody id="dftr">
+            
           </tbody>
         </table>
         <div class="modal fade" id="update_user_popup" role="dialog">
