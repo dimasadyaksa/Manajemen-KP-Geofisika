@@ -3,6 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Koordinator extends CI_Controller {
 
+
+	function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Pembimbingdosen_model');
+        $this->load->library('form_validation');
+    }
+
 	public function index()
 	{
 		$this->load->view('koordinator/index');
@@ -25,6 +33,7 @@ class Koordinator extends CI_Controller {
 			$data['title'] = 'Mahasiswa';
 		}else if($this->input->post('daftar')=='2'){
 			$data['title'] = 'Dosen Pembimbing';
+			$this->load->view('koordinator/daftar',$data,true);
 		}else if($this->input->post('daftar')=='3'){
 			$data['title'] = 'Dosen Pembimbing Lapangan';
 		}
@@ -44,14 +53,37 @@ class Koordinator extends CI_Controller {
 	}
 	public function daftarDp()
 	{	
-		$data['judul'] = "Daftar Dosen Pembimbing";
-		$data['a'] = "Nama";
-		$data['b'] = "NIP";
-		$data['c'] = "Jumlah Mahasiswa";
-		$data['role'] = "Dosen Pembimbing";
-		$string = $this->load->view('koordinator/v_daftar',$data, true);
-		echo $string;
+		$q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'Koordinator/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'Koordinator/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'Koordinator/index.html';
+            $config['first_url'] = base_url() . 'Koordinator/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Pembimbingdosen_model->total_rows($q);
+        $pembimbingdosen = $this->Pembimbingdosen_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'pembimbingdosen_data' => $pembimbingdosen,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $this->load->view('koordinator/v_header');
+        $this->load->view('koordinator/v_sidebar');
+        $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data);
 	}
+
 	public function daftarDpl()
 	{
 		$data['judul'] = "Daftar Dosen Pembimbing Lapangan";
@@ -59,8 +91,8 @@ class Koordinator extends CI_Controller {
 		$data['b'] = "NIP";
 		$data['c'] = "Perusahaan";
 		$data['role'] = "Dosen Pembimbing Lapangan";
-		$string = $this->load->view('koordinator/v_daftar',$data, true);
-		echo $string;
+		$this->load->view('koordinator/v_daftar',$data, true);
+		
 	}
 	public function read($id) 
     {
