@@ -62,4 +62,104 @@ class Koordinator extends CI_Controller {
 		$string = $this->load->view('koordinator/v_daftar',$data, true);
 		echo $string;
 	}
+	public function read($id) 
+    {
+        $row = $this->Koordinator_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'idUser' => $row->idUser,
+		'Nama' => $row->Nama,
+		'NIP' => $row->NIP,
+		'kontak' => $row->kontak,
+	    );
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+		    'idUser' => set_value('idUser'),
+		    'Nama' => set_value('Nama'),
+		    'NIP' => set_value('NIP'),
+		    'kontak' => set_value('kontak'),
+		);
+		$this->Koordinator_model->insert($data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'idUser' => $this->input->post('idUser',TRUE),
+		'Nama' => $this->input->post('Nama',TRUE),
+		'kontak' => $this->input->post('kontak',TRUE),
+	    );
+
+            $this->Koordinator_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Koordinator_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+		'idUser' => set_value('idUser', $row->idUser),
+		'Nama' => set_value('Nama', $row->Nama),
+		'NIP' => set_value('NIP', $row->NIP),
+		'kontak' => set_value('kontak', $row->kontak),
+	    );
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('NIP', TRUE));
+        } else {
+            $data = array(
+		'idUser' => $this->input->post('idUser',TRUE),
+		'Nama' => $this->input->post('Nama',TRUE),
+		'kontak' => $this->input->post('kontak',TRUE),
+	    );
+
+            $this->Koordinator_model->update($this->input->post('NIP', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Koordinator_model->get_by_id($id);
+
+        if ($row) {
+            $this->Koordinator_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+        }
+    }
+
+    public function _rules() 
+    {
+		$this->form_validation->set_rules('idUser', 'iduser', 'trim|required');
+		$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
+		$this->form_validation->set_rules('kontak', 'kontak', 'trim|required');
+
+		$this->form_validation->set_rules('NIP', 'NIP', 'trim');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
 }
