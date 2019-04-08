@@ -39,13 +39,6 @@
               </td>';
               }
               ?>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-danger" data-toggle="modal"
-                  data-target="#delete_user_popup">Delete</button>
-              </td>';
-              }
-              ?>
               
             </tr>
             <tr>
@@ -56,13 +49,6 @@
               <?php if($role=="Mahasiswa"){
                 echo '<td class="text-left">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
-              </td>';
-              }
-              ?>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-danger" data-toggle="modal"
-                  data-target="#delete_user_popup">Delete</button>
               </td>';
               }
               ?>
@@ -78,13 +64,6 @@
               </td>';
               }
               ?>
-              <?php if($role=="Mahasiswa"){
-                echo '<td class="text-left">
-                <button type="button" class="btn btn-danger" data-toggle="modal"
-                  data-target="#delete_user_popup">Delete</button>
-              </td>';
-              }
-              ?>
             </tr>
           </tbody>
         </table>
@@ -95,7 +74,6 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Detail <?php echo $role;?></h4>
-                <h4 class="modal-title">Hapus <?php echo $role;?></h4>
               </div>
               <div class="modal-body">
                 <!-- Data di dalam form nantinya akan otomatis terisi
@@ -118,31 +96,10 @@
                       <button type="button" class="btn btn-success">Update</button>
                       <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
                     </div>
+
                   </form>
                 </div>
               </div>
 
             </div>
           </div>
-
-          <div class="modal fade" id="delete_user_popup" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Delete User</h4>
-                </div>
-                <div class="modal-body">
-                <!-- Data di dalam form nantinya akan otomatis terisi
-                  dengan data yang ada di database -->
-                  <a>Apakah anda yakin akan menghapus?</a>
-                  <p style="padding-bottom: 10px"></p>
-                  <div align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>

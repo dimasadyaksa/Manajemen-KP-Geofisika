@@ -57,7 +57,7 @@
         <td>14116001</td>
         <td style="text-align: left">Retno Monika</td>
         <td>2016</td>
-        <td><a href="<?php echo site_url('Pembimbing_Dosen/logbook')?>">
+        <td><a href="<?php echo site_url('Logbook_Mahasiswa/Retno_Monika')?>">
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Lihat</button></a></td>
       </tr>
 
