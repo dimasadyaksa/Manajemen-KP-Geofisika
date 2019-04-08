@@ -3,14 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-
 	public function index()
 	{
-		
+		if($this->session->userdata('username') == TRUE){
+            echo "<script>
+				alert('Anda harus logout terlebih dahulu.');
+				window.location='".site_url('dashboard')."';
+				</script>";
+        }
 		$this->load->view('login/form_login');
 	}
-	
-
 	public function proses_login()
 	{
 		$user=$this->input->post('username');
@@ -23,13 +25,13 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('username', $row->username);
 			$this->session->set_userdata('level', $row->level);
 			
-			if($this->session->userdata('level')==1){
-				redirect('mahasiswa');
+			if($this->session->userdata('level')== 1){
+				redirect('mahasiswa/index');
 			}
-			elseif($this->session->userdata('level')==2){
-				redirect('Pembimbing_Dosen');
+			elseif($this->session->userdata('level')== 2){
+				redirect('Pembimbing_Dosen/index');
 			}
-			elseif($this->session->userdata('level')==3){
+			elseif($this->session->userdata('level')== 3){
 				redirect('Pembimbing_Lapangan');
 			}
 		
@@ -51,5 +53,9 @@ class Login extends CI_Controller {
 				alert('Anda telah logout.');
 				window.location='".site_url('dashboard')."';
 				</script>";
+	}
+	public function menu()
+	{
+		$this->load->view('menu');
 	}
 }

@@ -43,8 +43,10 @@
                                 <label for="rememberusername">Remember username</label>
                             </div>
 
-                        <button type="submit" name="login" class="btn btn-primary btn-block mt-7" id="loginbtn">Login</button>
+
+                        <button type="submit" name="login" class="btn btn-primary btn-block mt-7" id="loginbtn">Login</button> <a href="<?=site_url('register')?>">Belum punya akun?</a>
                         <br>
+
                         <?php if(isset($pesan)){
                             echo $pesan;
                         }
