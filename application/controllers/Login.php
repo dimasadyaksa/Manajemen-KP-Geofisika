@@ -22,17 +22,20 @@ class Login extends CI_Controller {
 
 		if($ceklogin){
 			foreach ($ceklogin as $row) {
-			$this->session->set_userdata('username', $row->username);
-			$this->session->set_userdata('level', $row->level);
+			$this->session->set_userdata('email', $row->email);
+			$this->session->set_userdata('status', $row->status);
 			
-			if($this->session->userdata('level')== 1){
+			if($this->session->userdata('status')== 'Mahasiswa'){
 				redirect('mahasiswa/index');
 			}
-			elseif($this->session->userdata('level')== 2){
+			elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
 				redirect('Pembimbing_Dosen/index');
 			}
-			elseif($this->session->userdata('level')== 3){
+			elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
 				redirect('Pembimbing_Lapangan');
+			}
+			elseif($this->session->userdata('status')== ''){
+				redirect('Koordinator');
 			}
 		
 		}
