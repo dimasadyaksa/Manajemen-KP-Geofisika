@@ -2,25 +2,17 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-
-        
-        
-
-
 <div class="col-md-9">
-
-
 <div class="box box-success">
     <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <h1 class="box-title text-center">Daftar Mahasiswa</h1>
+        <h1 class="box-title text-center">Daftar Mahasiswa Bimbingan</h1>
         <div class="row">
         	<div class="col-md-6" >
 			</div>
 
     	</div>
-      <h4><p align="center">Daftar Mahasiswa</p></h4>
+      <h4><p align="center">Daftar Mahasiswa Bimbingan</p></h4>
     <table class="table table-bordered" style="text-align: center">
     <thead>
       <tr>
@@ -38,25 +30,8 @@
         <td>14116001</td>
         <td style="text-align: left">Iqbal Sanjaya</td>
         <td>2016</td>
-        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
+        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
       </tr>
-
-      <tr>
-       <td>2</td>
-        <td>14116002</td>
-        <td style="text-align: left">Tri Hartina</td>
-        <td>2016</td>
-        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
-      </tr>  
-      
-      <tr>
-        <td>3</td>
-        <td>14116003</td>
-        <td style="text-align: left">Lala</td>
-        <td>2016</td>
-        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
-      </tr>
-
     </tbody>
   </table>
 </div>
@@ -70,7 +45,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Detail Mahasiswa</h4>
+        <h4 class="modal-title">Detail Mahasiswa Bimbingan</h4>
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
