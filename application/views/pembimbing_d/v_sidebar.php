@@ -16,7 +16,7 @@
     <a href="<?php echo site_url('Pembimbing_Dosen/daftar_logbook')?>" class="list-group-item ">
       <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Logbook</a>
     <a href="<?php echo site_url('Pembimbing_Dosen/daftar_mahasiswa')?>" class="list-group-item ">
-      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Daftar Mahasiwa</a>
+      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Daftar Mahasiwa Bimbingan</a>
     
   </div>
 </div>
