@@ -6,14 +6,14 @@ class Pembimbing_Lapangan extends CI_Controller {
   function __construct(){
     parent::__construct();
     //validasi jika user belum login
-    if($this->session->userdata('username') != TRUE){
+    if($this->session->userdata('email') != TRUE){
             redirect('login');
         }
   	}
 
 	public function index()
 	{
-		if($this->session->userdata('level')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
       		$this->load->view('pembimbing_lapangan/index');
     	}else{
       		echo "Anda tidak berhak mengakses halaman ini";
@@ -22,7 +22,7 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}
 	public function daftar_mahasiswa() 
 	{
-		if($this->session->userdata('level')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 		$this->load->view('Pembimbing_Lapangan/v_header');
 		$this->load->view('Pembimbing_Lapangan/v_sidebar');
 		$this->load->view('Pembimbing_Lapangan/v_daftar_m');
@@ -31,9 +31,9 @@ class Pembimbing_Lapangan extends CI_Controller {
 			$this->load->view('back');
 		}
 	}	
-	public function logbook() 
+	public function daftar_logbook() 
 	{
-		if($this->session->userdata('level')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 		$this->load->view('Pembimbing_Lapangan/v_header');
 		$this->load->view('Pembimbing_Lapangan/v_sidebar');
 		$this->load->view('Pembimbing_Lapangan/v_logbook');
@@ -41,10 +41,21 @@ class Pembimbing_Lapangan extends CI_Controller {
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
 		}
+	}
+	public function logbook() 
+	{
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$this->load->view('Pembimbing_Lapangan/v_header');
+		$this->load->view('Pembimbing_Lapangan/v_sidebar');
+		$this->load->view('Pembimbing_Lapangan/v_logbookMhs');
+		}else{
+			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
+		}
 	}	
 	public function Penilaian() 
 	{
-		if($this->session->userdata('level')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 		$this->load->view('Pembimbing_Lapangan/v_header');
 		$this->load->view('Pembimbing_Lapangan/v_sidebar');
 		$this->load->view('Pembimbing_Lapangan/v_penilaian');
