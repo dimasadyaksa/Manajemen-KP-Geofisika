@@ -8,6 +8,7 @@ class Koordinator extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Koordinator_model');
+        $this->load->model('Tempatkerja_model');
         $this->load->model('Pembimbingdosen_model');
         $this->load->model('Pembimbinglapangan_model');
         $this->load->model('Mahasiswa_model');
@@ -21,10 +22,129 @@ class Koordinator extends CI_Controller {
 		$this->load->view('koordinator/index');
 	}
 	public function tempatKP()
-	{
-		$string = $this->load->view('koordinator/v_tempat_kp','',true);
-		echo $string;
-	}
+    {
+
+        // Read Data
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'koordinator/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'koordinator/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'koordinator/index.html';
+            $config['first_url'] = base_url() . 'koordinator/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Tempatkerja_model->total_rows($q);
+        $tempatkerja = $this->Tempatkerja_model->get_limit_data($config['per_page'], $start, $q);
+
+        $data = array(
+            //Read Data
+            'tempatkerja_data' => $tempatkerja,
+            // Create Data
+            'button' => 'Tambah',
+            'action' => site_url('Koordinator/create_action_tempatKP'),
+            'idPerusahaan' => set_value('idPerusahaan'),
+            'NamaPerusahaan' => set_value('NamaPerusahaan'),
+            'Bidang' => set_value('Bidang'),
+            'Alamat' => set_value('Alamat'),
+            'kontak' => set_value('kontak'),
+        );
+        $this->load->view('koordinator/v_tempat_kp', $data);
+        // $string = $this->load->view('koordinator/v_tempat_kp',$data,true);
+        // echo $string;
+    }
+
+    // Create Tempat KP
+    public function create_action_tempatKP() 
+    {
+        $this->_rules_tempatKP();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+                'NamaPerusahaan' => $this->input->post('NamaPerusahaan',TRUE),
+                'Bidang' => $this->input->post('Bidang',TRUE),
+                'Alamat' => $this->input->post('Alamat',TRUE),
+                'kontak' => $this->input->post('kontak',TRUE),
+            );
+
+            $this->Tempatkerja_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('koordinator'));
+        }
+    }
+
+    public function update_tempatKP($id) 
+    {
+        $row = $this->Tempatkerja_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('Koordinator/update_action_tempatKP'),
+                'idPerusahaan' => set_value('idPerusahaan', $row->idPerusahaan),
+                'NamaPerusahaan' => set_value('NamaPerusahaan', $row->NamaPerusahaan),
+                'Bidang' => set_value('Bidang', $row->Bidang),
+                'Alamat' => set_value('Alamat', $row->Alamat),
+                'kontak' => set_value('kontak', $row->kontak),
+            );
+            $this->load->view('koordinator/v_tempat_kp', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('Koordinator'));
+        }
+    }
+
+    // Update Tempat KP
+    public function update_action_tempatKP() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idPerusahaan', TRUE));
+        } else {
+            $data = array(
+                'NamaPerusahaan' => $this->input->post('NamaPerusahaan',TRUE),
+                'Bidang' => $this->input->post('Bidang',TRUE),
+                'Alamat' => $this->input->post('Alamat',TRUE),
+                'kontak' => $this->input->post('kontak',TRUE),
+            );
+
+            $this->Tempatkerja_model->update($this->input->post('idPerusahaan', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('tempatkerja'));
+        }
+    }
+
+    public function delete_tempatKP($id) 
+    {
+        $row = $this->Tempatkerja_model->get_by_id($id);
+
+        if ($row) {
+            $this->Tempatkerja_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('Koordinator'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('Koordinator'));
+        }
+    }
+
+    public function _rules_tempatKP() 
+    {
+        $this->form_validation->set_rules('NamaPerusahaan', 'namaperusahaan', 'trim|required');
+        $this->form_validation->set_rules('Bidang', 'bidang', 'trim|required');
+        $this->form_validation->set_rules('Alamat', 'alamat', 'trim|required');
+        $this->form_validation->set_rules('kontak', 'kontak', 'trim|required');
+
+        $this->form_validation->set_rules('idPerusahaan', 'idPerusahaan', 'trim');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
 	
 	public function tambahUser()
 	{
@@ -84,10 +204,7 @@ class Koordinator extends CI_Controller {
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data);
-        $this->load->view('koordinator/v_header');
-        $this->load->view('koordinator/v_sidebar');
-        $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data); 
+            $this->load->view('Koordinator/v_daftar_dosenpembimbing', $data); 
 	}
 
 	public function daftarDpl()
@@ -175,6 +292,7 @@ class Koordinator extends CI_Controller {
 	       
 		}
     }
+
 
     public function listMhs()
     {
