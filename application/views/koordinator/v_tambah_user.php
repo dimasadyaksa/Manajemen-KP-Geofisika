@@ -11,7 +11,6 @@
 					<thead>
 						<tr>
 							<th class="text-left">No</th>
-							<th class="text-left">Nama</th>
 							<th class="text-left">Username</th>
 							<th class="text-left">Password</th>
 							<th class="text-left">Status</th>
