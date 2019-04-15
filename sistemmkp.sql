@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2019 at 03:43 PM
+-- Generation Time: Apr 15, 2019 at 03:58 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -57,7 +57,8 @@ CREATE TABLE `koordinator` (
 
 CREATE TABLE `logbook` (
   `idLogbook` int(8) NOT NULL,
-  `Hari` date DEFAULT NULL,
+  `NIM` int(12) NOT NULL,
+  `Tanggal` date DEFAULT NULL,
   `JamMulai` time DEFAULT NULL,
   `JamSelesai` time DEFAULT NULL,
   `Kegiatan` varchar(1000) NOT NULL
@@ -71,8 +72,8 @@ CREATE TABLE `logbook` (
 
 CREATE TABLE `magang` (
   `idMagang` int(4) NOT NULL,
+  `idperusahaan` int(3) DEFAULT NULL,
   `NIM` int(12) DEFAULT NULL,
-  `idPerusahaan` int(4) DEFAULT NULL,
   `MulaiMagang` date DEFAULT NULL,
   `SelesaiMagang` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -85,9 +86,9 @@ CREATE TABLE `magang` (
 
 CREATE TABLE `mahasiswa` (
   `idUser` int(8) DEFAULT NULL,
-  `idLogbook` int(8) DEFAULT NULL,
   `Nama` varchar(30) DEFAULT NULL,
   `NIM` int(12) NOT NULL,
+  `No_telp` int(13) NOT NULL,
   `IPK` float DEFAULT NULL,
   `SKS` int(3) DEFAULT NULL,
   `Angkatan` int(4) DEFAULT NULL,
@@ -106,7 +107,8 @@ CREATE TABLE `nilaidosen` (
   `NIP` int(16) DEFAULT NULL,
   `Materi` int(3) NOT NULL,
   `PenugasanMateri` int(3) NOT NULL,
-  `BahasaTataTulis` int(3) NOT NULL
+  `BahasaTataTulis` int(3) NOT NULL,
+  `Rata_rata` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -117,7 +119,6 @@ CREATE TABLE `nilaidosen` (
 
 CREATE TABLE `nilailapangan` (
   `idNilaiLapagan` int(3) NOT NULL,
-  `idDosenL` int(4) DEFAULT NULL,
   `NIM` int(12) DEFAULT NULL,
   `Pemahaman` int(3) NOT NULL,
   `KemampuanPenugasan` int(3) NOT NULL,
@@ -136,9 +137,16 @@ CREATE TABLE `pembimbingdosen` (
   `idUser` int(8) DEFAULT NULL,
   `Nama` varchar(30) NOT NULL,
   `NIP` int(16) NOT NULL,
-  `Spesialis` varchar(12) NOT NULL,
+  `Spesialisi` varchar(12) NOT NULL,
   `kontak` char(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembimbingdosen`
+--
+
+INSERT INTO `pembimbingdosen` (`idUser`, `Nama`, `NIP`, `Spesialisi`, `kontak`) VALUES
+(1, 'Kevin', 20017731, 'Metaurologi', '0546637');
 
 -- --------------------------------------------------------
 
@@ -148,12 +156,19 @@ CREATE TABLE `pembimbingdosen` (
 
 CREATE TABLE `pembimbinglapangan` (
   `idDosenL` int(4) NOT NULL,
-  `idPerusahaan` int(4) DEFAULT NULL,
+  `idPerusahaan` int(3) DEFAULT NULL,
   `Nama` varchar(30) NOT NULL,
   `Kontak` char(13) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `Posisi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembimbinglapangan`
+--
+
+INSERT INTO `pembimbinglapangan` (`idDosenL`, `idPerusahaan`, `Nama`, `Kontak`, `email`, `Posisi`) VALUES
+(1, 1, 'Hasin', '08567768', 'hasin@mail.com', 'Administrasi');
 
 -- --------------------------------------------------------
 
@@ -164,9 +179,20 @@ CREATE TABLE `pembimbinglapangan` (
 CREATE TABLE `tempatkerja` (
   `idPerusahaan` int(3) NOT NULL,
   `NamaPerusahaan` varchar(300) NOT NULL,
+  `Bidang` varchar(20) DEFAULT NULL,
   `Alamat` varchar(300) NOT NULL,
-  `kontak` int(15) NOT NULL
+  `kontak` int(15) NOT NULL,
+  `Badan Hukum` varchar(30) NOT NULL,
+  `Web` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tempatkerja`
+--
+
+INSERT INTO `tempatkerja` (`idPerusahaan`, `NamaPerusahaan`, `Bidang`, `Alamat`, `kontak`, `Badan Hukum`, `Web`) VALUES
+(1, 'PT. Caltex', 'Geologi', 'Tanjung Karang', 2147483647, '', ''),
+(11, 'PT. Pertamina', 'Geologi', 'Batu Raden', 2147483647, '', '');
 
 -- --------------------------------------------------------
 
@@ -178,8 +204,18 @@ CREATE TABLE `user` (
   `idUser` int(8) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `status` enum('Mahasiswa','PDosen','PLapangan') DEFAULT NULL
+  `status` enum('Mahasiswa','Pembimbing Dosen','Pembimbing Lapangan','Koordinator') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`idUser`, `email`, `password`, `status`) VALUES
+(1, 'munan@gmail.com', 'xyz123', 'Mahasiswa'),
+(4, 'koor@mail.com', 'koor', ''),
+(5, 'dimas@itera', 'dimas', 'Pembimbing Dosen'),
+(6, 'itera@ac.id', 'itera', 'Pembimbing Lapangan');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +239,8 @@ ALTER TABLE `koordinator`
 -- Indexes for table `logbook`
 --
 ALTER TABLE `logbook`
-  ADD PRIMARY KEY (`idLogbook`);
+  ADD PRIMARY KEY (`idLogbook`),
+  ADD KEY `NIM` (`NIM`);
 
 --
 -- Indexes for table `magang`
@@ -211,15 +248,13 @@ ALTER TABLE `logbook`
 ALTER TABLE `magang`
   ADD PRIMARY KEY (`idMagang`),
   ADD KEY `NIM` (`NIM`),
-  ADD KEY `idPerusahaan` (`idPerusahaan`);
+  ADD KEY `idperusahaan` (`idperusahaan`);
 
 --
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`NIM`),
-  ADD KEY `idUser` (`idUser`),
-  ADD KEY `idLogbook` (`idLogbook`);
+  ADD PRIMARY KEY (`NIM`);
 
 --
 -- Indexes for table `nilaidosen`
@@ -234,7 +269,6 @@ ALTER TABLE `nilaidosen`
 --
 ALTER TABLE `nilailapangan`
   ADD PRIMARY KEY (`idNilaiLapagan`),
-  ADD KEY `idDosenL` (`idDosenL`),
   ADD KEY `NIM` (`NIM`);
 
 --
@@ -249,7 +283,7 @@ ALTER TABLE `pembimbingdosen`
 --
 ALTER TABLE `pembimbinglapangan`
   ADD PRIMARY KEY (`idDosenL`),
-  ADD KEY `idPerusahaan` (`idPerusahaan`);
+  ADD KEY `pembimbinglapangan_ibfk_1` (`idPerusahaan`);
 
 --
 -- Indexes for table `tempatkerja`
@@ -264,6 +298,58 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `jadwalseminar`
+--
+ALTER TABLE `jadwalseminar`
+  MODIFY `idSeminar` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `koordinator`
+--
+ALTER TABLE `koordinator`
+  MODIFY `NIP` int(16) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `logbook`
+--
+ALTER TABLE `logbook`
+  MODIFY `idLogbook` int(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `magang`
+--
+ALTER TABLE `magang`
+  MODIFY `idMagang` int(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nilaidosen`
+--
+ALTER TABLE `nilaidosen`
+  MODIFY `idNilaiDosen` int(3) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nilailapangan`
+--
+ALTER TABLE `nilailapangan`
+  MODIFY `idNilaiLapagan` int(3) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tempatkerja`
+--
+ALTER TABLE `tempatkerja`
+  MODIFY `idPerusahaan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -274,24 +360,17 @@ ALTER TABLE `jadwalseminar`
   ADD CONSTRAINT `jadwalseminar_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`);
 
 --
--- Constraints for table `koordinator`
+-- Constraints for table `logbook`
 --
-ALTER TABLE `koordinator`
-  ADD CONSTRAINT `koordinator_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`);
+ALTER TABLE `logbook`
+  ADD CONSTRAINT `logbook_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `magang`
 --
 ALTER TABLE `magang`
   ADD CONSTRAINT `magang_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`),
-  ADD CONSTRAINT `magang_ibfk_2` FOREIGN KEY (`idPerusahaan`) REFERENCES `tempatkerja` (`idPerusahaan`);
-
---
--- Constraints for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`),
-  ADD CONSTRAINT `mahasiswa_ibfk_2` FOREIGN KEY (`idLogbook`) REFERENCES `logbook` (`idLogbook`);
+  ADD CONSTRAINT `magang_ibfk_2` FOREIGN KEY (`idperusahaan`) REFERENCES `tempatkerja` (`idPerusahaan`);
 
 --
 -- Constraints for table `nilaidosen`
@@ -304,20 +383,14 @@ ALTER TABLE `nilaidosen`
 -- Constraints for table `nilailapangan`
 --
 ALTER TABLE `nilailapangan`
-  ADD CONSTRAINT `nilailapangan_ibfk_1` FOREIGN KEY (`idDosenL`) REFERENCES `pembimbinglapangan` (`idDosenL`),
   ADD CONSTRAINT `nilailapangan_ibfk_2` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`);
-
---
--- Constraints for table `pembimbingdosen`
---
-ALTER TABLE `pembimbingdosen`
-  ADD CONSTRAINT `pembimbingdosen_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`);
 
 --
 -- Constraints for table `pembimbinglapangan`
 --
 ALTER TABLE `pembimbinglapangan`
-  ADD CONSTRAINT `pembimbinglapangan_ibfk_1` FOREIGN KEY (`idPerusahaan`) REFERENCES `tempatkerja` (`idPerusahaan`);
+  ADD CONSTRAINT `pembimbinglapangan_ibfk_1` FOREIGN KEY (`idPerusahaan`) REFERENCES `tempatkerja` (`idPerusahaan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembimbinglapangan_ibfk_2` FOREIGN KEY (`idDosenL`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
