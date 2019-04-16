@@ -11,7 +11,7 @@
 					<thead>
 						<tr>
 							<th class="text-left">No</th>
-							<th class="text-left">Username</th>
+							<th class="text-left">Email</th>
 							<th class="text-left">Password</th>
 							<th class="text-left">Status</th>
 							<th class="text-left">Action</th>
@@ -36,12 +36,12 @@
 										<input type="text" class="form-control" id="Nama">
 									</div>
 									<div class="form-group">
-										<label for="Email">Email</label>
-										<input type="text" class="form-control" id="Email">
-									</div>
-									<div class="form-group">
 										<label for="pwd">NIM/NIP</label>
 										<input type="text" class="form-control" id="nim">
+									</div>
+									<div class="form-group">
+										<label for="Email">Email</label>
+										<input type="text" class="form-control" id="Email">
 									</div>
 									<div class="form-group">
 										<label for="pwd">Password</label>
@@ -82,23 +82,23 @@
 									<form action="/action_page.php">
 										<div class="form-group">
 											<label for="nama">Nama</label>
-											<input type="text" class="form-control" id="nama">
+											<input type="text" class="form-control" id="namaUpdt">
 										</div>
 										<div class="form-group">
-											<label for="Username">Username</label>
-											<input type="text" class="form-control" id="Username">
+											<label for="Email">Email</label>
+											<input type="text" class="form-control" id="emailUpdt">
 										</div>
 										<div class="form-group">
 											<label for="pwd">Password</label>
-											<input type="text" class="form-control" id="pwd">
+											<input type="text" class="form-control" id="passwordUpdt">
 										</div>
 										<div class="form-group">
 											<label for=statusUser>Status</label>
 											<select class="form-control">
 												<option>-Pilih-</option>
-												<option>Mahasiswa</option>
-												<option>Pembimbing Dosen</option>
-												<option>Pembimbing Lapangan</option>
+												<option value="Mahasiswa" id="optMhs">Mahasiswa</option>
+												<option value="Pembimbing Dosen" id="optPD">Pembimbing Dosen</option>
+												<option value="Pembimbing Lapangan" id="optPL">Pembimbing Lapangan</option>
 											</select>
 										</div>
 										<p style="padding-bottom: 10px"></p>

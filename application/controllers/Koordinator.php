@@ -8,7 +8,7 @@ class Koordinator extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Koordinator_model');
-        $this->load->model('Tempatkerja_model');
+    //    $this->load->model('Tempatkerja_model');
         $this->load->model('Pembimbingdosen_model');
         $this->load->model('Pembimbinglapangan_model');
         $this->load->model('Mahasiswa_model');
@@ -256,13 +256,40 @@ class Koordinator extends CI_Controller {
 
     public function createUser() 
     {
-        $data = array(
-		    'Email' => $this->input->post('email'),
-		    'Password' => $this->input->post('password'),
+        
+
+        $dataUser = array(
+        	'Email' => $this->input->post('Email'),
+		    'Password' => $this->input->post('Password'),
 		    'Status' => $this->input->post('status'),
 		);
+		$id = $this->User_m->insert($dataUser);
 
-		$this->User_m->insert($data);
+		if($id->status=='Mahasiswa'){
+			$data = array(
+				'idUser' =>$id->idUser,
+	        	'Nama' => $this->input->post('Nama'),
+	        	'NIM' => $this->input->post('Nim'),
+			    'email' => $this->input->post('Email'),
+			);
+			$this->createMhs($data);
+		}elseif ($id->status=='Pembimbing Dosen') {
+			$data = array(
+				'idUser' =>$id->idUser,
+	        	'Nama' => $this->input->post('Nama'),
+	        	'NIP' => $this->input->post('Nim'),
+			    'email' => $this->input->post('Email'),
+			);
+			$this->createDp($data);
+		}else{
+			$data = array(
+				'idDosenL' =>$id->idUser,
+	        	'Nama' => $this->input->post('Nama'),
+			    'email' => $this->input->post('Email'),
+			);
+			$this->createDpl($data);
+		}
+
 		/*if($this->input->post('status')=="Pembimbing Dosen"){
 			$this->createDp();
 		}elseif ($this->input->post('status')=="Pembimbing Lapangan") {
@@ -313,36 +340,39 @@ class Koordinator extends CI_Controller {
 	       
 		}
     }
-
-    public function createMhs() 
+    public function listDp()
     {
-    	$id = $this->User_m->lastID();
-        $data = array(
-        	'idUser' =>$id,
-		    'Nama' => $this->input->post('Nama')
-		);
+    	$data = $this->Pembimbingdosen_model->get_all();
+    	$i = 0;
+    	foreach ($data as $row)
+		{
+			$i++;
+			echo '<tr>
+              <td class="text-left">'.$i.'</td>
+              <td class="text-left">'.$row->Nama.'</td>
+              <td class="text-left">'.$row->NIP.'</td>
+              <td class="text-left">'.$row->Spesialisasi.'</td>
+              <td class="text-left">'.$row->kontak.'</td>
+              <td class="text-left">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
+              </td>
+              </tr>';
+	       
+		}
+    }
+
+    public function createMhs($data) 
+    {
 		$this->Mahasiswa_model->insert($data);
     }
     
-    public function createDp() 
+    public function createDp($data) 
     {
-    	$id =$this->User_m->lastID();
-        $data = array(
-        	'idUser'=>$id,
-		    'Nama' => $this->input->post('Nama')
-		);
 		$this->Pembimbingdosen_model->insert($data);
     }
 
-    public function createDpl() 
+    public function createDpl($data) 
     {
-    	$id = $this->User_m->lastID();
-    	echo $id['idUser'];
-        $data = array(
-        	'idDosenL'=>$id,
-		    'Nama' => $this->input->post('Nama'),
-		    'Email' => $this->input->post('email')
-		);
 		$this->Pembimbinglapangan_model->insert($data);
     }
 
@@ -364,6 +394,10 @@ class Koordinator extends CI_Controller {
         }
     }
     
+    public function Get4Edit(){
+    	
+    }
+
     public function update($id) 
     {
         $row = $this->Koordinator_model->get_by_id($id);

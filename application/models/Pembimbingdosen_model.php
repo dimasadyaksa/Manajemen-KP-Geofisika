@@ -34,7 +34,7 @@ class Pembimbingdosen_model extends CI_Model
         $this->db->like('NIP', $q);
 	$this->db->or_like('idUser', $q);
 	$this->db->or_like('Nama', $q);
-	$this->db->or_like('Spesialis', $q);
+	$this->db->or_like('Spesialisasi', $q);
 	$this->db->or_like('kontak', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -46,7 +46,7 @@ class Pembimbingdosen_model extends CI_Model
         $this->db->like('NIP', $q);
 	$this->db->or_like('idUser', $q);
 	$this->db->or_like('Nama', $q);
-	$this->db->or_like('Spesialis', $q);
+	$this->db->or_like('Spesialisasi', $q);
 	$this->db->or_like('kontak', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

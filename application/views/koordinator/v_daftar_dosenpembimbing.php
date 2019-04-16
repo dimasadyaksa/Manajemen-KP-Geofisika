@@ -16,25 +16,36 @@
     <h2 style="margin-top:15px; text-align: center;">Daftar Pembimbing Dosen</h2><br><br>
     <table class="table table-bordered table-striped" style="margin-bottom: 10px">
       <tr>
-        <th>No</th>
-        <th class="hidden">IdUser</th>
-        <th>Nama</th>
-        <th>Spesialis</th>
-        <th>Kontak</th>
-        </tr><?php
-        foreach ($pembimbingdosen_data as $pembimbingdosen)
+
+        </tr>
+        <thead>
+            <tr>
+              <th>No</th>
+              <th class="hidden">IdUser</th>
+              <th>Nama</th>
+              <th>NIP</th>
+              <th>Spesialis</th>
+              <th>Kontak</th>
+
+            </tr>
+          </thead>
+          <tbody id="dftr">
+            
+          </tbody>
+        <?php
+      /*foreach ($pembimbingdosen_data as $pembimbingdosen)
         {
           ?>
           <tr>
             <td><?php echo ++$start ?></td>
             <td class="hidden"><?php echo $pembimbingdosen->idUser ?></td>
             <td><?php echo $pembimbingdosen->Nama ?></td>
-            <td><?php echo $pembimbingdosen->Spesialis ?></td>
+            <td><?php echo $pembimbingdosen->Spesialisasi ?></td>
             <td><?php echo $pembimbingdosen->kontak ?></td>
 
           </tr>
           <?php
-        }
+        }*/
         ?>
       </table>
 

@@ -5,6 +5,7 @@ class User_m extends CI_Model {
 
 	public $table = 'user';
 	public $id = 'idUser';
+	public $email = 'email';
 	public function login($user,$pass)
 	{
 		$this->db->select('email,password,status');
@@ -54,8 +55,16 @@ class User_m extends CI_Model {
    function insert($data)
     {
         $this->db->insert($this->table, $data);
+        return $this->getId($data['Email']);
     }
      // update data
+    public function getId($email)
+    {
+
+    	$this->db->where($this->email, $email);
+        return $this->db->get($this->table)->row();
+    }
+
     function update($id, $data)
     {
         $this->db->where($this->id, $id);

@@ -9,11 +9,11 @@
 
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-header">Daftar</a>
-    <a href="javascript:daftar(1)" class="list-group-item " id="mhs">
+    <a href="javascript:daftar(1)" class="list-group-item " id="daftarMhs">
       <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Daftar Mahasiswa</a>
-    <a href="javascript:daftar(2)" class="list-group-item " id="dsp">
+    <a href="javascript:daftar(2)" class="list-group-item " id="daftarDp">
       <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Daftar Dosen Pembimbing</a>
-    <a href="javascript:daftar(3)" class="list-group-item " id="dspl">
+    <a href="javascript:daftar(3)" class="list-group-item " id="daftarDpl">
       <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Daftar Dosen Lapangan</a>
   </div>
 

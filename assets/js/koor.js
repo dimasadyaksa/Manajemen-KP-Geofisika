@@ -40,6 +40,8 @@ function daftar(no) {
              $('#isi').html(data);
 		     if(no==1){
 		     	listmhs();
+		     }else if(no==2){
+		     	listdp();
 		     }
              active(menu);
      }); 
@@ -56,15 +58,14 @@ function addUser(){
 	var data = {
 		'Nim' : Nim,
 		'Nama': Nama,
-		'email': email,
-		'password': password,
+		'Email': email,
+		'Password': password,
 		'status': status
 	}
-	console.log(data);
 	 $.post("koordinator/createUser",data,function(data){
-	 	console.log("Berhasil");
-     }); 
-     updateList();
+    	 updateList();
+     });
+     updateList(); 
 }
 
 function updateList() {
@@ -77,6 +78,19 @@ function listmhs() {
              $('#dftr').html(data);
      });
 }
+function listdp() {
+	$.post("koordinator/listDp",'',function(data){
+             $('#dftr').html(data);
+     });
+}
+
+function sendEmail(argument) {
+	var email = document.getElementById('Email').value;
+	$.post("koordinator/Get4Edit",'',function(data){
+             $('#dftr').html(data);
+     });
+}
+
 function active(param) {
 	var menu = ['profil','dash','daftarMhs','daftarDp','daftarDpl','tambahuser','tambahkp'];
 	for (var i = 0; i < menu.length; i++) {
