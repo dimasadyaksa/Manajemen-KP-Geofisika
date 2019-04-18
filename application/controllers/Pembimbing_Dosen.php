@@ -7,12 +7,15 @@ class Pembimbing_Dosen extends CI_Controller {
     parent::__construct();
     //validasi jika user belum login
     if($this->session->userdata('email') != TRUE){
-            redirect('login');
+            echo "<script>
+				alert('Anda tidak memiliki akses.');
+				window.location='".site_url('login')."';
+				</script>";
         }
   }
 	public function index()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
+		if($this->session->userdata('status')=='2'){
       		$this->load->view('pembimbing_d/index');
     	}else{
       		echo "Anda tidak berhak mengakses halaman ini";
@@ -21,9 +24,8 @@ class Pembimbing_Dosen extends CI_Controller {
 	}
 	public function daftar_logbook()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
+		if($this->session->userdata('status')=='2'){
+		$this->load->view('pembimbing_d/');
 		$this->load->view('pembimbing_d/v_daftar_logbook');
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
@@ -32,9 +34,8 @@ class Pembimbing_Dosen extends CI_Controller {
 	}	
 	public function daftar_mahasiswa()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
+		if($this->session->userdata('status')=='2'){
 		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('pembimbing_d/v_daftar_m');
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
@@ -43,8 +44,8 @@ class Pembimbing_Dosen extends CI_Controller {
 	}	
 	public function logbook()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-			$this->load->view('pembimbing_d/v_header');
+		if($this->session->userdata('status')=='2'){
+		$this->load->view('pembimbing_d/v_header');
 		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('pembimbing_d/v_logbook');
 		}else{
@@ -54,8 +55,8 @@ class Pembimbing_Dosen extends CI_Controller {
 	}	
 	public function penilaian()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-			$this->load->view('pembimbing_d/v_header');
+		if($this->session->userdata('status')=='2'){
+		$this->load->view('pembimbing_d/v_header');
 		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('pembimbing_d/v_penilaian');
 		}else{
@@ -65,7 +66,7 @@ class Pembimbing_Dosen extends CI_Controller {
 	}	
 	public function pengajuan()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
+		if($this->session->userdata('status')=='2'){
 		$this->load->view('pembimbing_d/v_header');
 		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('pembimbing_d/v_pengajuan');

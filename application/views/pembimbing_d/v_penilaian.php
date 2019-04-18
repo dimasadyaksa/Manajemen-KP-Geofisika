@@ -2,7 +2,11 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
 <div class="col-md-9">
+
+
 <div class="box box-success">
     <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -11,6 +15,7 @@
         <div class="row">
         	<div class="col-md-6" >
 			</div>
+
     	</div>
     <table class="table table-bordered" style="text-align:center">
     <thead>
@@ -26,9 +31,20 @@
         <td>1</td>
         <td>14116001</td>
         <td>Retno Monika</td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nilai</button></td>
+        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
       </tr>
-          </tbody>
+      <tr>
+       <td>2</td>
+        <td>14116002</td>
+        <td>Ali Musaldi</td>
+        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>14116003</td>
+        <td>Sandi Risky</td>
+        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td></tr>
+    </tbody>
   </table>
 </div>
 </div>
@@ -57,33 +73,34 @@
           3. Bahasa dan Tata Penulisan :&emsp;&emsp; <br>
           </p> 
       </div>
-
+      <form method="post" action="<?php echo site_url('simpan')?>">
           <div class="col-md-4">
-          <p style="text-align: center";"><b>NILAI</b> <br><br><br>
+          <p style="text-align: center";><b>NILAI</b> <br><br><br>
           <div class="form-group">
-           <input type="text" class="form-control" id="usr">
+           <input type="text" class="form-control" name="Materi" id="usr">
           </div>
            <div class="form-group">
-           <input type="text" class="form-control" id="usr"><br>
+           <input type="text" class="form-control" name="Pemahaman" id="usr"><br>
           </div>
             <div class="form-group">
-           <input type="text" class="form-control" id="usr"> <br>
+           <input type="text" class="form-control" name="Bahasa" id="usr"> <br>
           </div>
           </p>
         </div>
       </div>
        <p style="margin-left: 38px">Catatan :&emsp;&emsp; 
-          <form style="margin-left: 38px">
+          <form method="post" name="Catatan" style="margin-left: 38px">
           <textarea name="Catatan" cols="60" rows="5" id="usr">
 
           </textarea>
           </form>
+        </form>
           <div align="center" >
           <td>
           <a href="<?php echo site_url('pembimbing/penilaian')?>">
-          <button type="button" class="btn btn-info">Simpan</button></a>
+          <button type="button" class="btn btn-info btn-lg">Simpan</button></a>
         </td>
-          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Close</button>
         </td>
         </div></p>
 

@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('username') == TRUE){
+		if($this->session->userdata('email') == TRUE){
             echo "<script>
 				alert('Anda harus logout terlebih dahulu.');
 				window.location='".site_url('dashboard')."';
@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 	}
 	public function proses_login()
 	{
-		$user=$this->input->post('username');
+		$user=$this->input->post('email');
 		$pass=$this->input->post('password');
 
 		$ceklogin= $this->User_m->login($user,$pass);
@@ -25,16 +25,16 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('email', $row->email);
 			$this->session->set_userdata('status', $row->status);
 			
-			if($this->session->userdata('status')== 'Mahasiswa'){
+			if($this->session->userdata('status')== 1){
 				redirect('mahasiswa/index');
 			}
-			elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
+			elseif($this->session->userdata('status')== 2){
 				redirect('Pembimbing_Dosen/index');
 			}
-			elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
+			elseif($this->session->userdata('status')== 3){
 				redirect('Pembimbing_Lapangan');
 			}
-			elseif($this->session->userdata('status')== ''){
+			elseif($this->session->userdata('status')== 4){
 				redirect('Koordinator');
 			}
 		
