@@ -27,22 +27,19 @@
       </tr >
     </thead>
     <tbody>
+      <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
       <tr>
-        <td>1</td>
-        <td>14116001</td>
-        <td style="text-align: left">Retno Monika</td>
-        <td>2016</td>
+        <td><?php echo $no++ ?></td>
+        <td><?php echo $u->nim ?></td>
+        <td style="text-align: left"><?php echo $u->nama ?></td>
+        <td><?php echo $u->Angkatan ?></td>
         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
       </tr>
-
+       <?php } ?>
       
-       <tr>
-        <td>2</td>
-        <td style="text-align: left"></td>
-        <td></td>
-        <td></td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
-      </tr>
     </tbody>
   </table>
 </div>
