@@ -2,6 +2,35 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
+<div class="container content">
+    <div class="row"><div class="col-md-3">
+
+  <div class="list-group">
+    <a href="http://siakad.itera.ac.id/mahasiswa" class="list-group-item"><i class="fa fa-home tab10" aria-hidden="true"></i>Dashboard</a>
+    <a href="#" class="list-group-item "><i class="fa fa-plus-circle tab10" aria-hidden="true"></i>Profil</a>
+
+  </div>
+
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-header">Menu</a>
+    <a href="#" class="list-group-item">
+      <i class="fa fa-clock-o tab10" aria-hidden="true"></i> Penilaian</a>
+    <a href="#" class="list-group-item ">
+      <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Pengajuan</a>
+    <a href="<?php echo site_url('Pembimbing_Dosen/daftar_logbook')?>" class="list-group-item ">
+      <i class="fa fa-calendar-check-o tab10" aria-hidden="true"></i> Logbook</a>
+    <a href="<?php echo site_url('Pembimbing_Dosen/daftar_mahasiswa')?>" class="list-group-item active">
+      <i class="fa fa-list-ul tab10" aria-hidden="true"></i> Daftar Mahasiwa</a>
+    
+  </div>
+
+  
+</div>        
+        
+
+
 <div class="col-md-9">
 
 
@@ -17,29 +46,26 @@
       <h4><p align="center">Daftar Mahasiswa</p></h4>
     <table class="table table-bordered" style="text-align: center">
     <thead>
-      <tr>
-        <th style="text-align: center">No</th>
-        <th style="text-align: center">NIM</th>
-        <th style="text-align: left">Nama</th>
-        <th style="text-align: center">Angkatan</th>
-        <th style="text-align: center">Aksi</th>
-
-      </tr >
+    <tr>
+    <th>No.</th>
+    <th>NIM</th>
+    <th>Nama</th>
+    <th>Angkatan</th>
+    <th>Aksi</th>
+    </tr>
     </thead>
     <tbody>
-      <?php 
-    $no = 1;
-    foreach($user as $u){ 
-    ?>
-      <tr>
-        <td><?php echo $no++ ?></td>
-        <td><?php echo $u->nim ?></td>
-        <td style="text-align: left"><?php echo $u->nama ?></td>
-        <td><?php echo $u->Angkatan ?></td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
-      </tr>
-       <?php } ?>
-      
+    <?php $i = 1; ?>
+    <?php foreach( $mahasiswa as $row ) : ?>
+    <tr>
+    <td><?= $i; ?></td>
+    <td><?= $row["NIM"]; ?></td>
+    <td><?= $row["Nama"]; ?></td>
+    <td><?= $row["Angkatan"]; ?></td>
+    <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detail</button></td>
+    </tr>
+    <?php $i++; ?>
+    <?php endforeach; ?>
     </tbody>
   </table>
 </div>
@@ -57,13 +83,13 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5>Nama</h5></p></font><br>
+        <font color="grey"><p><h5><?= $row["Nama"]; ?></h5></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5>NIM</h5></p></font><br>
+        <font color="grey"><p><h5><?= $row["NIM"]; ?></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
-        <font color="grey"><p><h5>2016</h5></p></font><br>
+        <font color="grey"><p><h5><?= $row["Angkatan"]; ?></h5></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>
-        <font color="grey"><p><h5>Judul</h5></p></font><br>
+        <font color="grey"><p><h5><?= $row["JudulProposal"]; ?></h5></p></font><br>
         <p><h5><b>Tempat KP</b></h5></p>
         <font color="grey"><p><h5>Tempat</h5></p></font><br>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
