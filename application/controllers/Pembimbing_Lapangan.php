@@ -18,7 +18,7 @@ class Pembimbing_Lapangan extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('status')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
       		$this->load->view('pembimbing_lapangan/index');
     	}else{
       		echo "Anda tidak berhak mengakses halaman ini";
@@ -66,7 +66,7 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}
 	public function logbook() 
 	{
-		if($this->session->userdata('status')=='3'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 		$this->load->view('Pembimbing_Lapangan/v_header');
 		$this->load->view('Pembimbing_Lapangan/v_sidebar');
 		$this->load->view('Pembimbing_Lapangan/v_logbook');
