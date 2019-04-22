@@ -19,30 +19,23 @@
         <th style="text-align: left">Nama</th>
         <th style="text-align: center">Angkatan</th>
         <th style="text-align: center">Logbook</th>
-
       </tr >
     </thead>
     <tbody>
+      <?php foreach ($daftar_logbook as $daftarlogbook)
+        { ?>
       <tr>
-        <td>1</td>
-        <td>14116001</td>
-        <td style="text-align: left">Retno Monika</td>
-        <td>2016</td>
-        <td><a href="<?php echo site_url('Pembimbing_Dosen/logbook')?>">
+        <td><?php echo ++$start ?></td>
+        <td><?php echo $daftarlogbook->NIM ?></td>
+        <td><?php echo $daftarlogbook->Nama ?></td>
+        <td><?php echo $daftarlogbook->Angkatan ?></td>
+        <td><a href="<?php echo site_url('Pembimbing_Dosen/logbook/'.$daftarlogbook->NIM)?>">
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Lihat</button></a></td>
         <!-- <td><a href="<?php echo site_url('Logbook_Mahasiswa/Retno_Monika')?>">
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Lihat</button>
         </a></td> -->
       </tr>
-
-       <tr>
-        <td>2</td>
-        <td style="text-align: left"></td>
-        <td></td>
-        <td></td>
-        <td><a href="<?php echo site_url('Pembimbing_Dosen/logbook')?>">
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Lihat</button></a></td>
-      </tr>
+    <?php } ?>
     </tbody>
   </table>
 </div>
