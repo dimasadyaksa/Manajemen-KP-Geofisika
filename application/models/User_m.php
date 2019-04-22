@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_m extends CI_Model {
-
+    public $table = 'user';
+    public $id = 'idUser';
+    public $email = 'email';
+    
 	public function login($user,$pass)
 	{
 		$this->db->select('email,password,status');

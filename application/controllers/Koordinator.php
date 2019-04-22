@@ -256,6 +256,7 @@ class Koordinator extends CI_Controller {
 
     public function createUser() {
         $dataUser = array(
+        	'NIM' => $this->input->post('Nim'),
         	'Email' => $this->input->post('Email'),
 		    'Password' => $this->input->post('Password'),
 		    'Status' => $this->input->post('status'),
