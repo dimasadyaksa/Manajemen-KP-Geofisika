@@ -15,7 +15,5 @@ class Logbook_Mahasiswa extends CI_Controller {
 		$this->load->view('logbook/v_sidebar');
 		$this->load->view('logbook/Retno_Monika');
 
-		
-		
 	}
 }
