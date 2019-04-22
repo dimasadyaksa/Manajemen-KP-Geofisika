@@ -4,14 +4,16 @@
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">LOGBOOK</h1>  
       <br><br>
+    <?php foreach ($detail as $row)
+        { ?>
     <div class="col-md-9">
-        <label>Nama : </label><br>
-         <label>NIM : </label><br>
+        <label>Nama : <?php echo $row->Nama ?></label><br>
+         <label>NIM : <?php echo $row->NIM ?></label><br>
           <label>Tempat KP : </label><br><br>
           <h4><p align="center">Daftar Logbook Mahasiswa</p></h4>
     </div>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered"> 
     <thead>
       <tr>
         <th>No</th>
@@ -24,11 +26,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>13 Juni 2019</td>
-        <td>09.00</td>
-        <td>16.00</td>
-        <td>Membuat frontend web</td>
+        <td><?php echo ++$start ?></td>
+        <td><?php echo $row->Tanggal ?></td>
+        <td><?php echo $row->JamMulai ?></td>
+        <td><?php echo $row->JamSelesai ?></td>
+        <td><?php echo $row->Kegiatan ?></td>
         <td>
           <a role="button" class="label label-success" href="<?php echo site_url('Pembimbing_Lapangan/logbook')?>">Di Terima</a>
           <a role="button" class="label label-danger" href="<?php echo site_url('Pembimbing_Lapangan/logbook')?>">Di Tolak</a>
@@ -36,5 +38,6 @@
       </tr>
     </tbody>
   </table>
+  <?php } ?>
 </div>
 </div>
