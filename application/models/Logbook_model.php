@@ -27,6 +27,26 @@ class Logbook_model extends CI_Model
        $query = $this->db->get();
        return $query->result();
    }
+	
+	//join tablemahasiswa dan logbook
+    function daftar()
+    {
+        $this->db->select('*');
+        $this->db->from('logbook');
+        $this->db->join('mahasiswa','logbook.NIM=mahasiswa.NIM');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function caridaftar($nim)
+    {
+        $this->db->select('*');
+        $this->db->join('mahasiswa','logbook.NIM=mahasiswa.NIM');
+        $this->db->from('logbook');
+        $this->db->where('logbook.NIM', $nim);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 }
