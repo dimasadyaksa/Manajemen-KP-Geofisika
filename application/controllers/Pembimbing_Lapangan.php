@@ -8,6 +8,8 @@ class Pembimbing_Lapangan extends CI_Controller {
     //validasi jika user belum login
     
         $this->load->model('Mahasiswa_model');
+        $this->load->model('Pembimbinglapangan_model');
+        $this->load->model('Logbook_model');
     if($this->session->userdata('email') != TRUE){
             echo "<script>
 				alert('Anda tidak memiliki akses.');
@@ -55,21 +57,26 @@ class Pembimbing_Lapangan extends CI_Controller {
 	       
 		}
     }
+	
 	public function daftar_logbook() 
 	{
+		 // Read Data
+		$data['LogbookL']= $this->Logbook_model->getDataLogbook();
+		
 		if($this->session->userdata('status')=='Pembimbing Lapangan'){
-			$string = $this->load->view('Pembimbing_Lapangan/v_logbook','', true);
-			echo $string;
+			$this->load->view('Pembimbing_Lapangan/v_logbook', $data);
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
 		}
 	}
-	public function logbook() 
+	public function logbook($NIM) 
 	{
+		$data['detailLogbook']= $this->Logbook_model->getDetailLogbook($NIM);
 		if($this->session->userdata('status')=='Pembimbing Lapangan'){
-		$this->load->view('Pembimbing_Lapangan/v_header');
-		$this->load->view('Pembimbing_Lapangan/v_sidebar');
-		$this->load->view('Pembimbing_Lapangan/v_logbook');
+			$this->load->view('Pembimbing_Lapangan/v_header');
+			$this->load->view('Pembimbing_Lapangan/v_sidebar');
+			$this->load->view('Pembimbing_Lapangan/v_logbookMhs',$data);
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');

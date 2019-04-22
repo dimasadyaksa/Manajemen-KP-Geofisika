@@ -70,7 +70,14 @@ class Pembimbinglapangan_model extends CI_Model
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
-
+    
+     function getDataLogbook(){
+        $this->db->select("mahasiswa.NIM,mahasiswa.Nama, magang.Divisi"); 
+        $this->db->from('magang');
+        $this->db->join('mahasiswa','mahasiswa.NIM=magang.NIM');
+        $query = $this->db->get();
+        return $query->result();
+    }
     // insert data
     function insert($data)
     {
