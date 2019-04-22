@@ -5,7 +5,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('username') != TRUE){
+		if($this->session->userdata('email') != TRUE){
 			$this->load->view('index');
 		}else{
 			redirect('Dashboard/logged');
@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
 	}
 	public function logged()
 	{
-		if($this->session->userdata('username') != TRUE){
+		if($this->session->userdata('email') != TRUE){
             echo "<script>
 				alert('Anda tidak memiliki akses.');
 				window.location='".site_url('login')."';

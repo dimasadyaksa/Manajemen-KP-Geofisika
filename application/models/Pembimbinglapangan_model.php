@@ -40,6 +40,23 @@ class Pembimbinglapangan_model extends CI_Model
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
+    function detailDLapangan() {
+     $this->db->select("pembimbinglapangan.Nama,pembimbinglapangan.Kontak,pembimbinglapangan.email,pembimbinglapangan.Posisi,
+        tempatkerja.NamaPerusahaan"); 
+        $this->db->from('pembimbinglapangan');
+        $this->db->join('tempatkerja','tempatkerja.idPerusahaan=pembimbinglapangan.idPerusahaan');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    function getDataMhsBimbingan(){
+        $this->db->select("mahasiswa.NIM,mahasiswa.Nama,mahasiswa.Angkatan"); 
+        $this->db->from('mahasiswa');
+        $this->db->where('idDosenL=2');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
@@ -73,6 +90,9 @@ class Pembimbinglapangan_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+
+    //Logbook di Pembimbing Lapangan
+    
 
 }
 

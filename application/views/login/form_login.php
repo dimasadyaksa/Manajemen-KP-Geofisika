@@ -33,7 +33,7 @@
                     <form class="mt-10" action="<?php echo site_url('Login/proses_login')?>" method="post">
                                                 
                         <div class="form-group">
-                            <input type="text" name="username" id="username" class="form-control" value="" placeholder="Username / email" required autofocus>
+                            <input type="text" name="email" id="email" class="form-control" value="" placeholder="Username / email" required autofocus>
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password" required>

@@ -27,22 +27,19 @@
       </tr >
     </thead>
     <tbody>
+      <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
       <tr>
-        <td>1</td>
-        <td>14116001</td>
-        <td style="text-align: left">Retno Monika</td>
-        <td>2016</td>
+        <td><?php echo $no++ ?></td>
+        <td><?php echo $u->nim ?></td>
+        <td style="text-align: left"><?php echo $u->nama ?></td>
+        <td><?php echo $u->Angkatan ?></td>
         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
       </tr>
-
+       <?php } ?>
       
-       <tr>
-        <td>2</td>
-        <td style="text-align: left"></td>
-        <td></td>
-        <td></td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
-      </tr>
     </tbody>
   </table>
 </div>
@@ -60,13 +57,13 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5>Nama</h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->nim ?></h5></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5>NIM</h5></p></font><br>
+        <font color="grey"><p><h5>?php echo $u->nim ?></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
-        <font color="grey"><p><h5>2016</h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->Angkatan ?></h5></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>
-        <font color="grey"><p><h5>Judul</h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->JudulProposal ?></h5></p></font><br>
         <p><h5><b>Tempat KP</b></h5></p>
         <font color="grey"><p><h5>Tempat</h5></p></font><br>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>

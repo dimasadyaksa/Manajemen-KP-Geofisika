@@ -2,7 +2,7 @@
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <h1 class="box-title text-center">PENILAIAN KERJA PRAKTIK</h1>
       <div class="row">
-       
+
         <br>
         <table class="table table-bordered" style="text-align: center">
           <thead>
@@ -16,21 +16,36 @@
             </tr >
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>1</td>
               <td>14116001</td>
               <td style="text-align: left">Iqbal Sanjaya</td>
               <td>2016</td>
               <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nilai</button></td>
-            </tr>
+            </tr> -->
+            <?php
+            $start = 0;
+            foreach ($DataBimbingan as $post)
+            {
+              ?>
+              <tr>
+                <td width="80px"><?php echo ++$start ?></td>
+                <td><?php echo $post->NIM ?></td>
+                <td><?php echo $post->Nama ?></td>
+                <td><?php echo $post->Angkatan ?></td>
+                 <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nilai</button></td>
+               </tr>
+               <?php
+             }
+             ?>
 
-          </tbody>
-        </table>
-      </div>
-    </div>
+           </tbody>
+         </table>
+       </div>
+     </div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+     <!-- Modal -->
+     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->

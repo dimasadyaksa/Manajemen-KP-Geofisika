@@ -2,15 +2,21 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
 <div class="col-md-9">
+
+
 <div class="box box-success">
     <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">HALAMAN PENILAIAN</h1>
         <p><br></p>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#input_nilai_popup">Input Nilai</button>
         <div class="row">
         	<div class="col-md-6" >
 			</div>
+
     	</div>
     <table class="table table-bordered" style="text-align:center">
     <thead>
@@ -22,77 +28,61 @@
       </tr>
     </thead>
     <tbody>
+
+    <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
       <tr>
-        <td>1</td>
-        <td>14116001</td>
-        <td>Retno Monika</td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nilai</button></td>
+      <td><?php echo $no++ ?></td>
+      <td><?php echo $u->nim ?></td>
+      <td><?php echo $u->nama ?></td>
+        <td><a href="<?= site_url('nilai')?>">
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#detail_nilai">Detail</button></a></td>
       </tr>
-          </tbody>
-  </table>
-</div>
-</div>
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Detail Nilai</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-md-8" >
-            <p style="margin-left: 38px">
-              <b>KRITERIA PENILAIAN</b>
-              <br>
-              KISARAN PENILAIAN   : 100&gt;=A&gt;=80,80&gt;=B&gt;=60,60&lt;C<br>
-            </p>
-        <p style="margin-left: 38px">
-
-          1. Materi    : &emsp;&emsp;                    <br><br><br>
-          2. Pemahaman Materi  :&emsp;&emsp;           <br><br><br>
-          3. Bahasa dan Tata Penulisan :&emsp;&emsp; <br>
-          </p> 
-      </div>
-
-          <div class="col-md-4">
-          <p style="text-align: center";"><b>NILAI</b> <br><br><br>
-          <div class="form-group">
-           <input type="text" class="form-control" id="usr">
-          </div>
-           <div class="form-group">
-           <input type="text" class="form-control" id="usr"><br>
-          </div>
-            <div class="form-group">
-           <input type="text" class="form-control" id="usr"> <br>
-          </div>
-          </p>
-        </div>
-      </div>
-       <p style="margin-left: 38px">Catatan :&emsp;&emsp; 
-          <form style="margin-left: 38px">
-          <textarea name="Catatan" cols="60" rows="5" id="usr">
-
-          </textarea>
-          </form>
-          <div align="center" >
-          <td>
-          <a href="<?php echo site_url('pembimbing/penilaian')?>">
-          <button type="button" class="btn btn-info">Simpan</button></a>
-        </td>
-          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-        </td>
-        </div></p>
-
+    <?php } ?>
     </tbody>
   </table>
 </div>
 </div>
-      </div>
-    </div>
 
-  </div>
-</div>
+<!-- Modal -->
+<div id="input_nilai_popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Input Nilai</h4>
+              </div>
+
+              <div class="modal-body">
+                <form action="<?php echo site_url('pembimbing_dosen/tambah_aksi') ; ?>" method="post">
+                  <p style="margin-left">
+              <b>KRITERIA PENILAIAN</b>
+              <br>
+              <font color="grey"><p><h5>KISARAN PENILAIAN   : 100&gt;=A&gt;=80, 80&gt;=B&gt;=60, 60&lt;C</h5></p></font><br>
+            </p>
+                        <label>NIM Mahasiswa</label><br>
+                        <input class="form-control" type="text" name="nim"><br>
+      
+                        <label>Materi</label><br>
+                        <input class="form-control" type="text" name="materi"><br>
+
+                        <label>Pemahaman Materi</label><br>
+                        <input class="form-control" type="text" name="penugasanmateri"><br>
+
+
+                        <label>Bahasa dan Tata Penulisan</label><br>
+                        <input class="form-control" type="text" name="bahasatatatulis"><br><br>
+                        
+                        <label for="Catatan">Catatan</label><br>
+                        <textarea name="catatan" id="catatan" cols="60" rows="5"></textarea><br><br>
+                        <div align="center">
+                        <input class="btn btn-success" type="submit" value="Tambah">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                      </div>
+                  </form> 
+              </div>
+            </div>

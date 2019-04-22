@@ -3,15 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_m extends CI_Model {
 
-	public $table = 'user';
-	public $id = 'idUser';
-	public $email = 'email';
 	public function login($user,$pass)
 	{
 		$this->db->select('email,password,status');
 		$this->db->from('user');
 		$this->db->where('email', $user);
-		$this->db->where('password',$pass);
+		$this->db->where('password', $pass);
 		$this->db->limit(1);
 
 		$query = $this->db->get();
@@ -22,8 +19,6 @@ class User_m extends CI_Model {
 			return false;
 		}
 	}
-
-
 	public function get($id = null)
 	{
 		$this->db->from('user');
