@@ -1,9 +1,3 @@
-<head>
-	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<div class="col-md-9">
-<div class="box box-success">
     <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">LOGBOOK MAHASISWA</h1>
@@ -17,8 +11,9 @@
         <th style="text-align: left">Nama</th>
         <th style="text-align: left">Tempat Kerja Praktik</th>
         <th style="text-align: center">Action</th>
-
       </tr >
+    </thead>
+    <tbody>
       <tr>
         <td>1</td>
         <td style="text-align: left">Frisky</td>
@@ -31,9 +26,4 @@
 </div>
 </div>
 
-      </div>
       
-    </div>
-
-  </div>
-</div>

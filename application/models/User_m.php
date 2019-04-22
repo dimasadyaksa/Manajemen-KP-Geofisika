@@ -65,12 +65,11 @@ class User_m extends CI_Model {
         return $this->db->get($this->table)->row();
     }
 
-    function update($id, $data)
-    {
-        $this->db->where($this->id, $id);
+    function update($id, $data){
+        $this->db->where($this->email, $id);
         $this->db->update($this->table, $data);
+        return $this->getId($id);
     }
-     // delete data
     function delete($id)
     {
         $this->db->where($this->id, $id);

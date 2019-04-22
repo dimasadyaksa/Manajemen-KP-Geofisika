@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/ladda-themeless.css">
     <link rel="shortcut icon" href="<?php echo base_url()?>assets/img/logo%20itera%20oke.png">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/chosen.css">
-    
-  <style type="text/css"></style></head>
+ 
+</head>
  <body>
 <div class="container base">
   <div class="container">
