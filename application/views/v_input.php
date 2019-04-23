@@ -4,10 +4,7 @@
 	<title>Membuat CRUD dengan CodeIgniter | MalasNgoding.com</title>
 </head>
 <body>
-	<center>
-		<h1>Membuat CRUD dengan CodeIgniter | MalasNgoding.com</h1>
-		<h3>Tambah data baru</h3>
-	</center>
+	
 	<form action="<?php echo site_url('Nilai/tambah_aksi') ; ?>" method="post">
 		<table style="margin:20px auto;">
 			<tr>
