@@ -8,8 +8,7 @@
         { ?>
     <div class="col-md-9">
         <label>Nama : <?php echo $row->Nama ?></label><br>
-         <label>NIM : <?php echo $row->NIM ?></label><br>
-          <label>Tempat KP : </label><br><br>
+         <label>NIM : <?php echo $row->NIM ?></label><br><br><br>
           <h4><p align="center">Daftar Logbook Mahasiswa</p></h4>
     </div>
 
