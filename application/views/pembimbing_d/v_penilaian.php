@@ -39,7 +39,7 @@
     ?>
       <tr>
       <td><?php echo $no++ ?></td>
-      <td><?php echo $u->nama ?></td>
+      <td><?php echo $u->Nama ?></td>
       <td><?php echo $u->NIM ?></td>
       <td><?php echo $u->Materi ?></td>
       <td><?php echo $u->PenugasanMateri ?></td>
