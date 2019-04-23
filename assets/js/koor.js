@@ -1,5 +1,8 @@
-function loadTambahUser() {
-	 
+var nip=true;
+var email=true;
+
+
+function loadTambahUser() { 
 	 $.post("koordinator/tambahUser","",function(data){
              $('#isi').html(data);
             
@@ -99,5 +102,58 @@ function active(param) {
         }else{
 			$('#'+menu[i]).removeClass('active'); 	 
         }
+	}
+}
+
+function dataTable(email,password,status) {
+        $("#emailUpdt").val(email);
+        $("#passwordUpdt").val(password);
+        if (status=="Mahasiswa") {
+        	document.getElementById("selUpdt").selectedIndex = "1"; 
+        }else if(status=="Pembimbing Dosen"){
+        	document.getElementById("selUpdt").selectedIndex = "2"; 
+        }else if(status=="Pembimbing Lapangan"){
+        	document.getElementById("selUpdt").selectedIndex = "3"; 
+        }
+}
+
+
+function detectNIP() {
+	var nim = {
+		'nim':document.getElementById('nim').value
+	}
+	$.post("koordinator/detectNIP",nim,function(data){
+		if(data=='duplikat'){
+			$('#nipAlert').css('display','block');
+			nip = true;
+		}else{
+			$('#nipAlert').css('display','none');
+			nip = false;
+		}
+        isDisabled();
+     });
+}
+
+function detectEmail() {
+	var nim = {
+		'email':document.getElementById('Email').value
+	}
+	$.post("koordinator/detectEmail",nim,function(data){
+		if(data=='duplikat'){
+			$('#emailAlert').css('display','block');
+			email = true;
+		}else{
+			$('#emailAlert').css('display','none');
+			email = false;
+		}
+        isDisabled();
+     });
+}
+
+function isDisabled() {
+	if(nip||email){
+		document.getElementById("tambah").disabled = true; 
+	}else{
+		document.getElementById("tambah").disabled = false; 
 	}
 }

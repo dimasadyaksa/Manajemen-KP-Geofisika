@@ -1,5 +1,5 @@
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -14,17 +14,21 @@
         <p><br></p>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#input_nilai_popup">Input Nilai</button>
         <div class="row">
-        	<div class="col-md-6" >
-			</div>
+          <div class="col-md-6" >
+      </div>
 
-    	</div>
+      </div>
     <table class="table table-bordered" style="text-align:center">
     <thead>
       <tr>
         <th>No</th>
-        <th>NIM</th>
         <th>Nama</th>
-        <th>Nilai</th>
+        <th>NIM</th>
+        <th>Materi</th>
+        <th>Pemahaman</th>
+        <th>Bahasa</th>
+        <th>Catatan</th>
+        <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -35,10 +39,16 @@
     ?>
       <tr>
       <td><?php echo $no++ ?></td>
-      <td><?php echo $u->nim ?></td>
-      <td><?php echo $u->nama ?></td>
-        <td><a href="<?= site_url('nilai')?>">
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#detail_nilai">Detail</button></a></td>
+      <td><?php echo $u->Nama ?></td>
+      <td><?php echo $u->NIM ?></td>
+      <td><?php echo $u->Materi ?></td>
+      <td><?php echo $u->PenugasanMateri ?></td>
+      <td><?php echo $u->BahasaTataTulis ?></td>
+      <td><?php echo $u->Catatan ?></td>          
+      <td>
+        
+        <?php echo anchor('pembimbing_dosen/hapus/'.$u->NIM,'Hapus'); ?>  
+      </td>
       </tr>
     <?php } ?>
     </tbody>

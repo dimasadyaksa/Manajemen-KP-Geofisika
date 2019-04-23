@@ -24,6 +24,7 @@ class Logbook_model extends CI_Model
        $this->db->select("mahasiswa.Nama,logbook.NIM, logbook.Tanggal, logbook.JamMulai, logbook.JamSelesai, logbook.Kegiatan"); 
        $this->db->from('logbook');
        $this->db->join('mahasiswa','mahasiswa.NIM=logbook.NIM');
+       $this->db->where('mahasiswa.nim', $NIM);
        $query = $this->db->get();
        return $query->result();
    }
