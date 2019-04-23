@@ -70,9 +70,12 @@ class Pembimbing_Lapangan extends CI_Controller {
 			$this->load->view('back');
 		}
 	}
-	public function logbook($NIM) 
+	public function Readlogbook() 
 	{
-		$data['detailLogbook']= $this->Logbook_model->getDetailLogbook($NIM);
+		$id=$this->uri->segment(3);
+		$this->load->model('Logbook_model');
+		$data['detailLogbook']= $this->Logbook_model->getDetailLogbook($id);
+		
 		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 			$this->load->view('Pembimbing_Lapangan/v_header');
 			$this->load->view('Pembimbing_Lapangan/v_sidebar');
@@ -81,13 +84,6 @@ class Pembimbing_Lapangan extends CI_Controller {
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
 		}
-	}
-	public function Readlogbook() 
-	{
-		$id=$this->uri->segment(3);
-		$this->load->model('Logbook_model');
-		$data['detailLogbook']= $this->Logbook_model->getDetailLogbook($id);
-		$this->load->view('Pembimbing_Lapangan/v_logbookMhs',$data);
 	}	
 	public function Penilaian() 
 	{
