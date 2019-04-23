@@ -90,11 +90,11 @@ class Pembimbing_Dosen extends CI_Controller {
 		$catatan = $this->input->post('catatan');
 
 		$data = array(
-			'nim' => $nim,
-			'materi' => $materi,
-			'penugasanmateri' => $penugasanmateri,
-			'bahasatatatulis' => $bahasatatatulis,
-			'catatan' => $catatan
+			'NIM' => $nim,
+			'Materi' => $materi,
+			'PenugasanMateri' => $penugasanmateri,
+			'BahasaTataTulis' => $bahasatatatulis,
+			'Catatan' => $catatan
 			);
 		$this->m_data->input_data($data,'nilaidosen');
 		redirect('pembimbing_dosen/penilaian');
