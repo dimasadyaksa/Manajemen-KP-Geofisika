@@ -3,8 +3,7 @@
 			<h1 class="box-title text-center">Tambah Pengguna Sistem Manajamen Kerja Praktik</h>
 			</div>
 			<div class="box-body">
-				
-				<button type="button" class="btn btn-success" onclick="isDisabled()" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah_user_popup">Tambah User</button>
 				<p style="padding-bottom: 10px"></p>
 				<h4 style="text-align: center;">Daftar User Sistem</h4>
 				<br>
@@ -36,19 +35,13 @@
 										<label for="nama">Nama</label>
 										<input type="text" class="form-control" id="Nama">
 									</div>
-									<div class="alert alert-danger" id="nipAlert" style="display: none;"  role="alert">
-										NIP/NIM sudah ada!  
-									</div>
 									<div class="form-group">
 										<label for="pwd">NIM/NIP</label>
-										<input type="text" class="form-control" oninput="detectNIP()" id="nim">
-									</div>
-									<div class="alert alert-danger" id="emailAlert" style="display: none;" role="alert">
-									  Email sudah digunakan!
+										<input type="text" class="form-control" id="nim">
 									</div>
 									<div class="form-group">
 										<label for="Email">Email</label>
-										<input type="text" class="form-control" oninput="detectEmail()"  id="Email">
+										<input type="text" class="form-control" id="Email">
 									</div>
 									<div class="form-group">
 										<label for="pwd">Password</label>
@@ -65,7 +58,7 @@
 									</div>
 									<p style="padding-bottom: 10px"></p>
 									<div align="center">
-										<button type="button" id="tambah" onclick="addUser()" data-dismiss="modal" class="btn btn-success">Tambah</button>
+										<button type="button" onclick="addUser()" data-dismiss="modal" class="btn btn-success">Tambah</button>
 										<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 									</div>
 									
@@ -88,6 +81,10 @@
 									dengan data yang ada di database -->
 									<form action="/action_page.php">
 										<div class="form-group">
+											<label for="nama">Nama</label>
+											<input type="text" class="form-control" id="namaUpdt">
+										</div>
+										<div class="form-group">
 											<label for="Email">Email</label>
 											<input type="text" class="form-control" id="emailUpdt">
 										</div>
@@ -97,7 +94,7 @@
 										</div>
 										<div class="form-group">
 											<label for=statusUser>Status</label>
-											<select class="form-control" id="selUpdt">
+											<select class="form-control">
 												<option>-Pilih-</option>
 												<option value="Mahasiswa" id="optMhs">Mahasiswa</option>
 												<option value="Pembimbing Dosen" id="optPD">Pembimbing Dosen</option>
@@ -137,4 +134,3 @@
 							</div>
 
 						</div>
-						

@@ -20,8 +20,6 @@ class Nilai extends CI_Controller{
 	function index(){
 		if($this->session->userdata('status')=='Pembimbing Dosen'){
 		$data['user'] = $this->m_data->tampil_nilai()->result();
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('v_tampil',$data);
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";

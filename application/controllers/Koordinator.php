@@ -254,9 +254,11 @@ class Koordinator extends CI_Controller {
         }
     }
 
-    public function createUser() {
+    public function createUser() 
+    {
+        
+
         $dataUser = array(
-        	'NIM' => $this->input->post('Nim'),
         	'Email' => $this->input->post('Email'),
 		    'Password' => $this->input->post('Password'),
 		    'Status' => $this->input->post('status'),
@@ -287,6 +289,14 @@ class Koordinator extends CI_Controller {
 			);
 			$this->createDpl($data);
 		}
+
+		/*if($this->input->post('status')=="Pembimbing Dosen"){
+			$this->createDp();
+		}elseif ($this->input->post('status')=="Pembimbing Lapangan") {
+			$this->createDpl();
+		}else{
+			$this->createMhs();
+		}*/
     }
 
     public function listUser()
@@ -296,16 +306,16 @@ class Koordinator extends CI_Controller {
     	foreach ($data as $row)
 		{
 			$i++;
-			echo "<tr>
-							<td>".$i."</td>
-							<td id='email'>".$row->email."</td>
-							<td>".$row->password."</td>
-							<td>".$row->status."</td>
+			echo '<tr>
+							<td>'.$i.'</td>
+							<td>'.$row->email.'</td>
+							<td>'.$row->password.'</td>
+							<td>'.$row->status.'</td>
 							<td>
-								<button type='button' class='btn btn-info' data-toggle='modal' data-target='#update_user_popup' onclick=dataTable('".$row->email."','".$row->password."','".$row->status."') >Edit</button>
-								<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete_user_popup'>Delete</button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Edit</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_user_popup">Delete</button>
 					</td>
-				</tr>";
+				</tr>';
 	       
 		}
     }
@@ -384,7 +394,7 @@ class Koordinator extends CI_Controller {
         }
     }
     
-    public function Get4Edit($email){
+    public function Get4Edit(){
     	
     }
 
@@ -444,71 +454,4 @@ class Koordinator extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-
-	public function detectNIP()
-	{
-		$id = $this->input->post('nim');
-		$data = $this->User_m->get_all();
-    	$i = 0;
-      	if(empty($id)){
-    		echo 'aman';
-    		return;
-    	}
-    	foreach ($data as $row){
-			$i++;
-   			if($row->NIM == $id){
-				echo "duplikat";
-			return;
-			}
-		}
-		echo "aman";
-    	
-	}
-
-	public function detectEmail()
-	{
-		$email = $this->input->post('email');
-		$data = $this->User_m->get_all();
-    	$i = 0;
-    	if(empty($email)){
-    		echo 'aman';
-    		return;
-    	}
-    	foreach ($data as $row)
-		{
-			$i++;
-			if($row->email == $email){
-				echo "duplikat";
-				return;
-			}
-		}
-		
-		echo "aman";
-	}
-
-	public function updateUser(){
-		$dataUser = array(
-        	'Email' => $this->input->post('Email'),
-		    'Password' => $this->input->post('Password'),
-		    'Status' => $this->input->post('status'),
-		);
-		$id = $this->User_m->update($dataUser['Email'],$dataUser);
-
-		if($id->status=='Mahasiswa'){
-			$data = array(
-			    'email' => $this->input->post('Email'),
-			);
-			$this->Mahasiswa_model->update($id->idUser,$data);
-		}elseif ($id->status =='Pembimbing Dosen') {
-			$data = array(
-			    'email' => $this->input->post('Email'),
-			);
-			$this->Pembimbingdosen_model->update($id->idUser,$data);
-		}else{
-			$data = array(
-			    'email' => $this->input->post('Email'),
-			);
-			$this->Pembimbinglapangan_model->update($id->idUser,$data);
-		}
-	}
 }

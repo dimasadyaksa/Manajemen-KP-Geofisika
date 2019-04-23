@@ -9,14 +9,9 @@ class M_data extends CI_Model{
 		return $query->result();
 	}
 	function tampil_nilai(){
-		$hasil = $this->db->query("SELECT * FROM nilaidosen INNER JOIN mahasiswa ON mahasiswa.NIM = nilaidosen.NIM");
-		return $hasil;
+		return $this->db->get('nilaidosen');
 	}
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
-	}
-	function hapus_data($where,$table){
-		$this->db->where($where, 'nilaidosen');
-		$this->db->delete($table);
 	}
 }
