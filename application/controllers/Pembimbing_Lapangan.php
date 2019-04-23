@@ -81,6 +81,13 @@ class Pembimbing_Lapangan extends CI_Controller {
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
 		}
+	}
+	public function Readlogbook() 
+	{
+		$id=$this->uri->segment(3);
+		$this->load->model('Logbook_model');
+		$data['detailLogbook']= $this->Logbook_model->getDetailLogbook($id);
+		$this->load->view('Pembimbing_Lapangan/v_logbookMhs',$data);
 	}	
 	public function Penilaian() 
 	{

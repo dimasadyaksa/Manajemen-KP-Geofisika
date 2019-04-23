@@ -30,7 +30,7 @@
                 <td><?php echo $post->Divisi ?></td>
                 <td>
 
-                  <a role="button"  class="btn btn-info" href="<?php echo site_url('Pembimbing_Lapangan/logbook/').$post->NIM ?>">Lihat</a>
+                  <a role="button"  class="btn btn-info" href="<?php echo base_url().'Pembimbing_Lapangan/logbook/'.$post->NIM ?>">Lihat</a>
                  <!-- <a role="button" class="btn btn-info" href="Pembimbing_Lapangan/logbook/<?php echo $post->NIM ?>">Lihat</a> -->
 
                </td>
