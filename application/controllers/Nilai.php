@@ -18,8 +18,11 @@ class Nilai extends CI_Controller{
 	}
 
 	function index(){
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
 		$data['user'] = $this->m_data->tampil_nilai()->result();
+		$this->load->view('Pembimbing_Lapangan/v_header');
+		$this->load->view('Pembimbing_Lapangan/v_sidebar');
+
 		$this->load->view('v_tampil',$data);
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
@@ -32,19 +35,23 @@ class Nilai extends CI_Controller{
 	}
 
 	function tambah_aksi(){
-		$nim = $this->input->post('nim');
-		$materi = $this->input->post('materi');
-		$penugasanmateri = $this->input->post('penugasanmateri');
-		$bahasatatatulis = $this->input->post('bahasatatatulis');
+		$NIM = $this->input->post('NIM');
+		$Pemahaman = $this->input->post('Pemahaman');
+		$KemampuanPenugasan = $this->input->post('KemampuanPenugasan');
+		$Komunikasi = $this->input->post('Komunikasi');
+		$MenulisLaporan = $this->input->post('MenulisLaporan');
+		$Adaptasi = $this->input->post('Adaptasi');
 
 		$data = array(
-			'nim' => $nim,
-			'materi' => $materi,
-			'penugasanmateri' => $penugasanmateri,
-			'bahasatatatulis' => $bahasatatatulis
+			'Pemahaman' => $Pemahaman,
+			'KemampuanPenugasan' => $KemampuanPenugasan,
+			'Komunikasi' => $Komunikasi,
+			'MenulisLaporan' => $MenulisLaporan,
+			'Adaptasi' => $Adaptasi
+
 			);
-		$this->m_data->input_data($data,'nilaidosen');
-		redirect('pembimbing_dosen/penilaian');
+		$this-> m_data ->input_data($data,'nilailapangan');
+		redirect('Pembimbing_Lapangan/penilaian');
 	}
 
 }
