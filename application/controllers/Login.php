@@ -25,16 +25,16 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('email', $row->email);
 			$this->session->set_userdata('status', $row->status);
 			
-			if($this->session->userdata('status')== 1){
+			if($this->session->userdata('status')== 'Mahasiswa'){
 				redirect('mahasiswa/index');
 			}
-			elseif($this->session->userdata('status')== 2){
+			elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
 				redirect('Pembimbing_Dosen/index');
 			}
-			elseif($this->session->userdata('status')== 3){
+			elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
 				redirect('Pembimbing_Lapangan');
 			}
-			elseif($this->session->userdata('status')== 4){
+			elseif($this->session->userdata('status')== 'Koordinator'){
 				redirect('Koordinator');
 			}
 		
