@@ -32,9 +32,17 @@ class Login extends CI_Controller {
 				redirect('Pembimbing_Dosen/index');
 			}
 			elseif($this->session->userdata('status')== "Pembimbing Lapangan"){
+				
+			if($this->session->userdata('status')== 'Mahasiswa'){
+				redirect('mahasiswa/index');
+			}
+			elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
+				redirect('Pembimbing_Dosen/index');
+			}
+			elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
 				redirect('Pembimbing_Lapangan');
 			}
-			elseif($this->session->userdata('status')== 4){
+			elseif($this->session->userdata('status')== 'Koordinator'){
 				redirect('Koordinator');
 			}
 		

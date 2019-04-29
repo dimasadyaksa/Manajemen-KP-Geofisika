@@ -1,3 +1,9 @@
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<div class="col-md-9">
+<div class="box box-success">
     <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">Daftar Mahasiswa Bimbingan</h1>
@@ -18,11 +24,20 @@
 
       </tr >
     </thead>
-    <tbody id="list">
-      
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>14116001</td>
+        <td style="text-align: left">Iqbal Sanjaya</td>
+        <td>2016</td>
+        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
+      </tr>
     </tbody>
   </table>
 </div>
+</div>
+
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

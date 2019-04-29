@@ -254,9 +254,11 @@ class Koordinator extends CI_Controller {
         }
     }
 
-    public function createUser() {
+    public function createUser() 
+    {
+        
+
         $dataUser = array(
-        	'NIM' => $this->input->post('Nim'),
         	'Email' => $this->input->post('Email'),
 		    'Password' => $this->input->post('Password'),
 		    'Status' => $this->input->post('status'),
@@ -287,6 +289,14 @@ class Koordinator extends CI_Controller {
 			);
 			$this->createDpl($data);
 		}
+
+		/*if($this->input->post('status')=="Pembimbing Dosen"){
+			$this->createDp();
+		}elseif ($this->input->post('status')=="Pembimbing Lapangan") {
+			$this->createDpl();
+		}else{
+			$this->createMhs();
+		}*/
     }
 
     public function listUser()
@@ -307,6 +317,7 @@ class Koordinator extends CI_Controller {
 							<td>
 								<button type='button' class='btn btn-info' data-toggle='modal' data-target='#update_user_popup' onclick='dataTable($a,$b,$tmp)' >Edit</button>
 								<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete_user_popup'onclick='hapus($a,$tmp)'>Delete</button>
+
 					</td>
 				</tr>";
 	       
@@ -386,7 +397,10 @@ class Koordinator extends CI_Controller {
             $this->session->set_flashdata('message', 'Create Record Success');
         }
     }
-
+    
+    public function Get4Edit(){
+    	
+    }
 
     public function update($id) 
     {

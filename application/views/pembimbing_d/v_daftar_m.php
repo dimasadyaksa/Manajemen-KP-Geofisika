@@ -20,7 +20,7 @@
       <tr>
         <th style="text-align: center">No</th>
         <th style="text-align: center">NIM</th>
-        <th style="text-align: left">Nama</th>
+        <th style="text-align: center">Nama</th>
         <th style="text-align: center">Angkatan</th>
         <th style="text-align: center">Aksi</th>
 
@@ -36,9 +36,12 @@
         <td><?php echo $u->nim ?></td>
         <td style="text-align: left"><?php echo $u->nama ?></td>
         <td><?php echo $u->Angkatan ?></td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
+        <td>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" >Detail</button></td>
       </tr>
-       <?php } ?>
+       <?php 
+     } 
+     ?>
       
     </tbody>
   </table>
@@ -57,22 +60,37 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5><?php echo $u->nim ?></h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->nama ?></h5></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5>?php echo $u->nim ?></h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->nim ?></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
         <font color="grey"><p><h5><?php echo $u->Angkatan ?></h5></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>
         <font color="grey"><p><h5><?php echo $u->JudulProposal ?></h5></p></font><br>
         <p><h5><b>Tempat KP</b></h5></p>
-        <font color="grey"><p><h5>Tempat</h5></p></font><br>
+         <?php 
+        foreach($magang as $e){ 
+        ?>
+        <font color="grey"><p><h5><?php echo $e->NamaPerusahaan ?></h5></p></font><br>
+       <?php 
+     } 
+     ?>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
-        <font color="grey"><p><h5>Tanggal</h5></p></font><br>
+         <?php 
+        foreach($magang as $e){ 
+        ?>
+        <font color="grey"><p><h5><?php echo $e->MulaiMagang ?></h5></p></font><br>
+        <?php 
+     } 
+     ?>
         <p><h5><b>Tanggal Terakhir Praktik</b></h5></p>
-        <font color="grey"><p><h5>Tanggal</h5></p></font><br>
-
-
-
+         <?php 
+        foreach($magang as $e){ 
+        ?>
+        <font color="grey"><p><h5><?php echo $e->SelesaiMagang ?></h5></p></font><br>
+        <?php 
+     } 
+     ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

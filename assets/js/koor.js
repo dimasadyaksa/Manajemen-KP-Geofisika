@@ -1,10 +1,11 @@
+
 var nip=true;
 var email=true;
 var tmpEmail;
 var delEmail;
 var delStatus;
 
-function loadTambahUser() { 
+function loadTambahUser() {
 	 $.post("koordinator/tambahUser","",function(data){
              $('#isi').html(data);
             

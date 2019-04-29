@@ -6,14 +6,12 @@ class Pembimbing_Lapangan extends CI_Controller {
   function __construct(){
     parent::__construct();
     //validasi jika user belum login
-    
-        $this->load->model('Mahasiswa_model');
     if($this->session->userdata('email') != TRUE){
             echo "<script>
 				alert('Anda tidak memiliki akses.');
 				window.location='".site_url('login')."';
 				</script>";
-      }
+        }
   	}
 
 	public function index()
@@ -27,12 +25,13 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}
 	public function daftar_mahasiswa() 
 	{
-		if($this->session->userdata('status')=='Pembimbing Lapangan'){
-			$string = $this->load->view('Pembimbing_Lapangan/v_daftar_m','', true);
-			echo $string;
+		if($this->session->userdata('status')=='3'){
+		$this->load->view('Pembimbing_Lapangan/v_header');
+		$this->load->view('Pembimbing_Lapangan/v_sidebar');
+		$this->load->view('Pembimbing_Lapangan/v_daftar_m');
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
-			
+			$this->load->view('back');
 		}
 	}	
 	public function listMhs()
@@ -87,11 +86,13 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}	
 	public function Penilaian() 
 	{
-		if($this->session->userdata('status')=='Pembimbing Lapangan'){
-			$string = $this->load->view('Pembimbing_Lapangan/v_penilaian','', true);
-			echo $string;
+		if($this->session->userdata('status')=='3'){
+		$this->load->view('Pembimbing_Lapangan/v_header');
+		$this->load->view('Pembimbing_Lapangan/v_sidebar');
+		$this->load->view('Pembimbing_Lapangan/v_penilaian');
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
 		}
 	}
 }
