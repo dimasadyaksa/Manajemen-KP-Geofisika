@@ -27,12 +27,11 @@
         <th>Materi</th>
         <th>Pemahaman</th>
         <th>Bahasa</th>
-        <th>Catatan</th>
+        <th>Rata-rata</th>
         <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
-
     <?php 
     $no = 1;
     foreach($user as $u){ 
@@ -44,13 +43,34 @@
       <td><?php echo $u->Materi ?></td>
       <td><?php echo $u->PenugasanMateri ?></td>
       <td><?php echo $u->BahasaTataTulis ?></td>
-      <td><?php echo $u->Catatan ?></td>          
-      <td><?php echo anchor('pembimbing_dosen/hapus/'.$u->NIM,'Hapus'); ?>  
-      </td>
+      <td><?php echo $u->Rata_rata ?></td>
+      <td><?php echo anchor('pembimbing_dosen/hapus/'.$u->NIM,'Hapus'); ?></td>
       </tr>
-    <?php } ?>
+<?php } ?>
     </tbody>
-  </table>
+    </table>
+
+<br>
+<i class="fa fa-info-circle" aria-hidden="true"></i>
+<h5 class="box-title text-center"><strong>Catatan Mahasiswa</strong></h5>
+<br><br>
+    <table class="table table-bordered" style="text-align:center">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Catatan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
+      <tr>
+      <td><?php echo $u->nama ?></td>
+      <td style="text-align: left"><?php echo $u->Catatan ?></td>
+    </tr>
+    <?php } ?>
 </div>
 </div>
 
@@ -84,7 +104,7 @@
 
                         <label>Bahasa dan Tata Penulisan</label><br>
                         <input class="form-control" type="text" name="bahasatatatulis"><br><br>
-                        
+
                         <label for="Catatan">Catatan</label><br>
                         <textarea name="catatan" id="catatan" cols="60" rows="5"></textarea><br><br>
                         <div align="center">
