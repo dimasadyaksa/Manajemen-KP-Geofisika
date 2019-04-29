@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2019 at 03:58 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Apr 22, 2019 at 03:49 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -88,12 +88,21 @@ CREATE TABLE `mahasiswa` (
   `idUser` int(8) DEFAULT NULL,
   `Nama` varchar(30) DEFAULT NULL,
   `NIM` int(12) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `No_telp` int(13) NOT NULL,
   `IPK` float DEFAULT NULL,
   `SKS` int(3) DEFAULT NULL,
   `Angkatan` int(4) DEFAULT NULL,
   `JudulProposal` varchar(8000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`idUser`, `Nama`, `NIM`, `email`, `No_telp`, `IPK`, `SKS`, `Angkatan`, `JudulProposal`) VALUES
+(24, 'tes2', 11111, 'hello', 0, NULL, NULL, NULL, NULL),
+(21, 'dimas', 22101998, 'dimas@gmail', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,7 +146,8 @@ CREATE TABLE `pembimbingdosen` (
   `idUser` int(8) DEFAULT NULL,
   `Nama` varchar(30) NOT NULL,
   `NIP` int(16) NOT NULL,
-  `Spesialisi` varchar(12) NOT NULL,
+  `Spesialisasi` varchar(12) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `kontak` char(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -145,8 +155,8 @@ CREATE TABLE `pembimbingdosen` (
 -- Dumping data for table `pembimbingdosen`
 --
 
-INSERT INTO `pembimbingdosen` (`idUser`, `Nama`, `NIP`, `Spesialisi`, `kontak`) VALUES
-(1, 'Kevin', 20017731, 'Metaurologi', '0546637');
+INSERT INTO `pembimbingdosen` (`idUser`, `Nama`, `NIP`, `Spesialisasi`, `email`, `kontak`) VALUES
+(23, 'testes', 12212, '', 'qwe', '');
 
 -- --------------------------------------------------------
 
@@ -168,7 +178,7 @@ CREATE TABLE `pembimbinglapangan` (
 --
 
 INSERT INTO `pembimbinglapangan` (`idDosenL`, `idPerusahaan`, `Nama`, `Kontak`, `email`, `Posisi`) VALUES
-(1, 1, 'Hasin', '08567768', 'hasin@mail.com', 'Administrasi');
+(22, NULL, 'tes', NULL, 'tes', '');
 
 -- --------------------------------------------------------
 
@@ -202,6 +212,7 @@ INSERT INTO `tempatkerja` (`idPerusahaan`, `NamaPerusahaan`, `Bidang`, `Alamat`,
 
 CREATE TABLE `user` (
   `idUser` int(8) NOT NULL,
+  `NIM` int(16) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `status` enum('Mahasiswa','Pembimbing Dosen','Pembimbing Lapangan','Koordinator') DEFAULT NULL
@@ -211,11 +222,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`idUser`, `email`, `password`, `status`) VALUES
-(1, 'munan@gmail.com', 'xyz123', 'Mahasiswa'),
-(4, 'koor@mail.com', 'koor', ''),
-(5, 'dimas@itera', 'dimas', 'Pembimbing Dosen'),
-(6, 'itera@ac.id', 'itera', 'Pembimbing Lapangan');
+INSERT INTO `user` (`idUser`, `NIM`, `email`, `password`, `status`) VALUES
+(21, 22101998, 'dimas@gmail', '12345', 'Mahasiswa'),
+(22, 0, 'tes', '123', 'Pembimbing Lapangan'),
+(23, 0, 'qwe', '123', 'Pembimbing Dosen'),
+(24, 11111, 'hello', '123', 'Mahasiswa');
 
 --
 -- Indexes for dumped tables
@@ -282,8 +293,7 @@ ALTER TABLE `pembimbingdosen`
 -- Indexes for table `pembimbinglapangan`
 --
 ALTER TABLE `pembimbinglapangan`
-  ADD PRIMARY KEY (`idDosenL`),
-  ADD KEY `pembimbinglapangan_ibfk_1` (`idPerusahaan`);
+  ADD PRIMARY KEY (`idDosenL`);
 
 --
 -- Indexes for table `tempatkerja`
@@ -347,7 +357,7 @@ ALTER TABLE `tempatkerja`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -389,7 +399,6 @@ ALTER TABLE `nilailapangan`
 -- Constraints for table `pembimbinglapangan`
 --
 ALTER TABLE `pembimbinglapangan`
-  ADD CONSTRAINT `pembimbinglapangan_ibfk_1` FOREIGN KEY (`idPerusahaan`) REFERENCES `tempatkerja` (`idPerusahaan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pembimbinglapangan_ibfk_2` FOREIGN KEY (`idDosenL`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

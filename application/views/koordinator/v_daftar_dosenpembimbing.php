@@ -1,4 +1,4 @@
-  <style type="text/css">
+   <style type="text/css">
   td{
     text-align: center;
   }
@@ -10,8 +10,6 @@
     width:1px;
   }
 </style>
-<div class="col-md-9"></div>
-<div class="col-md-15">
   <div class="container content">
     <h2 style="margin-top:15px; text-align: center;">Daftar Pembimbing Dosen</h2><br><br>
     <table class="table table-bordered table-striped" style="margin-bottom: 10px">
@@ -50,7 +48,6 @@
       </table>
 
     </div>
-  </div>
   <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6 text-right">

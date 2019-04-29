@@ -66,11 +66,11 @@ class User_m extends CI_Model {
     function update($id, $data){
         $this->db->where($this->email, $id);
         $this->db->update($this->table, $data);
-        return $this->getId($id);
+        return $this->getId($data['Email']);
     }
-    function delete($id)
+    function delete($email)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->email, $email);
         $this->db->delete($this->table);
     }
      public function lastID()

@@ -34,19 +34,19 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5>Nama</h5></p></font><br>
+        <font color="grey"><p><h5 id="detNama"></h5></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5>NIM</h5></p></font><br>
+        <font color="grey"><p><h5 id="detNim"></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
-        <font color="grey"><p><h5>2016</h5></p></font><br>
+        <font color="grey"><p><h5 id="detAngkatan"></h5></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>
-        <font color="grey"><p><h5>Judul</h5></p></font><br>
+        <font color="grey"><p><h5 id="detJudul"></h5></p></font><br>
         <p><h5><b>Tempat KP</b></h5></p>
-        <font color="grey"><p><h5>Tempat</h5></p></font><br>
+        <font color="grey"><p><h5 id="detTempat"></h5></p></font><br>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
-        <font color="grey"><p><h5>Tanggal</h5></p></font><br>
+        <font color="grey"><p><h5 id="detMulai"></h5></p></font><br>
         <p><h5><b>Tanggal Terakhir Praktik</b></h5></p>
-        <font color="grey"><p><h5>Tanggal</h5></p></font><br>
+        <font color="grey"><p><h5 id="detSelesai"></h5></p></font><br>
 
       </div>
       <div class="modal-footer">

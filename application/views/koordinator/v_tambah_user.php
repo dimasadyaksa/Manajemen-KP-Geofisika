@@ -95,7 +95,7 @@
 											<label for="pwd">Password</label>
 											<input type="text" class="form-control" id="passwordUpdt">
 										</div>
-										<div class="form-group">
+										<div class="form-group" style="display: none;">
 											<label for=statusUser>Status</label>
 											<select class="form-control" id="selUpdt">
 												<option>-Pilih-</option>
@@ -106,7 +106,7 @@
 										</div>
 										<p style="padding-bottom: 10px"></p>
 										<div align="center">
-											<button type="button" class="btn btn-success">Update</button>
+											<button type="button" class="btn btn-success" onclick="updateUser()" data-dismiss="modal" >Update</button>
 											<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
 										</div>
 
@@ -131,7 +131,7 @@
 									<p style="padding-bottom: 10px"></p>
 									<div align="center">
 										<button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
-										<button type="button" class="btn btn-danger">Delete</button>
+										<button type="button" class="btn btn-danger" onclick="confirmDel()"data-dismiss="modal">Delete</button>
 									</div>
 								</div>
 							</div>

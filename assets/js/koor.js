@@ -1,6 +1,8 @@
 var nip=true;
 var email=true;
-
+var tmpEmail;
+var delEmail;
+var delStatus;
 
 function loadTambahUser() { 
 	 $.post("koordinator/tambahUser","",function(data){
@@ -71,6 +73,40 @@ function addUser(){
      updateList(); 
 }
 
+function updateUser(){
+	var emailID = tmpEmail;//document.getElementById('emailTable').value;
+	var email = document.getElementById('emailUpdt').value;
+	var password = document.getElementById('passwordUpdt').value;
+	var option = document.getElementById("selUpdt");
+	var i = option.selectedIndex;
+	var status = option.options[i].text; 
+	var data = {
+		'emailID': emailID,
+		'Email': email,
+		'Password': password,
+		'status': status
+	}
+	console.log(data);
+	 $.post("koordinator/updateUser",data,function(data){
+    	 updateList();
+     });
+}
+
+function hapus(email,status) {
+	delEmail = email;
+	delStatus = status;
+}
+
+function confirmDel() {
+	var data = {
+		'emailID':delEmail,
+		'status':delStatus
+	}
+	console.log(data);
+	$.post("koordinator/hapusData",data,function(data){
+    	 updateList();
+    });
+}
 function updateList() {
 	$.post("koordinator/listUser",'',function(data){
              $('#list').html(data);
@@ -106,6 +142,7 @@ function active(param) {
 }
 
 function dataTable(email,password,status) {
+	tmpEmail = email;
         $("#emailUpdt").val(email);
         $("#passwordUpdt").val(password);
         if (status=="Mahasiswa") {

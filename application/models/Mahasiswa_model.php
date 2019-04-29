@@ -8,7 +8,9 @@ class Mahasiswa_model extends CI_Model
 
     public $table = 'mahasiswa';
     public $id = 'NIM';
+    public $idUser = 'idUser';
     public $order = 'DESC';
+    public $email = 'email';
 
     function __construct()
     {
@@ -65,16 +67,16 @@ class Mahasiswa_model extends CI_Model
     }
 
     // update data
-    function update($id, $data)
+    function update($idUser, $data)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->idUser, $idUser);
         $this->db->update($this->table, $data);
     }
 
     // delete data
-    function delete($id)
+    function delete($email)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->email, $email);
         $this->db->delete($this->table);
     }
 

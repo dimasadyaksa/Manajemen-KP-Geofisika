@@ -16,7 +16,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('status')=='1'){
+		if($this->session->userdata('status')=='Mahasiswa'){
 	      $this->load->view('mahasiswa/index');
 	    }else{
 	      echo "Anda tidak berhak mengakses halaman ini";
@@ -24,9 +24,13 @@ class Mahasiswa extends CI_Controller {
 	    }
 
 	}
+    public function auth()
+    {
+        return $this->session->userdata('status')=='Mahasiswa';
+    }
 	public function datadiri()
 	{
-		if($this->session->userdata('status')=='1'){
+		if($this->auth()){
 		$this->load->view('mahasiswa/v_header');
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_datadiri');
@@ -37,7 +41,7 @@ class Mahasiswa extends CI_Controller {
 	}
 	public function logbook()
 	{
-		if($this->session->userdata('status')=='1'){
+		if($this->auth()){
 		$this->load->view('mahasiswa/v_header');
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_logbook');
@@ -48,7 +52,7 @@ class Mahasiswa extends CI_Controller {
 	}
 	public function PLapangan()
 	{
-		if($this->session->userdata('status')=='1'){
+		if($this->auth()){
 		$this->load->view('mahasiswa/v_header');
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_pembimbing_lapangan');
@@ -59,7 +63,7 @@ class Mahasiswa extends CI_Controller {
 	}
 	public function TPraktik()
 	{
-		if($this->session->userdata('status')=='1'){
+		if($this->auth()){
 		$this->load->view('mahasiswa/v_header');
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_tempatPraktik');

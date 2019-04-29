@@ -296,14 +296,17 @@ class Koordinator extends CI_Controller {
     	foreach ($data as $row)
 		{
 			$i++;
+			$a = '"'.$row->email.'"';
+			$b = '"'.$row->password.'"';
+			$tmp = '"'.$row->status.'"';
 			echo "<tr>
-							<td>".$i."</td>
-							<td id='email'>".$row->email."</td>
-							<td>".$row->password."</td>
-							<td>".$row->status."</td>
+							<td>$i</td>
+							<td id='emailTable'>$row->email</td>
+							<td>$row->password</td>
+							<td>$row->status</td>
 							<td>
-								<button type='button' class='btn btn-info' data-toggle='modal' data-target='#update_user_popup' onclick=dataTable('".$row->email."','".$row->password."','".$row->status."') >Edit</button>
-								<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete_user_popup'>Delete</button>
+								<button type='button' class='btn btn-info' data-toggle='modal' data-target='#update_user_popup' onclick='dataTable($a,$b,$tmp)' >Edit</button>
+								<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete_user_popup'onclick='hapus($a,$tmp)'>Delete</button>
 					</td>
 				</tr>";
 	       
@@ -383,10 +386,7 @@ class Koordinator extends CI_Controller {
             $this->session->set_flashdata('message', 'Create Record Success');
         }
     }
-    
-    public function Get4Edit($email){
-    	
-    }
+
 
     public function update($id) 
     {
@@ -487,19 +487,19 @@ class Koordinator extends CI_Controller {
 	}
 
 	public function updateUser(){
+		$emailID = $this->input->post('emailID');
 		$dataUser = array(
         	'Email' => $this->input->post('Email'),
 		    'Password' => $this->input->post('Password'),
 		    'Status' => $this->input->post('status'),
 		);
-		$id = $this->User_m->update($dataUser['Email'],$dataUser);
-
-		if($id->status=='Mahasiswa'){
+		$id = $this->User_m->update($emailID,$dataUser);
+		if($dataUser['Status']=='Mahasiswa'){
 			$data = array(
 			    'email' => $this->input->post('Email'),
 			);
 			$this->Mahasiswa_model->update($id->idUser,$data);
-		}elseif ($id->status =='Pembimbing Dosen') {
+		}elseif ($dataUser['Status'] =='Pembimbing Dosen') {
 			$data = array(
 			    'email' => $this->input->post('Email'),
 			);
@@ -509,6 +509,19 @@ class Koordinator extends CI_Controller {
 			    'email' => $this->input->post('Email'),
 			);
 			$this->Pembimbinglapangan_model->update($id->idUser,$data);
+		}
+	}
+	public function hapusData()
+	{
+		$emailID = $this->input->post('emailID');
+		$status = $this->input->post('status');
+		$this->User_m->delete($emailID);
+		if($status=='Mahasiswa'){
+			$this->Mahasiswa_model->delete($emailID);
+		}elseif ($status =='Pembimbing Dosen') {
+			$this->Pembimbingdosen_model->delete($emailID);
+		}else{
+			$this->Pembimbinglapangan_model->delete($emailID);
 		}
 	}
 }

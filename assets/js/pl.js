@@ -46,3 +46,13 @@ function listmhs() {
              $('#list').html(data);
      });
 }
+
+function dataTable(nama,nim,angkatan,judul,tempat,mulai,selesai) {
+        $("#detNama").val(nama);
+        $("#detNim").val(nim);
+        $("#detAngkatan").val(angkatan);
+        $("#detJudul").val(judul);
+        $("#detTempat").val(tempat);
+        $("#detMulai").val(mulai);
+        $("#detSelesai").val(selesai);
+}

@@ -9,7 +9,7 @@ class Pembimbinglapangan_model extends CI_Model
     public $table = 'pembimbinglapangan';
     public $id = 'idDosenL';
     public $order = 'DESC';
-
+    public $email = 'email';
     function __construct()
     {
         parent::__construct();
@@ -85,9 +85,9 @@ class Pembimbinglapangan_model extends CI_Model
     }
 
     // delete data
-    function delete($id)
+    function delete($email)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where($this->email, $email);
         $this->db->delete($this->table);
     }
 
