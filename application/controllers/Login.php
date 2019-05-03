@@ -25,7 +25,6 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('email', $row->email);
 			$this->session->set_userdata('status', $row->status);
 			
-
 			if($this->session->userdata('status')== 'Mahasiswa'){
 				redirect('mahasiswa/index');
 			}
