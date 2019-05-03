@@ -2,6 +2,7 @@
 var nip=true;
 var email=true;
 var tmpEmail;
+var tmpStatus;
 var delEmail;
 var delStatus;
 
@@ -78,9 +79,7 @@ function updateUser(){
 	var emailID = tmpEmail;//document.getElementById('emailTable').value;
 	var email = document.getElementById('emailUpdt').value;
 	var password = document.getElementById('passwordUpdt').value;
-	var option = document.getElementById("selUpdt");
-	var i = option.selectedIndex;
-	var status = option.options[i].text; 
+	var status = tmpStatus; 
 	var data = {
 		'emailID': emailID,
 		'Email': email,
@@ -144,6 +143,7 @@ function active(param) {
 
 function dataTable(email,password,status) {
 	tmpEmail = email;
+	tmpStatus=status;
         $("#emailUpdt").val(email);
         $("#passwordUpdt").val(password);
         if (status=="Mahasiswa") {

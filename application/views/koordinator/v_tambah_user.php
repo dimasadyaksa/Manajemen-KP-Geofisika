@@ -80,10 +80,7 @@
 								<!-- Data di dalam form nantinya akan otomatis terisi
 									dengan data yang ada di database -->
 									<form action="/action_page.php">
-										<div class="form-group">
-											<label for="nama">Nama</label>
-											<input type="text" class="form-control" id="namaUpdt">
-										</div>
+										
 										<div class="form-group">
 											<label for="Email">Email</label>
 											<input type="text" class="form-control" id="emailUpdt">

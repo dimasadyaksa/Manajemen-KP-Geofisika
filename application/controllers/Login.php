@@ -25,14 +25,7 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('email', $row->email);
 			$this->session->set_userdata('status', $row->status);
 			
-			if($this->session->userdata('status')== "Mahasiswa"){
-				redirect('mahasiswa/index');
-			}
-			elseif($this->session->userdata('status')== "Pembimbing Dosen"){
-				redirect('Pembimbing_Dosen/index');
-			}
-			elseif($this->session->userdata('status')== "Pembimbing Lapangan"){
-				
+
 			if($this->session->userdata('status')== 'Mahasiswa'){
 				redirect('mahasiswa/index');
 			}
@@ -45,10 +38,8 @@ class Login extends CI_Controller {
 			elseif($this->session->userdata('status')== 'Koordinator'){
 				redirect('Koordinator');
 			}
-		
 		}
-	}
-	else {
+		}else {
 				echo "<script>
 				alert('Login gagal, username atau password salah');
 				window.location='".site_url('login')."';
