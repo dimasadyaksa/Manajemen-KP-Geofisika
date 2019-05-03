@@ -15,5 +15,9 @@ $(function(){
             $(selector).chosen(config[selector]);
         }
     });   
-
-      
+function uploadLaporan() {
+    $.post("mahasiswa/uploadLaporan","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Upload Laporan');
+     }); 
+}

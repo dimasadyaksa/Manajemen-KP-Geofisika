@@ -53,6 +53,11 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('back');
 		}
 	}
+    public function uploadLaporan()
+    {
+        $string = $this->load->view('mahasiswa/v_upload _laporan','',true);
+        echo $string;
+    }
 	public function PLapangan()
 	{
 		if($this->auth()){
@@ -98,5 +103,35 @@ class Mahasiswa extends CI_Controller {
 		$this->m_data->hapus_data($where,'logbook');
 		redirect('Mahasiswa/logbook');
 	}
+    public function aksi_upload(){
+        $config['upload_path']          = './gambar/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+ 
+        $this->load->library('upload', $config);
+ 
+        if ( ! $this->upload->do_upload('berkas')){
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
+        }else{
+            $data = array('upload_data' => $this->upload->data());
+             print_r($data);
+        }
+    }
+/*
+    public function getDoc($value)
+    {
+        if($value=="KP"{
+            redirect("assets/documents/Formulir%20Permohonan%20Kerja%20Praktik.pdf");
+        }elseif ($value=="seminar") {
+            redirect("assets/documents/Formulir%20Pendaftaran%20Seminar%20Kerja%20Praktik.pdf");
+        }elseif ($value=="kartuKP") {
+            redirect("assets/documents/Kartu%20Bimbingan%20Kerja%20Praktik.pdf");
+        }elseif ($value=="kartuSeminarKP") {
+            redirect("assets/documents/Kartu%20Peserta%20Seminar%20Kerja%20Praktik.pdf");
+        }
+    }*/
 }
 	
