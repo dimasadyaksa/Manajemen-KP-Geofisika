@@ -17,42 +17,68 @@ $(function(){
     });   
 
 function profil() {
-    
+    active('profil');
+}
+
+function seminar() {
+    active('seminar');
 }
 
 function DataDiri() {
     $.post("mahasiswa/datadiri","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Data Diri');
+        active('data');
      }); 
 }
-
+function dashboard() {
+    active('dash');
+}
 function logBook() {
     $.post("mahasiswa/logbook","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Log Book');
+        active('logbook')
      }); 
 }
 
-function tempatKP(argument) {
-    // body...
+function tempatKP() {
+    $.post("mahasiswa/TPraktik","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Tempat Kerja Praktik');
+        active('tempatKP');
+     }); 
 }
 
-function PLapangan(argument) {
-    // body...
-}
-function dftrSeminar(argument) {
-    // body...
+function PLapangan() {
+    $.post("mahasiswa/PLapangan","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Pembimbing Lapangan');
+            active('PL');
+     }); 
 }
 function uploadLaporan() {
     $.post("mahasiswa/uploadLaporan","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Upload Laporan');
+            active('unggah');
      }); 
 }
 function unduh() {
     $.post("mahasiswa/unduh","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Unduh Berkas');
+             active('unduh');
      }); 
+}
+
+function active(param) {
+    var menu = ['dash','profil','unggah','data','logbook','tempatKP','PL','seminar','unduh'];
+    for (var i = 0; i < menu.length; i++) {
+        if (menu[i]==param){
+           $('#'+menu[i]).addClass('active');
+        }else{
+            $('#'+menu[i]).removeClass('active');    
+        }
+    }
 }

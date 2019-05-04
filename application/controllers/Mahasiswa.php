@@ -2,11 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mahasiswa extends CI_Controller {
-  
+  public $data;
   function __construct(){
     parent::__construct();
+    $this->load->model('Mahasiswa_model');
+    $this->load->model('Files_model');
     $this->load->model('m_data');
 	$this->load->helper('url');
+
     //validasi jika user belum login
     if($this->session->userdata('email') != TRUE){
             echo "<script>
@@ -14,10 +17,13 @@ class Mahasiswa extends CI_Controller {
 				window.location='".site_url('login')."';
 				</script>";
         }
+        $data = $this->Mahasiswa_model->get_by_email($this->session->userdata('email'));
+        $this->data = $data;
   }
 
 	public function index()
 	{
+        
 		if($this->session->userdata('status')=='Mahasiswa'){
 	      $this->load->view('mahasiswa/index');
 	    }else{
@@ -43,9 +49,9 @@ class Mahasiswa extends CI_Controller {
 	public function logbook()
 	{
 		if($this->auth()){
-		$data['user'] = $this->m_data->tampil_logbook()->result();
-        $string = $this->load->view('mahasiswa/v_logbook', $data,true);
-        echo $string;
+    		$data['user'] = $this->m_data->tampil_logbook()->result();
+            $string = $this->load->view('mahasiswa/v_logbook', $data,true);
+            echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -53,15 +59,16 @@ class Mahasiswa extends CI_Controller {
 	}
     public function uploadLaporan()
     {
+        $nim = $this->data->NIM;
+        $data = $this->Files_model->get_by_id($nim);
         $string = $this->load->view('mahasiswa/v_upload _laporan','',true);
         echo $string;
     }
 	public function PLapangan()
 	{
 		if($this->auth()){
-		$this->load->view('mahasiswa/v_header');
-		$this->load->view('mahasiswa/v_sidebar');
-		$this->load->view('mahasiswa/v_pembimbing_lapangan');
+            $string = $this->load->view('mahasiswa/v_pembimbing_lapangan','',true);
+            echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -70,9 +77,8 @@ class Mahasiswa extends CI_Controller {
 	public function TPraktik()
 	{
 		if($this->auth()){
-		$this->load->view('mahasiswa/v_header');
-		$this->load->view('mahasiswa/v_sidebar');
-		$this->load->view('mahasiswa/v_tempatPraktik');
+            $string = $this->load->view('mahasiswa/v_tempatPraktik','',true);
+            echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -94,7 +100,7 @@ class Mahasiswa extends CI_Controller {
 			
 			);
 		$this->m_data->input_logbook($data,'logbook');
-		redirect('Mahasiswa/logbook');
+		$this->logbook();
 	}	
 	function hapus($id){
 		$where = array('NIM' => $id);
@@ -108,7 +114,7 @@ class Mahasiswa extends CI_Controller {
     }
     public function aksi_upload(){
         $config['upload_path']          = './assets/';
-        $config['allowed_types']        = 'gif|jpg|png';
+        $config['allowed_types']        = 'pdf|doc';
         $config['max_size']             = 1024;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
@@ -119,6 +125,16 @@ class Mahasiswa extends CI_Controller {
             $error = array('error' => $this->upload->display_errors());
         }else{
             $data = array('upload_data' => $this->upload->data());
+            $this->load->view('mahasiswa/v_header');
+            $this->load->view('mahasiswa/v_sidebar');
+            $this->load->view('mahasiswa/v_body');
+            echo "<script type='text/javascript'>
+                $.post('mahasiswa/uploadLaporan','',function(data){
+                $('#isi').html(data);
+                $('#textKonten').html('Upload Laporan');
+                active('unggah');
+             }); 
+    </script>";
         }
     }
 /*

@@ -71,7 +71,7 @@ body{ padding:20px;}
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://sso.itera.ac.id/" target="_blank"><i class="fa fa-user"></i> Nama</a></li>
+            <li><a href="http://sso.itera.ac.id/" target="_blank"><i class="fa fa-user"></i> <?php echo $this->session->userdata('email');?></a></li>
                         <li><a href="<?=site_url('login/logout')?>"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                     </ul>
       </div>  
