@@ -15,6 +15,7 @@ class Login extends CI_Controller {
 	}
 	public function proses_login()
 	{
+		$id=$this->input->post('idUser');
 		$user=$this->input->post('email');
 		$pass=$this->input->post('password');
 
@@ -22,6 +23,7 @@ class Login extends CI_Controller {
 
 		if($ceklogin){
 			foreach ($ceklogin as $row) {
+				$this->session->set_userdata('idUser', $row->idUser);
 				$this->session->set_userdata('email', $row->email);
 				$this->session->set_userdata('status', $row->status);
 				
