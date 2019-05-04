@@ -36,16 +36,47 @@ class Mahasiswa extends CI_Controller {
     {
         return $this->session->userdata('status')=='Mahasiswa';
     }
+	
 	public function datadiri()
 	{
-		if($this->auth()){
-            $string = $this->load->view('mahasiswa/v_datadiri', '',true);
-            echo $string;
+		$id = $this->session->userdata('idUser');
+		if($this->session->userdata('status')=='Mahasiswa'){
+				$data = array(
+            	'idUser' => $id,
+				'Nama' => $this->input->post('Nama',TRUE),
+				'NIM' => $this->input->post('NIM',TRUE),
+				'No_telp' => $this->input->post('No_telp',TRUE),
+				'IPK' => $this->input->post('IPK',TRUE),
+				'SKS' => $this->input->post('SKS',TRUE),
+				'Angkatan' => $this->input->post('Angkatan',TRUE),
+				);
+				$this->Mahasiswa_model->insert($data);
+            	$this->session->set_flashdata('message', 'Data Berhasil Di Input');
+				redirect(site_url('mahasiswa/create')); 	
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
 		}
 	}
+
+	 public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('mahasiswa/datadiri'),
+	    'idUser' => set_value('idUser'),
+	    'Nama' => set_value('Nama'),
+	    'NIM' => set_value('NIM'),
+	    'No_telp' => set_value('No_telp'),
+	    'IPK' => set_value('IPK'),
+	    'SKS' => set_value('SKS'),
+	    'Angkatan' => set_value('Angkatan'),
+	);
+        $this->load->view('mahasiswa/v_header');
+		$this->load->view('mahasiswa/v_sidebar');
+		$this->load->view('mahasiswa/v_datadiri', $data);
+		}
+	
 	public function logbook()
 	{
 		if($this->auth()){
