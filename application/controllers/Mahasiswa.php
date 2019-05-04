@@ -59,9 +59,51 @@ class Mahasiswa extends CI_Controller {
 		}
 	}
 
+	 public function update_datadiri() 
+    {
+        $id = $this->session->userdata('idUser');
+		if($this->session->userdata('status')=='Mahasiswa'){
+            $data = array(
+			'idUser' => $id,
+			'Nama' => $this->input->post('Nama',TRUE),
+			'No_telp' => $this->input->post('No_telp',TRUE),
+			'IPK' => $this->input->post('IPK',TRUE),
+			'SKS' => $this->input->post('SKS',TRUE),
+			'Angkatan' => $this->input->post('Angkatan',TRUE),
+			'JudulProposal' => $this->input->post('JudulProposal',TRUE),
+	   		);
+
+            $this->Mahasiswa_model->update($this->input->post('NIM', TRUE), $data);
+            redirect(site_url('mahasiswa/index'));
+        }else{
+			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
+		}
+    }
+    
+
 	 public function create() 
     {
-        $data = array(
+    	$idUser = $this->session->userdata('idUser');
+    	$row = $this->Mahasiswa_model->get_id_user($idUser);
+    	if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('mahasiswa/update_datadiri'),
+		'idUser' => set_value('idUser', $row->idUser),
+		'Nama' => set_value('Nama', $row->Nama),
+		'NIM' => set_value('NIM', $row->NIM),
+		'No_telp' => set_value('No_telp', $row->No_telp),
+		'IPK' => set_value('IPK', $row->IPK),
+		'SKS' => set_value('SKS', $row->SKS),
+		'Angkatan' => set_value('Angkatan', $row->Angkatan),
+		'JudulProposal' => set_value('JudulProposal', $row->JudulProposal),
+	    );
+            $this->load->view('mahasiswa/v_header');
+			$this->load->view('mahasiswa/v_sidebar');
+			$this->load->view('mahasiswa/v_datadiri', $data);
+        }else{
+        	$data = array(
             'button' => 'Create',
             'action' => site_url('mahasiswa/datadiri'),
 	    'idUser' => set_value('idUser'),
@@ -76,6 +118,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mahasiswa/v_sidebar');
 		$this->load->view('mahasiswa/v_datadiri', $data);
 		}
+        }
 	
 	public function logbook()
 	{
