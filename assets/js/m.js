@@ -15,9 +15,44 @@ $(function(){
             $(selector).chosen(config[selector]);
         }
     });   
+
+function profil() {
+    
+}
+
+function DataDiri() {
+    $.post("mahasiswa/datadiri","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Data Diri');
+     }); 
+}
+
+function logBook() {
+    $.post("mahasiswa/logbook","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Log Book');
+     }); 
+}
+
+function tempatKP(argument) {
+    // body...
+}
+
+function PLapangan(argument) {
+    // body...
+}
+function dftrSeminar(argument) {
+    // body...
+}
 function uploadLaporan() {
     $.post("mahasiswa/uploadLaporan","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Upload Laporan');
+     }); 
+}
+function unduh() {
+    $.post("mahasiswa/unduh","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Unduh Berkas');
      }); 
 }

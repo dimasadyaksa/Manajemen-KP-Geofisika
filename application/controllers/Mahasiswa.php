@@ -33,9 +33,8 @@ class Mahasiswa extends CI_Controller {
 	public function datadiri()
 	{
 		if($this->auth()){
-		$this->load->view('mahasiswa/v_header');
-		$this->load->view('mahasiswa/v_sidebar');
-		$this->load->view('mahasiswa/v_datadiri');
+            $string = $this->load->view('mahasiswa/v_datadiri', '',true);
+            echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -45,9 +44,8 @@ class Mahasiswa extends CI_Controller {
 	{
 		if($this->auth()){
 		$data['user'] = $this->m_data->tampil_logbook()->result();
-		$this->load->view('mahasiswa/v_header');
-		$this->load->view('mahasiswa/v_sidebar');
-		$this->load->view('mahasiswa/v_logbook', $data);
+        $string = $this->load->view('mahasiswa/v_logbook', $data,true);
+        echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -103,10 +101,15 @@ class Mahasiswa extends CI_Controller {
 		$this->m_data->hapus_data($where,'logbook');
 		redirect('Mahasiswa/logbook');
 	}
+    function unduh()
+    { 
+        $string = $this->load->view('mahasiswa/v_unduh','',true);
+        echo $string;
+    }
     public function aksi_upload(){
-        $config['upload_path']          = './gambar/';
+        $config['upload_path']          = './assets/';
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
+        $config['max_size']             = 1024;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
  
@@ -114,10 +117,8 @@ class Mahasiswa extends CI_Controller {
  
         if ( ! $this->upload->do_upload('berkas')){
             $error = array('error' => $this->upload->display_errors());
-            print_r($error);
         }else{
             $data = array('upload_data' => $this->upload->data());
-             print_r($data);
         }
     }
 /*
