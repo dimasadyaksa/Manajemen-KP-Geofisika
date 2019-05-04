@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2019 at 03:49 PM
+-- Generation Time: May 04, 2019 at 11:09 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `sistemmkp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bimbingan_lapangan`
+--
+
+CREATE TABLE `bimbingan_lapangan` (
+  `idBimbingan` int(11) NOT NULL,
+  `idDosenL` int(4) NOT NULL,
+  `NIMMhs` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -48,6 +60,24 @@ CREATE TABLE `koordinator` (
   `NIP` int(16) NOT NULL,
   `kontak` int(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan_files`
+--
+
+CREATE TABLE `laporan_files` (
+  `NIM` int(12) NOT NULL,
+  `url` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `laporan_files`
+--
+
+INSERT INTO `laporan_files` (`NIM`, `url`) VALUES
+(1, 'www.google.com');
 
 -- --------------------------------------------------------
 
@@ -101,8 +131,7 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`idUser`, `Nama`, `NIM`, `email`, `No_telp`, `IPK`, `SKS`, `Angkatan`, `JudulProposal`) VALUES
-(24, 'tes2', 11111, 'hello', 0, NULL, NULL, NULL, NULL),
-(21, 'dimas', 22101998, 'dimas@gmail', 0, NULL, NULL, NULL, NULL);
+(28, 'a', 1, 'q', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,13 +180,6 @@ CREATE TABLE `pembimbingdosen` (
   `kontak` char(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pembimbingdosen`
---
-
-INSERT INTO `pembimbingdosen` (`idUser`, `Nama`, `NIP`, `Spesialisasi`, `email`, `kontak`) VALUES
-(23, 'testes', 12212, '', 'qwe', '');
-
 -- --------------------------------------------------------
 
 --
@@ -172,13 +194,6 @@ CREATE TABLE `pembimbinglapangan` (
   `email` varchar(50) NOT NULL,
   `Posisi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pembimbinglapangan`
---
-
-INSERT INTO `pembimbinglapangan` (`idDosenL`, `idPerusahaan`, `Nama`, `Kontak`, `email`, `Posisi`) VALUES
-(22, NULL, 'tes', NULL, 'tes', '');
 
 -- --------------------------------------------------------
 
@@ -223,14 +238,19 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `NIM`, `email`, `password`, `status`) VALUES
-(21, 22101998, 'dimas@gmail', '12345', 'Mahasiswa'),
-(22, 0, 'tes', '123', 'Pembimbing Lapangan'),
-(23, 0, 'qwe', '123', 'Pembimbing Dosen'),
-(24, 11111, 'hello', '123', 'Mahasiswa');
+(28, 0, 'q', '1', 'Mahasiswa');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bimbingan_lapangan`
+--
+ALTER TABLE `bimbingan_lapangan`
+  ADD PRIMARY KEY (`idBimbingan`),
+  ADD KEY `dosen` (`idDosenL`),
+  ADD KEY `mahasiswa` (`NIMMhs`);
 
 --
 -- Indexes for table `jadwalseminar`
@@ -245,6 +265,12 @@ ALTER TABLE `jadwalseminar`
 ALTER TABLE `koordinator`
   ADD PRIMARY KEY (`NIP`),
   ADD KEY `idUser` (`idUser`);
+
+--
+-- Indexes for table `laporan_files`
+--
+ALTER TABLE `laporan_files`
+  ADD KEY `NIM` (`NIM`);
 
 --
 -- Indexes for table `logbook`
@@ -312,6 +338,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `bimbingan_lapangan`
+--
+ALTER TABLE `bimbingan_lapangan`
+  MODIFY `idBimbingan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `jadwalseminar`
 --
 ALTER TABLE `jadwalseminar`
@@ -327,7 +359,7 @@ ALTER TABLE `koordinator`
 -- AUTO_INCREMENT for table `logbook`
 --
 ALTER TABLE `logbook`
-  MODIFY `idLogbook` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `idLogbook` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `magang`
@@ -357,17 +389,30 @@ ALTER TABLE `tempatkerja`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idUser` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `bimbingan_lapangan`
+--
+ALTER TABLE `bimbingan_lapangan`
+  ADD CONSTRAINT `dosen` FOREIGN KEY (`idDosenL`) REFERENCES `pembimbinglapangan` (`idDosenL`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `mahasiswa` FOREIGN KEY (`NIMMhs`) REFERENCES `mahasiswa` (`NIM`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `jadwalseminar`
 --
 ALTER TABLE `jadwalseminar`
   ADD CONSTRAINT `jadwalseminar_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`);
+
+--
+-- Constraints for table `laporan_files`
+--
+ALTER TABLE `laporan_files`
+  ADD CONSTRAINT `laporan_files_ibfk_1` FOREIGN KEY (`NIM`) REFERENCES `mahasiswa` (`NIM`);
 
 --
 -- Constraints for table `logbook`
