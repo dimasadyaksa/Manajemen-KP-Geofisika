@@ -74,7 +74,7 @@ class Pembimbing_Dosen extends CI_Controller {
 	public function pengajuan()
 	{
 		if($this->session->userdata('status')=='Pembimbing Dosen'){
-			$data['user'] = $this->m_data->tampil_data();
+			$data['user'] = $this->m_data->tambahpengajuan();
 		$this->load->view('pembimbing_d/v_header');
 		$this->load->view('pembimbing_d/v_sidebar');
 		$this->load->view('pembimbing_d/v_pengajuan', $data);
@@ -104,5 +104,15 @@ class Pembimbing_Dosen extends CI_Controller {
 		$where = array('NIM' => $id);
 		$this->m_data->hapus_data($where,'nilaidosen');
 		redirect('pembimbing_dosen/penilaian');
+	}
+	function hapuspengajuan($id){
+		$where = array('Nama' => $id);
+		$this->m_data->hapus_data($where,'bimbingandosen');
+		redirect('pembimbing_dosen/pengajuan');
+	}
+	function tambahpengajuan($id){
+		$where = array('NIM' => $id);
+		$this->m_data->terima($where, 'mahasiswa');
+		redirect('pembimbing_dosen/pengajuan');
 	}
 }

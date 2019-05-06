@@ -1,5 +1,5 @@
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="col-md-9">
@@ -9,9 +9,9 @@
         <h1 class="box-title text-center">HALAMAN PENGAJUAN</h1>
         <p><br></p>
         <div class="row">
-        	<div class="col-md-6" >
-			</div>
-    	</div>
+            <div class="col-md-6" >
+            </div>
+        </div>
         <table class="table table-bordered" style="text-align:center">
     <thead>
       <tr>
@@ -31,10 +31,8 @@
         <td><?php echo $u->nim ?></td>
         <td style="text-align: left"><?php echo $u->nama ?></td>
         <td>
-            <?php echo form_open('Pembimbing_dosen/inputbimbingan') ?>
-            <?php echo anchor('pembimbing_dosen/hapus/'.$u->nim,'Terima'); ?>
-            <?php echo anchor('pembimbing_dosen/hapus/'.$u->nim,'Tolak'); ?>
-            <?php echo form_close()?>
+            <?php echo anchor('pembimbing_dosen/tambahpengajuan/'.$u->nim,'Terima'); ?>
+            <?php echo anchor('pembimbing_dosen/hapuspengajuan/'.$u->nim,'Tolak'); ?>            
         </td>
     </tr>
     <?php } ?>

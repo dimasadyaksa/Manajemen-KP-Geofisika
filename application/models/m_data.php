@@ -39,4 +39,21 @@ class M_data extends CI_Model{
         $this->db->where($this->idPerusahaan, $idPerusahaan);
         $this->db->update($this->table, $data);
     }
+    function tampil_logbook(){
+		$hasil = $this->db->query("SELECT * FROM logbook INNER JOIN mahasiswa ON mahasiswa.NIM = logbook.NIM");
+		return $hasil;
+	}
+	function input_logbook($data,$table){
+		$this->db->insert($table,$data);
+	}
+	function tambahpengajuan(){
+		$this->db->select("bimbingandosen.nim, bimbingandosen.nama");
+		$this->db->from('bimbingandosen');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function terima($where,$table){
+		$this->db->where($where, $table);
+		$this->db->set($table);
+	}
 }
