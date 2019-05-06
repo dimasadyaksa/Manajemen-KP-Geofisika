@@ -1,21 +1,13 @@
-<div class="col-md-9">
-  <div class="box box-success">
-    <div class="box-header">
-      <i class="fa fa-info-circle" aria-hidden="true"></i>
-      <h3 class="box-title text-center">Data Diri</h3>
-    </div>
 
     <div class="box-body">
       <div id="home" class="tab-pane fade in active">
-        <form action="<?php echo $action; ?>" method="post">
        	<table class="table table-striped">
        		<body>
        			<tr>
-              <div class="form-group">
        				<td width="200px;">Nama </td>
        				<td>:</td>
        				<td colspan="2">
-       					<input type="text" class="form-control" name="Nama" id="Nama" placeholder="Nama" value="<?php echo $Nama; ?>">
+       					<input type="text" name="nama" id="nama" placeholder="Nama Lengkap" class="form-control" value>
        				</td>
        			</tr>
 
@@ -23,23 +15,15 @@
        				<td width="200px;">NIM </td>
        				<td>:</td>
        				<td colspan="2">
-       					<input type="text" name="NIM" id="NIM" placeholder="NIM" class="form-control" value="<?php echo $NIM; ?>">
+       					<input type="text" name="nim" id="nim" placeholder="NIM" class="form-control" value>
        				</td>
        			</tr>
-
-            <tr>
-              <td width="200px;">No. Telepon </td>
-              <td>:</td>
-              <td colspan="2">
-                <input type="text" name="No_telp" id="No_telp" placeholder="Nomor Telepon" class="form-control" value="<?php echo $No_telp; ?>">
-              </td>
-            </tr>
 
        			<tr>
        				<td width="200px;">IP </td>
        				<td>:</td>
        				<td colspan="2">
-       					<input type="text" name="IPK" id="IPK" placeholder="Nilai IP" class="form-control" value="<?php echo $IPK; ?>">
+       					<input type="text" name="ip" id="ip" placeholder="Nilai IP" class="form-control" value>
        				</td>
        			</tr>
 
@@ -47,25 +31,32 @@
        				<td width="200px;">SKS yang Ditempuh </td>
        				<td>:</td>
        				<td colspan="2">
-       					<input type="text" name="SKS" id="SKS" placeholder="SKS" class="form-control" value="<?php echo $SKS; ?>">
+       					<input type="text" name="sks" id="sks" placeholder="SKS" class="form-control" value>
        				</td>
        			</tr>
 
-            <tr>
-              <td width="200px;">Angkatan </td>
-              <td>:</td>
-              <td colspan="2">
-                <input type="text" name="Angkatan" id="Angkatan" placeholder="Angkatan" class="form-control" value="<?php echo $Angkatan; ?>">
-              </td>
-            </tr>
+       			<tr>
+       				<td width="200px;">Tempat/Alamat KP </td>
+       				<td>:</td>
+       				<td colspan="2">
+       					<input type="text" name="alamat" id="alamat" placeholder="Alamat KP" class="form-control" value>
+       				</td>
+       			</tr>
+
+       			<tr>
+       				<td width="200px;">Pemohonan KP ditujukan Kepada Yth </td>
+       				<td>:</td>
+       				<td colspan="2">
+       					<input type="text" name="pemohon" id="pemohon" placeholder="Nama" class="form-control" value>
+       				</td>
+       			</tr>
        		</body>
        	</table>
       </div>
       <button type="submit" class="btn btn-warning pull-right">
         <i class="fa fa-save margin-r-5"></i>
-        <h5 class="modal-title">SAVE</h5>     
+        <h5 class="modal-title">Simpan</h5>     
       </button>
-    </form>
     </br>
     </br>
     </br>
