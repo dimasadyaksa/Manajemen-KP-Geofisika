@@ -74,9 +74,10 @@ class Pembimbing_Dosen extends CI_Controller {
 	public function pengajuan()
 	{
 		if($this->session->userdata('status')=='Pembimbing Dosen'){
+			$data['user'] = $this->m_data->tampil_data();
 		$this->load->view('pembimbing_d/v_header');
 		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_pengajuan');
+		$this->load->view('pembimbing_d/v_pengajuan', $data);
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
