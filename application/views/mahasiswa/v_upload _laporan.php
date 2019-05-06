@@ -13,11 +13,12 @@
   This is a success alert—check it out!
 </div>
 	<?php echo form_open_multipart('mahasiswa/aksi_upload');?>
- 
+ 	 <div class="form-group">
+     <input type="text" name="email" id="email" class="form-control" value="" placeholder="Judul Laporan" required autofocus style="width: 25vw;">
 	<input type="file" name="berkas" />
  
 	<br /><br />
  
-	<input type="submit" value="upload" />
- 
+	<input type="submit" onclick="javascript:setLaporan()" value="upload" />
+ 	</div>
 </form>

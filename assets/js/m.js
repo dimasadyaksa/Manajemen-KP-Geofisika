@@ -16,6 +16,9 @@ $(function(){
         }
     });   
 
+
+var isLaporan = false;
+
 function profil() {
     active('profil');
 }
@@ -58,12 +61,33 @@ function PLapangan() {
      }); 
 }
 function uploadLaporan() {
-    $.post("mahasiswa/uploadLaporan","",function(data){
+    if(isLaporan){
+        console.log("true");
+        location.assign('mahasiswa');
+        $.post("mahasiswa/uploadLaporan","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Upload Laporan');
             active('unggah');
      }); 
+    }else{
+        console.log("false");
+         $.post("mahasiswa/uploadLaporan","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Upload Laporan');
+            active('unggah');
+     }); 
+    }
+   
 }
+
+function setLaporan(args) {
+    if (args) {
+        isLaporan=true;
+    }else{
+        isLaporan=false;
+    }
+}
+
 function unduh() {
     $.post("mahasiswa/unduh","",function(data){
              $('#isi').html(data);

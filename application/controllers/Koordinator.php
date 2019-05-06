@@ -7,8 +7,15 @@ class Koordinator extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('email') != TRUE){
+            echo "<script>
+                alert('Anda tidak memiliki akses.');
+                window.location='".site_url('login')."';
+                </script>";
+        }
         $this->load->model('Koordinator_model');
     //    $this->load->model('Tempatkerja_model');
+
         $this->load->model('Pembimbingdosen_model');
         $this->load->model('Pembimbinglapangan_model');
         $this->load->model('Mahasiswa_model');

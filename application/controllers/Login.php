@@ -5,14 +5,24 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('email') == TRUE){
-            echo "<script>
-				alert('Anda harus logout terlebih dahulu.');
-				window.location='".site_url('dashboard')."';
-				</script>";
+		if($this->session->userdata('email') == TRUE){if($this->session->userdata('status')== 'Mahasiswa'){
+					redirect('mahasiswa');
+				}
+				elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
+					redirect('Pembimbing_Dosen');
+				}
+				elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
+					redirect('Pembimbing_Lapangan');
+				}
+				elseif($this->session->userdata('status')== 'Koordinator'){
+					redirect('Koordinator');
+				}
+        }else{
+
+			$this->load->view('login/form_login');
         }
-		$this->load->view('login/form_login');
-	}
+    }
+	
 	public function proses_login()
 	{
 		$user=$this->input->post('email');
@@ -26,10 +36,10 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('status', $row->status);
 				
 				if($this->session->userdata('status')== 'Mahasiswa'){
-					redirect('mahasiswa/index');
+					redirect('mahasiswa');
 				}
 				elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
-					redirect('Pembimbing_Dosen/index');
+					redirect('Pembimbing_Dosen');
 				}
 				elseif($this->session->userdata('status')== 'Pembimbing Lapangan'){
 					redirect('Pembimbing_Lapangan');
@@ -52,7 +62,7 @@ class Login extends CI_Controller {
 		session_destroy();
         echo "<script>
 				alert('Anda telah logout.');
-				window.location='".site_url('dashboard')."';
+				window.location='".site_url()."';
 				</script>";
 	}
 	public function menu()

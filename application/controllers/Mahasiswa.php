@@ -125,16 +125,10 @@ class Mahasiswa extends CI_Controller {
             $error = array('error' => $this->upload->display_errors());
         }else{
             $data = array('upload_data' => $this->upload->data());
-            $this->load->view('mahasiswa/v_header');
-            $this->load->view('mahasiswa/v_sidebar');
-            $this->load->view('mahasiswa/v_body');
-            echo "<script type='text/javascript'>
-                $.post('mahasiswa/uploadLaporan','',function(data){
-                $('#isi').html(data);
-                $('#textKonten').html('Upload Laporan');
-                active('unggah');
-             }); 
-    </script>";
+            echo "<script>
+                alert('File sukses di unggah!');
+                window.location='".site_url('mahasiswa')."';
+                </script>";
         }
     }
 /*
