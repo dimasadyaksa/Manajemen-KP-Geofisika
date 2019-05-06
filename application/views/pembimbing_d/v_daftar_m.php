@@ -1,5 +1,5 @@
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="col-md-9">
@@ -10,10 +10,10 @@
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">Daftar Mahasiswa</h1>
         <div class="row">
-        	<div class="col-md-6" >
-			</div>
+          <div class="col-md-6" >
+      </div>
 
-    	</div>
+      </div>
       <h4><p align="center">Daftar Mahasiswa</p></h4>
     <table class="table table-bordered" style="text-align: center">
     <thead>
@@ -33,10 +33,11 @@
     ?>
       <tr>
         <td><?php echo $no++ ?></td>
-        <td><?php echo $u->nim ?></td>
-        <td style="text-align: left"><?php echo $u->nama ?></td>
+        <td><?php echo $u->NIM ?></td>
+        <td style="text-align: left"><?php echo $u->Nama ?></td>
         <td><?php echo $u->Angkatan ?></td>
         <td>
+          <a href="<?php echo site_url('Pembimbing_Dosen/daftar_m/'.$u->NIM)?>">
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" >Detail</button></td>
       </tr>
        <?php 
@@ -60,9 +61,9 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5><?php echo $u->nama ?></h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->Nama ?></h5></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5><?php echo $u->nim ?></h5></p></font><br>
+        <font color="grey"><p><h5><?php echo $u->NIM ?></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
         <font color="grey"><p><h5><?php echo $u->Angkatan ?></h5></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>

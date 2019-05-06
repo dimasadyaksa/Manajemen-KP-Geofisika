@@ -3,23 +3,22 @@
 class M_data extends CI_Model{
 	function tampil_data(){
 		$this->db->select("mahasiswa.nim, mahasiswa.nama, mahasiswa.Angkatan");
-		$this->db->from('Mahasiswa');
-		if($this->db->where('NIP = 20017731')){
+		$this->db->from('mahasiswa');
+		$this->db->where('idDosenL = 1');
 		$query = $this->db->get();
 		return $query->result();
-		}
-		elseif ($this->db->where('NIP = 20017732')){
-		$query = $this->db->get();
-		return $query->result();
-		}
-	
-		
-		
 	}
 	function tampil_nilai(){
-		$hasil = $this->db->query("SELECT * FROM nilaidosen INNER JOIN mahasiswa ON mahasiswa.NIM = nilaidosen.NIM");
+		return $this->db->get('nilailapangan');
+	}
+	
+	function tampil_TPraktik(){
+		$hasil = $this->db->query("SELECT * FROM tempatkerja INNER JOIN mahasiswa ON mahasiswa.NIM = tempatkerja.NIM");
 		return $hasil;
 	}
+	function input_TPraktik($data,$table){
+		$this->db->insert($table,$data);
+	}	
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
 	}
@@ -27,12 +26,17 @@ class M_data extends CI_Model{
 		$this->db->where($where, $table);
 		$this->db->delete($table);
 	}
-	function tampil_logbook(){
-		$hasil = $this->db->query("SELECT * FROM logbook INNER JOIN mahasiswa ON mahasiswa.NIM = logbook.NIM");
+	function tampil_daftarseminar(){
+		$hasil = $this->db->query("SELECT * FROM jadwalseminar INNER JOIN mahasiswa ON mahasiswa.NIM = jadwalseminar.NIM");
 		return $hasil;
 	}
-	function input_logbook($data,$table){
+	function input_daftarseminar($data,$table){
 		$this->db->insert($table,$data);
 	}	
 
+	function update($idPerusahaan, $data)
+    {
+        $this->db->where($this->idPerusahaan, $idPerusahaan);
+        $this->db->update($this->table, $data);
+    }
 }

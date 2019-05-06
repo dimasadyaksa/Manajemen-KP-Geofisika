@@ -12,5 +12,34 @@
         	<div class="col-md-6" >
 			</div>
     	</div>
+        <table class="table table-bordered" style="text-align:center">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>NIM</th>
+        <th>Nama</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+<tbody>
+    <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
+    <tr>
+        <td><?php echo $no++ ?></td>
+        <td><?php echo $u->nim ?></td>
+        <td style="text-align: left"><?php echo $u->nama ?></td>
+        <td>
+            <?php echo form_open('Pembimbing_dosen/inputbimbingan') ?>
+            <?php echo anchor('pembimbing_dosen/hapus/'.$u->nim,'Terima'); ?>
+            <?php echo anchor('pembimbing_dosen/hapus/'.$u->nim,'Tolak'); ?>
+            <?php echo form_close()?>
+        </td>
+    </tr>
+    <?php } ?>
+</tbody>
+
 </div>
 </div>
+

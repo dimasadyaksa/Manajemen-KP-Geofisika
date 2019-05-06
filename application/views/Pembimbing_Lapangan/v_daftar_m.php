@@ -1,5 +1,5 @@
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="col-md-9">
@@ -8,10 +8,10 @@
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">Daftar Mahasiswa Bimbingan</h1>
         <div class="row">
-        	<div class="col-md-6" >
-			</div>
+          <div class="col-md-6" >
+      </div>
 
-    	</div>
+      </div>
       <h4><p align="center">Daftar Mahasiswa Bimbingan</p></h4>
     <table class="table table-bordered" style="text-align: center">
     <thead>
@@ -26,12 +26,22 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>14116001</td>
-        <td style="text-align: left">Iqbal Sanjaya</td>
-        <td>2016</td>
-        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Detail</button></td>
+        <?php 
+    $no = 1;
+    foreach($user as $u){ 
+    ?>
+      <tr>
+        <td><?php echo $no++ ?></td>
+        <td><?php echo $u->NIM ?></td>
+        <td style="text-align: left"><?php echo $u->Nama ?></td>
+        <td><?php echo $u->Angkatan ?></td>
+        <td>
+          <a href="<?php echo site_url('Pembimbing_Lapangan/daftar_m/'.$u->NIM)?>">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" >Detail</button></td>
       </tr>
+       <?php 
+     } 
+     ?>
     </tbody>
   </table>
 </div>
@@ -49,20 +59,32 @@
       </div>
       <div class="modal-body">
         <p><h5><b>Nama Mahasiswa</b></h5></p>
-        <font color="grey"><p><h5 id="detNama"></h5></p></font><br>
+        <font color="grey"><p><h5 id="detNama"></h5><?php echo $u->Nama ?></p></font><br>
         <p><h5><b>NIM</b></h5></p>
-        <font color="grey"><p><h5 id="detNim"></h5></p></font><br>
+        <font color="grey"><p><h5 id="detNim"><?php echo $u->NIM ?></h5></p></font><br>
         <p><h5><b>Angkatan</b></h5></p>
-        <font color="grey"><p><h5 id="detAngkatan"></h5></p></font><br>
+        <font color="grey"><p><h5 id="detAngkatan"></h5><?php echo $u->Angkatan ?></p></font><br>
         <p><h5><b>Judul Proposal</b></h5></p>
-        <font color="grey"><p><h5 id="detJudul"></h5></p></font><br>
-        <p><h5><b>Tempat KP</b></h5></p>
-        <font color="grey"><p><h5 id="detTempat"></h5></p></font><br>
+        <font color="grey"><p><h5 id="detJudul"><?php echo $u->JudulProposal ?></h5></p></font><br>
+         <?php 
+     } 
+     ?>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
-        <font color="grey"><p><h5 id="detMulai"></h5></p></font><br>
+         <?php 
+        foreach($magang as $e){ 
+        ?>
+        <font color="grey"><p><h5><?php echo $e->MulaiMagang ?></h5></p></font><br>
+        <?php 
+     } 
+     ?>
         <p><h5><b>Tanggal Terakhir Praktik</b></h5></p>
-        <font color="grey"><p><h5 id="detSelesai"></h5></p></font><br>
-
+         <?php 
+        foreach($magang as $e){ 
+        ?>
+        <font color="grey"><p><h5><?php echo $e->SelesaiMagang ?></h5></p></font><br>
+        <?php 
+     } 
+     ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

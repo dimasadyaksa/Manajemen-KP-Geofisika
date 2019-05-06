@@ -36,7 +36,6 @@
 
 					 <?php 
     				 //echo anchor(site_url('tempatkerja/update/'.$tempatkerja->idPerusahaan),'Update'); 
-
     				// echo anchor(site_url('tempatkerja/update/'.$tempatkerja->idPerusahaan),'Update','$('#thankyouModal').modal('show')'; 
 					echo ' | '; 
 					echo anchor(site_url('Koordinator/delete_tempatKP/'.$tempatkerja->idPerusahaan),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
