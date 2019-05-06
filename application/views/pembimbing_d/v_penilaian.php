@@ -27,7 +27,6 @@
         <th>Materi</th>
         <th>Pemahaman</th>
         <th>Bahasa</th>
-        <th>Rata-rata</th>
         <th>Aksi</th>
       </tr>
     </thead>
@@ -43,7 +42,6 @@
       <td><?php echo $u->Materi ?></td>
       <td><?php echo $u->PenugasanMateri ?></td>
       <td><?php echo $u->BahasaTataTulis ?></td>
-      <td><?php echo $u->Rata_rata ?></td>
       <td><?php echo anchor('pembimbing_dosen/hapus/'.$u->NIM,'Hapus'); ?></td>
       </tr>
 <?php } ?>
