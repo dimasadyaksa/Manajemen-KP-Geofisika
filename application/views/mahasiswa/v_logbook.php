@@ -1,3 +1,13 @@
+<div class="col-md-9">
+  <div class="box box-success">
+    <div class="box-header">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <h3 class="box-title text-center">LogBook</h3>
+    
+    </div>
+
+  </br>
+    <div class="box-body">
       <form action="<?php echo site_url('Mahasiswa/tambah_logbook') ; ?>" method="post">
       <div id="home" class="tab-pane fade in active">
        	<table class="table table-striped">
@@ -70,7 +80,6 @@
                   <th>Jam Mulai</th>
                   <th>Jam Selesai</th>
                   <th>Tugas/Hasil/Hal yang dikerjakan</th>
-                  <th>TTD Pembimbing Lapangan</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -86,7 +95,6 @@
                   <td><?php echo $u->JamMulai ?></td>
                   <td><?php echo $u->JamSelesai ?></td>
                   <td><?php echo $u->Kegiatan ?></td>
-                  <td> </td>
                   <td><?php echo anchor('Mahasiswa/hapus/'.$u->NIM,'Hapus'); ?></td>
                 </tr>
                 <?php } ?>
