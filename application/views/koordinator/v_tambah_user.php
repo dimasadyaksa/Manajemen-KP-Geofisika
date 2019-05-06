@@ -35,13 +35,20 @@
 										<label for="nama">Nama</label>
 										<input type="text" class="form-control" id="Nama">
 									</div>
+									<div class="alert alert-danger" id="nipAlert" style="display: none;"  role="alert">
+										NIP/NIM sudah ada!  
+									</div>
 									<div class="form-group">
 										<label for="pwd">NIM/NIP</label>
-										<input type="text" class="form-control" id="nim">
+										<input type="text" class="form-control" oninput="javascript:detectNIP()" id="nim">
 									</div>
 									<div class="form-group">
 										<label for="Email">Email</label>
-										<input type="text" class="form-control" id="Email">
+										<input type="text" class="form-control" id="Email" oninput="javascript:detectEmail()">
+									</div>
+
+									<div class="alert alert-danger" id="emailAlert" style="display: none;" role="alert">
+									  Email sudah digunakan!
 									</div>
 									<div class="form-group">
 										<label for="pwd">Password</label>
@@ -83,7 +90,7 @@
 										
 										<div class="form-group">
 											<label for="Email">Email</label>
-											<input type="text" class="form-control" id="emailUpdt">
+											<input type="text" class="form-control" id="emailUpdt" onkeydown="javascript:detectEmail()">
 										</div>
 										<div class="form-group">
 											<label for="pwd">Password</label>

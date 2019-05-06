@@ -61,7 +61,10 @@ class Mahasiswa extends CI_Controller {
     {
         $nim = $this->data->NIM;
         $data = $this->Files_model->get_by_id($nim);
-        $string = $this->load->view('mahasiswa/v_upload _laporan','',true);
+        if (empty($data)) {
+            $data['judul']='';
+        }
+        $string = $this->load->view('mahasiswa/v_upload _laporan',$data,true);
         echo $string;
     }
 	public function PLapangan()
@@ -113,18 +116,24 @@ class Mahasiswa extends CI_Controller {
         echo $string;
     }
     public function aksi_upload(){
-        $config['upload_path']          = './assets/';
-        $config['allowed_types']        = 'pdf|doc';
+        $judul = $this->input->post('judul');
+        $config['upload_path']          = './assets/files/LaporanKP';
+        $config['allowed_types']        = 'pdf';
         $config['max_size']             = 1024;
+        $config['file_name']            = $this->data->email;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
- 
         $this->load->library('upload', $config);
- 
+         
         if ( ! $this->upload->do_upload('berkas')){
             $error = array('error' => $this->upload->display_errors());
         }else{
             $data = array('upload_data' => $this->upload->data());
+            $toDB['NIM'] = $this->data->NIM;
+            $toDB['url'] = base_url('assets/files/LaporanKP/'.$this->upload->data('file_name'));
+            $toDB['judul'] = $judul;
+            $this->Files_model->delete($toDB['NIM']);
+            $this->Files_model->insert($toDB);
             echo "<script>
                 alert('File sukses di unggah!');
                 window.location='".site_url('mahasiswa')."';
@@ -132,6 +141,7 @@ class Mahasiswa extends CI_Controller {
         }
     }
 /*
+    
     public function getDoc($value)
     {
         if($value=="KP"{
