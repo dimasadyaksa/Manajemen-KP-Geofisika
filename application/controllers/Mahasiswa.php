@@ -79,11 +79,11 @@ class Mahasiswa extends CI_Controller {
 	}
     public function TPraktik()
     {
+        
         if($this->auth()){
-        $data['user'] = $this->m_data->tampil_TPraktik()->result();
-        $this->load->view('mahasiswa/v_header');
-        $this->load->view('mahasiswa/v_sidebar');
-        $this->load->view('mahasiswa/v_tempatPraktik', $data);
+            $data['user'] = $this->m_data->tampil_TPraktik()->result();
+            $string = $this->load->view('mahasiswa/v_tempatPraktik', $data,true);
+            echo $string;
         }else{
             echo "Anda tidak berhak mengakses halaman ini";
             $this->load->view('back');
@@ -140,12 +140,12 @@ function tambah_TPraktik(){
         $this->m_data->input_daftarseminar($data,'jadwalseminar');
         redirect('Mahasiswa/daftarseminar');
     } 
-    function hapus($id){
+    function hapusseminar($id){
         $where = array('NIM' => $id);
         $this->m_data->hapus_data($where,'jadwalseminar');
         redirect('Mahasiswa/daftarseminar');
     }
-    
+
 	function tambah_logbook(){	
 		$nim = $this->input->post('nim');
 		$tanggal = $this->input->post('tanggal');

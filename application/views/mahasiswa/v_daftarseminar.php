@@ -94,7 +94,7 @@
                 
                   
                   <td><?php echo anchor('Mahasiswa/update/'.$u->NIM,'Update'); ?></td>
-                  <td><?php echo anchor('Mahasiswa/hapus/'.$u->NIM,'Hapus'); ?></td>
+                  <td><?php echo anchor('Mahasiswa/hapusseminar/'.$u->NIM,'Hapus'); ?></td>
                 </tr>
                 <?php } ?>
               </tbody>
