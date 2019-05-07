@@ -1,78 +1,111 @@
-    <div class="box-body">
-    	<h4 style="text-align: center;">Daftar Nama Perusahaan Tempat Kerja Praktik</h4>
-    	<br>
-        <table class="table table-hover">
-        	<thead>
-        		<th class="text-left">No</th>
-        		<th class="text-left">Nama perusahaan</th>
-        		<th class="text-left">Bidang</th>
-        		<th class="text-left">Alamat perusahaan</th>
-        		<th class="text-left">Aksi</th>
-        	</thead>
-        	<tbody>
-        		<tr>
-        			<td>1</td>
-        			<td>PT. Bukit Asam</td>
-        			<td>Pertambangan Batu Bara</td>
-        			<td>Lampung</td>
-        			<td>
-        				<button data-toggle="modal" data-target="#detail_perusahaan" class="btn btn-info">Detail</button>
-        			</td>
-        		</tr>
-        		<tr>
-        			<td>2</td>
-        			<td>PT. Agraria Utama</td>
-        			<td>Pertanian</td>
-        			<td>Lampung</td>
-        			<td>
-        				<button data-toggle="modal" data-target="#detail_perusahaan" class="btn btn-info">Detail</button>
-        			</td>
-        		</tr>
-        	</tbody>
-        </table>
-        <div class="modal fade" id="detail_perusahaan" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Detail Perusahaan</h4>
-							</div>
-							<div class="modal-body">
-								<!-- Data di dalam form nantinya akan otomatis terisi
-									dengan data yang ada di database -->
-									<form action="/action_page.php">
-										<div class="form-group">
-											<label for="nama">Nama Perusahaan</label>
-											<br>
-											<label><font class="text-muted" color="blue">Nama</font></label>
-										</div>
-										<div class="form-group">
-											<label for="bidang">Bidang</label>
-											<br>
-											<label><font class="text-muted">Pertambangan</font></label>
-										</div>
-										<div>
-											<label>Kontak Perusahaan</label>
-											<br>
-											<label><font class="text-muted">0878</font></label>
-										</div>
-										<div>
-											<label>Alamat Perusahaan</label>
-											<br>
-											<label><font class="text-muted">Lampung</font></label>
-										</div>
-										<p style="padding-bottom: 10px"></p>
-										<div align="center">
-											<button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-										</div>
-									</form>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
+<div class="col-md-9">
+  <div class="box box-success">
+    <div class="box-header">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <h3 class="box-title text-center">Daftar Nama Perusahaan Tempat Kerja Praktik</h3>
+    
     </div>
-</div>
+
+  </br>
+    <div class="box-body">
+      <form action="<?php echo site_url('Mahasiswa/tambah_TPraktik') ; ?>" method="post">
+      <div id="home" class="tab-pane fade in active">
+       	<table class="table table-striped">
+       		<body>
+            <tr>
+              <td width="200px;">NIM </td>
+              <td>:</td>
+              <td colspan="2">
+                <input type="text" name="nim" id="nim" placeholder=" NIM" class="form-control" >
+              </td>
+            </tr>
+
+       			<tr>
+       				<td width="200px;">Nama Perusahaan </td>
+       				<td>:</td>
+              <td colspan="2">
+                <input type="text" name="namaperusahaan" id="namaperusahaan" placeholder="NamaPerusahaan" class="form-control" value>
+              </td>
+     				</tr>
+
+       			<tr>		
+              <td width="200px">Bidang </td>
+       				<td>:</td>
+              <td colspan="2">
+                <input type="text" name="bidang" id="bidang" placeholder="Bidang" class="form-control" value>
+              </td>
+       			</tr>
+
+       			<tr>
+       				<td width="200px">Alamat </td>
+       				<td>:</td>
+              <td colspan="2">
+                <input type="text" name="alamat" id="alamat" placeholder="Alamat" class="form-control" value>
+              </td>
+       			</tr>
+
+            <tr>
+              <td width="200px">Kontak </td>
+              <td>:</td>
+              <td colspan="2">
+                <input type="text" name="kontak" id="kontak" placeholder="Kontak" class="form-control" value>
+              </td>
+            </tr>
+       			
+
+       		</body>
+       	</table>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-warning pull-right">
+      <i class="fa fa-save margin-r-5"></i>
+      <h5 class="modal-title">Simpan</h5>     
+    </button>
+  </form>
+    </br>
+    </br>
+    </br>
+
+    <div class="box box-success">
+      <div class="box-header">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <h3 class="box-title text-center">Data Tentang Perusahaan </h3>
+        <div class="box-body">
+          <div id="home" class="tab-pane fade in active">
+            <table class="table table-bordered" style="text-align: center">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Perusahaan</th>
+                  <th>Bidang</th>
+                  <th>Alamat</th>
+                  <th>Kontak</th>
+                
+                </tr>
+              </thead>
+
+              <tbody>
+                <?php 
+                $no = 1;
+                foreach($user as $u){ 
+                ?>
+                <tr>
+                  <td><?php echo $no++ ?></td>
+                  <td><?php echo $u->NamaPerusahaan ?></td>
+                  <td><?php echo $u->Bidang ?></td>
+                  <td><?php echo $u->Alamat ?></td>
+                  <td><?php echo $u->Kontak ?></td>
+           
+                  <td> </td>
+                  
+                </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>			
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

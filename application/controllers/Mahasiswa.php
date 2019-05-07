@@ -77,16 +77,75 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('back');
 		}
 	}
-	public function TPraktik()
-	{
-		if($this->auth()){
-            $string = $this->load->view('mahasiswa/v_tempatPraktik','',true);
-            echo $string;
-		}else{
-			echo "Anda tidak berhak mengakses halaman ini";
-			$this->load->view('back');
-		}
-	}
+    public function TPraktik()
+    {
+        if($this->auth()){
+        $data['user'] = $this->m_data->tampil_TPraktik()->result();
+        $this->load->view('mahasiswa/v_header');
+        $this->load->view('mahasiswa/v_sidebar');
+        $this->load->view('mahasiswa/v_tempatPraktik', $data);
+        }else{
+            echo "Anda tidak berhak mengakses halaman ini";
+            $this->load->view('back');
+        }
+    }
+public function daftarseminar()
+    {
+        if($this->auth()){
+        $data['user'] = $this->m_data->tampil_daftarseminar()->result();
+        $this->load->view('mahasiswa/v_header');
+        $this->load->view('mahasiswa/v_sidebar');
+        $this->load->view('mahasiswa/v_daftarseminar', $data);
+        }else{
+            echo "Anda tidak berhak mengakses halaman ini";
+            $this->load->view('back');
+        }
+    }
+
+function tambah_TPraktik(){  
+        $nim = $this->input->post('nim');
+        $namaperusahaan = $this->input->post('namaperusahaan');
+        $bidang = $this->input->post('bidang');
+        $alamat = $this->input->post('alamat');
+        $kontak = $this->input->post('kontak');
+       
+        
+        $data = array(
+            'nim' => $nim,
+            'namaperusahaan' => $namaperusahaan,
+            'bidang' => $bidang,
+            'alamat' => $alamat,
+            'kontak' => $kontak,
+            
+            );
+        $this->m_data->input_TPraktik($data,'tempatkerja');
+        redirect('Mahasiswa/TPraktik');
+    }   
+
+
+    function tambah_daftarseminar(){  
+        $nim = $this->input->post('nim');
+        $ruang = $this->input->post('ruang');
+        $gedung = $this->input->post('gedung');
+        $waktu = $this->input->post('waktu');
+        
+        
+        $data = array(
+            'nim' => $nim,
+            'ruang' => $ruang,
+            'gedung' => $gedung,
+            'waktu' => $waktu,
+             
+            );
+        $this->m_data->input_daftarseminar($data,'jadwalseminar');
+        redirect('Mahasiswa/daftarseminar');
+    } 
+    function hapus($id){
+        $where = array('NIM' => $id);
+        $this->m_data->hapus_data($where,'jadwalseminar');
+        redirect('Mahasiswa/daftarseminar');
+    }
+    
 	function tambah_logbook(){	
 		$nim = $this->input->post('nim');
 		$tanggal = $this->input->post('tanggal');

@@ -11,8 +11,8 @@
       <h4 style="text-align: center;">Tambah Daftar Seminar</h4>
       <form action="<?php echo site_url('Mahasiswa/tambah_daftarseminar') ; ?>" method="post">
       <div id="home" class="tab-pane fade in active">
-       	<table class="table table-striped">
-       		<body>
+        <table class="table table-striped">
+          <body>
             <tr>
               <td width="200px;">NIM </td>
               <td>:</td>
@@ -21,34 +21,34 @@
               </td>
             </tr>
 
-       			<tr>
-       				<td width="200px;">Ruang </td>
-       				<td>:</td>
+            <tr>
+              <td width="200px;">Ruang </td>
+              <td>:</td>
               <td colspan="2">
                 <input type="text" name="ruang" id="ruang" placeholder="ruang" class="form-control" value>
               </td>
-     				</tr>
+            </tr>
 
-       			<tr>		
+            <tr>    
               <td width="200px">Gedung </td>
-       				<td>:</td>
+              <td>:</td>
               <td colspan="2">
                 <input type="text" name="gedung" id="gedung" placeholder="gedung" class="form-control" value>
               </td>
-       			</tr>
+            </tr>
 
-       			<tr>
-       				<td width="200px">Waktu </td>
-       				<td>:</td>
+            <tr>
+              <td width="200px">Waktu </td>
+              <td>:</td>
               <td colspan="2">
                 <input type="text" name="waktu" id="waktu" placeholder=" tahun-bulan-tanggal:jam:menit:detik" class="form-control" value>
               </td>
-       			</tr>
+            </tr>
 
-       			
+            
 
-       		</body>
-       	</table>
+          </body>
+        </table>
       </div>
     </div>
 
@@ -99,7 +99,7 @@
                 <?php } ?>
               </tbody>
             </table>
-          </div>			
+          </div>      
         </div>
       </div>
     </div>
