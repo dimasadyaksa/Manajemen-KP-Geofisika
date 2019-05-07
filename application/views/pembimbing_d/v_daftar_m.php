@@ -69,30 +69,12 @@
         <p><h5><b>Judul Proposal</b></h5></p>
         <font color="grey"><p><h5><?php echo $u->JudulProposal ?></h5></p></font><br>
         <p><h5><b>Tempat KP</b></h5></p>
-         <?php 
-        foreach($magang as $e){ 
-        ?>
-        <font color="grey"><p><h5><?php echo $e->NamaPerusahaan ?></h5></p></font><br>
-       <?php 
-     } 
-     ?>
+        <font color="grey"><p><h5><?php echo $u->NamaPerusahaan ?></h5></p></font><br>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
-         <?php 
-        foreach($magang as $e){ 
-        ?>
-        <font color="grey"><p><h5><?php echo $e->MulaiMagang ?></h5></p></font><br>
-        <?php 
-     } 
-     ?>
+        <font color="grey"><p><h5><?php echo $u->MulaiMagang ?></h5></p></font><br>
         <p><h5><b>Tanggal Terakhir Praktik</b></h5></p>
-         <?php 
-        foreach($magang as $e){ 
-        ?>
-        <font color="grey"><p><h5><?php echo $e->SelesaiMagang ?></h5></p></font><br>
-        <?php 
-     } 
-     ?>
-      </div>
+        <font color="grey"><p><h5><?php echo $u->SelesaiMagang ?></h5></p></font><br>
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
