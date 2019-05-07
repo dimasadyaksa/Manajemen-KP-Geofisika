@@ -24,7 +24,11 @@ function profil() {
 }
 
 function seminar() {
-    active('seminar');
+        $.post("mahasiswa/daftarseminar","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Daftar Seminar');
+        active('seminar');
+     }); 
 }
 
 function DataDiri() {
@@ -45,11 +49,11 @@ function logBook() {
      }); 
 }
 
-function tempatKP() {
+function TPraktik() {
     $.post("mahasiswa/TPraktik","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Tempat Kerja Praktik');
-        active('tempatKP');
+        active('TPraktik');
      }); 
 }
 

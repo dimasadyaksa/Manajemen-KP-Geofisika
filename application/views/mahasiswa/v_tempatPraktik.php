@@ -1,12 +1,4 @@
-<div class="col-md-9">
-  <div class="box box-success">
-    <div class="box-header">
-      <i class="fa fa-info-circle" aria-hidden="true"></i>
-      <h3 class="box-title text-center">Daftar Nama Perusahaan Tempat Kerja Praktik</h3>
-    
-    </div>
 
-  </br>
     <div class="box-body">
       <form action="<?php echo site_url('Mahasiswa/tambah_TPraktik') ; ?>" method="post">
       <div id="home" class="tab-pane fade in active">
@@ -16,7 +8,7 @@
               <td width="200px;">NIM </td>
               <td>:</td>
               <td colspan="2">
-                <input type="text" name="nim" id="nim" placeholder=" NIM" class="form-control" >
+                <input type="text" name="nim" id="nim" readonly="true" value="<?php echo $this->session->userdata('nim'); ?>" class="form-control" >
               </td>
             </tr>
 
@@ -95,7 +87,7 @@
                   <td><?php echo $u->NamaPerusahaan ?></td>
                   <td><?php echo $u->Bidang ?></td>
                   <td><?php echo $u->Alamat ?></td>
-                  <td><?php echo $u->Kontak ?></td>
+                  <td><?php echo $u->kontak ?></td>
            
                   <td> </td>
                   

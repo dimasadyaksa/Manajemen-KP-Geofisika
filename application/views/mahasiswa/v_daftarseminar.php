@@ -1,12 +1,5 @@
-<div class="col-md-9">
-  <div class="box box-success">
-    <div class="box-header">
-      <i class="fa fa-info-circle" aria-hidden="true"></i>
-      <h3 class="box-title text-center">Daftar Seminar</h3>
-    
-    </div>
 
-  </br>
+
     <div class="box-body">
       <h4 style="text-align: center;">Tambah Daftar Seminar</h4>
       <form action="<?php echo site_url('Mahasiswa/tambah_daftarseminar') ; ?>" method="post">
@@ -17,7 +10,7 @@
               <td width="200px;">NIM </td>
               <td>:</td>
               <td colspan="2">
-                <input type="text" name="nim" id="nim" placeholder=" NIM" class="form-control" >
+                <input type="text" name="nim" id="nim" readonly="true" value="<?php echo $this->session->userdata('nim'); ?>" class="form-control" >
               </td>
             </tr>
 

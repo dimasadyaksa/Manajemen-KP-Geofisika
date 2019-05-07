@@ -92,10 +92,9 @@ class Mahasiswa extends CI_Controller {
 public function daftarseminar()
     {
         if($this->auth()){
-        $data['user'] = $this->m_data->tampil_daftarseminar()->result();
-        $this->load->view('mahasiswa/v_header');
-        $this->load->view('mahasiswa/v_sidebar');
-        $this->load->view('mahasiswa/v_daftarseminar', $data);
+              $data['user'] = $this->m_data->tampil_daftarseminar()->result();
+            $string = $this->load->view('mahasiswa/v_daftarseminar', $data,true);
+            echo $string;
         }else{
             echo "Anda tidak berhak mengakses halaman ini";
             $this->load->view('back');
@@ -120,6 +119,7 @@ function tambah_TPraktik(){
             );
         $this->m_data->input_TPraktik($data,'tempatkerja');
         redirect('Mahasiswa/TPraktik');
+        $this->TPraktik();
     }   
 
 

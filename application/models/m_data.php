@@ -13,7 +13,12 @@ class M_data extends CI_Model{
 	}
 	
 	function tampil_TPraktik(){
-		$hasil = $this->db->query("SELECT * FROM tempatkerja INNER JOIN mahasiswa ON mahasiswa.NIM = tempatkerja.NIM");
+        $this->load->model('User_m');
+		$nim = $this->User_m->getId($this->session->userdata('email'));
+				$this->session->set_userdata('nim', $nim->NIM);
+		//print_r($nim);
+		//echo $nim->NIM;
+		$hasil = $this->db->query("SELECT * FROM tempatkerja INNER JOIN magang on magang.idPerusahaan =tempatkerja.idPerusahaan where magang.NIM=".$nim->NIM);
 		return $hasil;
 	}
 	function input_TPraktik($data,$table){
