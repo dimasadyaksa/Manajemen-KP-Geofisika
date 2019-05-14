@@ -86,7 +86,7 @@ class Pembimbing_Dosen extends CI_Controller {
 	function update(){
 		$data['Status'] = '1';
 		$nim = $this->m_data->tambahpengajuan();
-		$this->m_data->update($nim, $data);
+		$this->m_data->updatepengajuan($nim, $data);
 	}
 	function tambah_aksi(){
 		$nim = $this->input->post('nim');
