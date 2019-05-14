@@ -31,9 +31,12 @@
               <td width="200px;">Tanggal </td>
               <td>:</td>
               <td colspan="2">
-                <div class="form-group">
-                   <div class="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <div class="form-group" class="form-control">
+                   <div class="input-group input-group-lg" class="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                       <input class="form-control datepicker"  data-date-format="yyyy-mm-dd" type="text" name="tanggal" style="width:150px" >
+                      <div class="input-group-addon" class="form-control">
+                                      <span class="fa fa-calendar tab10"></span>
+                                   </div>
                     </div>
                      <input type="hidden" id="dtp_input2" value=""/>
                 </div>
