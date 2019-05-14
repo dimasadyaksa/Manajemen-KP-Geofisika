@@ -5,7 +5,9 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('email') == TRUE){if($this->session->userdata('status')== 'Mahasiswa'){
+		if($this->session->userdata('email') == TRUE){
+
+				if($this->session->userdata('status')== 'Mahasiswa'){
 					redirect('mahasiswa');
 				}
 				elseif($this->session->userdata('status')== 'Pembimbing Dosen'){
@@ -34,6 +36,8 @@ class Login extends CI_Controller {
 			foreach ($ceklogin as $row) {
 				$this->session->set_userdata('email', $row->email);
 				$this->session->set_userdata('status', $row->status);
+				$this->session->set_userdata('nim', $row->nim);
+				$this->session->set_userdata('nip', $row->nip);
 				
 				if($this->session->userdata('status')== 'Mahasiswa'){
 					redirect('mahasiswa');
