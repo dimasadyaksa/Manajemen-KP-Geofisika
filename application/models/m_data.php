@@ -52,13 +52,23 @@ class M_data extends CI_Model{
 		$this->db->insert($table,$data);
 	}
 	function tambahpengajuan(){
-		$this->db->select("bimbingandosen.nim, bimbingandosen.nama");
-		$this->db->from('bimbingandosen');
+		$this->db->select("mahasiswa.nim, mahasiswa.nama, mahasiswa.Angkatan, mahasiswa.Status");
+		$this->db->from('Mahasiswa');
+		$this->db->where('NIP = 20017731');
+		$this->db->where('Status = 0');
+		{
 		$query = $this->db->get();
 		return $query->result();
+		}
+	
 	}
 	function terima($where,$table){
 		$this->db->where($where, $table);
 		$this->db->set($table);
 	}
+	function updatepengajuan($id, $data)
+    {
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
 }
