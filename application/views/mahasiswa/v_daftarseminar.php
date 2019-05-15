@@ -34,7 +34,7 @@
               <td width="200px">Waktu </td>
               <td>:</td>
               <td colspan="2">
-                <input type="text" name="waktu" id="waktu" placeholder=" tahun-bulan-tanggal:jam:menit:detik" class="form-control" value>
+                <input type="date" name="waktu" id="waktu" placeholder=" tahun-bulan-tanggal:jam:menit:detik" class="form-control" value>
               </td>
             </tr>
 
