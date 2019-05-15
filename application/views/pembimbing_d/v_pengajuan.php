@@ -31,8 +31,9 @@
         <td><?php echo $u->nim ?></td>
         <td style="text-align: left"><?php echo $u->nama ?></td>
         <td>
-            <?php echo anchor('pembimbing_dosen/tambahpengajuan/'.$u->nim,'Terima'); ?>
-            <?php echo anchor('pembimbing_dosen/hapuspengajuan/'.$u->nim,'Tolak'); ?>            
+            
+            <?php echo anchor('pembimbing_dosen/update/'.$u->nim, 'Terima');  ?>
+            <?php echo anchor('pembimbing_dosen/hapuspengajuan/'.$u->nim, 'Tolak');  ?>
         </td>
     </tr>
     <?php } ?>

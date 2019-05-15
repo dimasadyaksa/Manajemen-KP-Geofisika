@@ -83,6 +83,11 @@ class Pembimbing_Dosen extends CI_Controller {
 			$this->load->view('back');
 		}
 	}
+	function update(){
+		$data['Status'] = '1';
+		$nim = $this->m_data->tambahpengajuan();
+		$this->m_data->updatepengajuan($nim, $data);
+	}
 	function tambah_aksi(){
 		$nim = $this->input->post('nim');
 		$materi = $this->input->post('materi');
@@ -106,13 +111,15 @@ class Pembimbing_Dosen extends CI_Controller {
 		redirect('pembimbing_dosen/penilaian');
 	}
 	function hapuspengajuan($id){
-		$where = array('Nama' => $id);
+		$where = array('NIM' => $id);
 		$this->m_data->hapus_data($where,'bimbingandosen');
 		redirect('pembimbing_dosen/pengajuan');
 	}
 	function tambahpengajuan($id){
-		$where = array('NIM' => $id);
-		$this->m_data->terima($where, 'mahasiswa');
-		redirect('pembimbing_dosen/pengajuan');
+     $data = array(
+          'column11' => $this->post->input('terima'),
+          
+     );
+    $this->m_data->tambahpengajuan($id, $data);
 	}
 }
