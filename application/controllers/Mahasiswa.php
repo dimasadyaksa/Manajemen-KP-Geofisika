@@ -8,9 +8,12 @@ class Mahasiswa extends CI_Controller {
     $this->load->model('Mahasiswa_model');
     $this->load->model('Files_model');
     $this->load->model('m_data');
+    $this->load->model('Logbook_model');
+    $this->load->model('tempatkerja_m');
+    $this->load->model('pembimbinglapangan_model');
+    $this->load->model('user_m');
 	$this->load->helper('url');
 
-    //validasi jika user belum login
     if($this->session->userdata('email') != TRUE){
             echo "<script>
 				alert('Anda tidak memiliki akses.');
@@ -25,13 +28,46 @@ class Mahasiswa extends CI_Controller {
 	{
         
 		if($this->session->userdata('status')=='Mahasiswa'){
-	      $this->load->view('mahasiswa/index');
+          $tmp = $this->Mahasiswa_model->getNimEmail();
+	       $nim = $tmp['0']->NIM;
+           $this->session->set_userdata('nim',$nim);
+          $this->load->view('mahasiswa/index');
 	    }else{
 	      echo "Anda tidak berhak mengakses halaman ini";
 	      $this->load->view('back');
 	    }
 
 	}
+
+public function update_datadiri() 
+    {
+        $id = $this->session->userdata('nim');
+        if($this->session->userdata('status')=='Mahasiswa'){
+            $data = array(
+            'nim' => $id,
+            'Nama' => $this->input->post('nama',TRUE),
+            'No_telp' => $this->input->post('hp',TRUE),
+            'IPK' => $this->input->post('ip',TRUE),
+            'SKS' => $this->input->post('sks',TRUE),
+            'Angkatan' => $this->input->post('angkatan',TRUE),
+            );
+            $this->Mahasiswa_model->update($id, $data);
+            /*$tempatKP = array(
+                'NamaPerusahaan'=>$this->input->post('perusahaan'),
+                'Alamat'=>$this->input->post('alamat'),
+                'bidang'=>$this->input->post('bidang'),
+                'kontak'=>$this->input->post('kontak')
+            );
+            $this->tempatkerja_m->insert($tempatKP);*/
+            $string = $this->load->view('mahasiswa/v_dashboard', '',true);
+            echo $string;
+        }else{
+            echo "Anda tidak berhak mengakses halaman ini";
+            $this->load->view('back');
+        }
+    }
+    
+
     public function auth()
     {
         return $this->session->userdata('status')=='Mahasiswa';
@@ -39,7 +75,9 @@ class Mahasiswa extends CI_Controller {
 	public function datadiri()
 	{
 		if($this->auth()){
-            $string = $this->load->view('mahasiswa/v_datadiri', '',true);
+            $data['user'] = $this->Mahasiswa_model->get_by_id($this->session->userdata('nim'));
+
+            $string = $this->load->view('mahasiswa/v_datadiri', $data,true);
             echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
@@ -70,13 +108,39 @@ class Mahasiswa extends CI_Controller {
 	public function PLapangan()
 	{
 		if($this->auth()){
-            $string = $this->load->view('mahasiswa/v_pembimbing_lapangan','',true);
+            $data['data'] = $this->m_data->getPL();
+            $string = $this->load->view('mahasiswa/v_pembimbing_lapangan',$data,true);
             echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
 		}
 	}
+
+    public function tambahPL()
+    {
+        $nama = $this->input->post('nama');
+        $kontak = $this->input->post('kontak');
+        $pass = $this->input->post('pass');
+        $email = $this->input->post('email');
+        $posisi = $this->input->post('jabatan');
+       
+        $dataUser  = array(
+            'password'=>$pass,
+            'Email'=>$email,
+            'status'=>'Pembimbing Lapangan'
+         );
+        $id = $this->user_m->insert($dataUser);
+        $dataLap  = array(
+            'idDosenL'=>$id->idUser,
+            'Nama'=>$nama,
+            'Kontak'=>$kontak,
+            'Email'=>$email,
+            'Posisi'=>$posisi
+         );
+        $this->pembimbinglapangan_model->insert($dataLap);
+    }
+
     public function TPraktik()
     {
         
@@ -89,6 +153,23 @@ class Mahasiswa extends CI_Controller {
             $this->load->view('back');
         }
     }
+
+    public function tambahPerusahaan()
+    {
+        $namaperusahaan = $this->input->post('namaperusahaan');
+        $bidang = $this->input->post('bidang');
+        $alamat = $this->input->post('alamat');
+        $kontak = $this->input->post('kontak');
+
+        $data = array(
+            'NamaPerusahaan'=>$namaperusahaan,
+            'Bidang'=>$bidang,
+            'alamat'=>$alamat,
+            'kontak'=>$kontak
+        );
+        $this->tempatkerja_m->insert($data);
+    }
+
 public function daftarseminar()
     {
         if($this->auth()){
@@ -100,6 +181,22 @@ public function daftarseminar()
             $this->load->view('back');
         }
     }
+
+public function saveSeminar()
+{   $nim = $this->input->post('NIM');
+    $ruang = $this->input->post('Ruang');   
+    $gedung = $this->input->post('Gedung');
+    $waktu = $this->input->post('waktu');
+
+    $data =array (
+        'NIM'=>$nim,
+        'Ruang'=>$ruang,
+        'Gedung'=>$gedung,
+        'waktu'=>$waktu
+    );
+
+    $this->Mahasiswa_model->seminar($data);
+}
 
 function tambah_TPraktik(){  
         $nim = $this->input->post('nim');
@@ -164,10 +261,10 @@ function tambah_TPraktik(){
 		$this->m_data->input_logbook($data,'logbook');
 		$this->logbook();
 	}	
-	function hapus($id){
-		$where = array('NIM' => $id);
-		$this->m_data->hapus_data($where,'logbook');
-		redirect('Mahasiswa/logbook');
+
+	function hapusLogbook(){
+        $tanggal = $this->input->post('tanggal');
+        $this->Logbook_model->delete($this->session->userdata('nim'),$tanggal);
 	}
     function unduh()
     { 
@@ -199,6 +296,48 @@ function tambah_TPraktik(){
                 </script>";
         }
     }
+    public function Profil()
+    {
+        if($this->session->userdata('status')=='Mahasiswa'){
+            $data['dataDiri'] = $this->Mahasiswa_model->getDataDiri();
+            $string = $this->load->view('mahasiswa/v_profil',$data,true);
+            echo $string;
+        }else{
+            echo "Anda tidak berhak mengakses halaman ini";
+            $this->load->view('back');
+        }
+    }
+
+    public function PembimbingDosen()
+    {
+        if($this->session->userdata('status')=='Mahasiswa'){
+            $data['dataDosen'] = $this->Mahasiswa_model->tampilDosen();
+            $string = $this->load->view('mahasiswa/v_pembimbingdosen', $data,true);
+            echo $string;
+        }else{
+            echo "Anda tidak berhak mengakses halaman ini";
+            $this->load->view('back');
+        }    
+    }
+public function submitLogbook()
+{
+    $nim = $this->session->userdata('nim');
+    $tanggal = $this->input->post('tanggal');
+    $jammulai = $this->input->post('jammulai');
+    $jamselesai = $this->input->post('jamselesai');
+    $kegiatan = $this->input->post('kegiatan');
+
+    $data = array(
+        'nim' => $nim,
+        'Tanggal'=>$tanggal,
+        'jammulai'=>$jammulai,
+        'jamselesai'=>$jamselesai,
+        'kegiatan'=>$kegiatan 
+    );
+
+    $this->Logbook_model->insert($data);
+}
+
 /*
     
     public function getDoc($value)

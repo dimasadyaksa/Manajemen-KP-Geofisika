@@ -1,6 +1,7 @@
 <head> 
     <title>Manajemen KP Geofisika</title>
     <script src="<?php echo base_url()?>assets/js/jquery_004.js"></script> 
+    <script src="<?php echo base_url()?>assets/js/pd.js"></script> 
     <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css.css" type="text/css" media="screen">
@@ -21,7 +22,7 @@
   <div class="container">
       <div class="row ">
         <div class="col-md-1">
-            <a href="http://siakad.itera.ac.id/">
+            <a href="<?php echo base_url()?>">
               <img src="<?php echo base_url()?>assets/img/logo-itera.png" style="margin-bottom:10px; " width="70px">
             </a>
         </div>
@@ -44,7 +45,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://sso.itera.ac.id/" target="_blank"><i class="fa fa-user"></i> Nama</a></li>
+            <li><a target="_blank"><i class="fa fa-user"></i> <?php echo  $this->session->userdata('email');?></a></li>
                         <li><a href="<?php echo site_url('Login/logout')?>"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                     </ul>
       </div>  

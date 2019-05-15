@@ -1,6 +1,9 @@
+<div class="box-header">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <h3 class="box-title text-center">Tempat Kerja Praktik</h3>
 
     <div class="box-body">
-      <form action="<?php echo site_url('Mahasiswa/tambah_TPraktik') ; ?>" method="post">
+      <form action="" method="post">
       <div id="home" class="tab-pane fade in active">
        	<table class="table table-striped">
        		<body>
@@ -16,7 +19,7 @@
        				<td width="200px;">Nama Perusahaan </td>
        				<td>:</td>
               <td colspan="2">
-                <input type="text" name="namaperusahaan" id="namaperusahaan" placeholder="NamaPerusahaan" class="form-control" value>
+                <input type="text" name="namaperusahaan" id="namaperusahaan" placeholder="Nama Perusahaan" class="form-control" value>
               </td>
      				</tr>
 
@@ -50,7 +53,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-warning pull-right">
+    <button type="submit" onclick="tambahPerusahaan()" class="btn btn-warning pull-right">
       <i class="fa fa-save margin-r-5"></i>
       <h5 class="modal-title">Simpan</h5>     
     </button>
@@ -59,7 +62,6 @@
     </br>
     </br>
 
-    <div class="box box-success">
       <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h3 class="box-title text-center">Data Tentang Perusahaan </h3>
@@ -98,6 +100,3 @@
           </div>			
         </div>
       </div>
-    </div>
-  </div>
-</div>

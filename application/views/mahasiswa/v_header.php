@@ -4,6 +4,7 @@
     <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
     <script src="<?php echo base_url()?>assets/js/common.js"></script>
     <script src="<?php echo base_url()?>assets/js/m.js"></script>
+    <link href="<?php echo base_url()?>assets/date_picker_bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css" type="text/css" media="screen">
@@ -42,6 +43,7 @@ body{ padding:20px;}
         $('.file-upload').file_upload();
     });
 </script>
+
   <style type="text/css"></style></head>
  <body>
 <div class="container base">

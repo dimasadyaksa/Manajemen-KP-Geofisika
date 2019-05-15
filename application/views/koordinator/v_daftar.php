@@ -21,10 +21,7 @@
               <th class="text-left"><?php echo $a;?></th>
               <th class="text-left"><?php echo $b;?></th>
               <th class="text-left"><?php echo $c;?></th>
-              <?php if($role=="Mahasiswa"){
-                echo '<th class="text-left">Action</th>';
-              }
-              ?>
+              <th class="text-left"><?php echo $d;?></th>
             </tr>
           </thead>
           <tbody id="dftr">
@@ -57,8 +54,8 @@
                     </div>
                     <p style="padding-bottom: 10px"></p>
                     <div align="center">
-                      <button type="button" class="btn btn-success">Update</button>
-                      <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                     
+                      <button type="button" class="btn btn-warning" data-dismiss="modal"> Tutup</button>
                     </div>
 
                   </form>

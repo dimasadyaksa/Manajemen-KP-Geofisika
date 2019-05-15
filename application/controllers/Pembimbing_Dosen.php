@@ -7,6 +7,9 @@ class Pembimbing_Dosen extends CI_Controller {
   function __construct(){
     parent::__construct();
     $this->load->model('m_data');
+    $this->load->model('Mahasiswa_model');
+    $this->load->model('Logbook_model');
+    $this->load->model('Logbook_model');
 	$this->load->helper('url');
     //validasi jika user belum login
     if($this->session->userdata('email') != TRUE){
@@ -18,42 +21,35 @@ class Pembimbing_Dosen extends CI_Controller {
   }
 	public function index()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-      		$this->load->view('pembimbing_d/index');
-    	}else{
-      		echo "Anda tidak berhak mengakses halaman ini";
-      		$this->load->view('back');
-    	}	
+		$sum['sum'] = $this->m_data->sumMhs();
+    	$string = $this->load->view('pembimbing_d/index',$sum,true);
+		echo $string;
+	}
+	public function dash()
+	{
+		$sum['sum'] = $this->m_data->sumMhs();
+		//print_r($sum['0']);
+		$string = $this->load->view('pembimbing_d/v_dashboard',$sum,true);
+		echo $string;
 	}
 	public function daftar_logbook()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_daftar_logbook');
-		}else{
-			echo "Anda tidak berhak mengakses halaman ini";
-			$this->load->view('back');
-		}
+		$data['daftar_logbook'] = $this->Logbook_model->daftar();
+		$string = $this->load->view('pembimbing_d/v_daftar_logbook',$data,true);
+		echo $string;
 	}	
 	public function daftar_mahasiswa()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
 		$data['user'] = $this->m_data->tampil_data();
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_daftar_m', $data);
-		}else{
-			echo "Anda tidak berhak mengakses halaman ini";
-			$this->load->view('back');
-		}
+		$string = $this->load->view('pembimbing_d/v_daftar_m',$data,true);
+		echo $string;
 	}	
-	public function logbook()
+	public function logbook($nim)
 	{
 		if($this->session->userdata('status')=='Pembimbing Dosen'){
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_logbook');
+		$data['detail'] = $this->Logbook_model->getLogbook($nim);
+		$string = $this->load->view('pembimbing_d/v_logbook',$data,true);
+		echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -61,55 +57,57 @@ class Pembimbing_Dosen extends CI_Controller {
 	}	
 	public function penilaian()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-		$data['user'] = $this->m_data->tampil_nilai()->result();
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_penilaian',$data);
-		}else{
-			echo "Anda tidak berhak mengakses halaman ini.";
-			$this->load->view('back');
-		}
+		$nip = $this->m_data->getNip($this->session->userdata('email'));
+		$data['user'] = $this->m_data->getNilaiPd($nip['0']->NIP)->result();
+		$string = $this->load->view('pembimbing_d/v_penilaian',$data,true);
+		echo $string;
+		
 	}	
 	public function pengajuan()
 	{
-		if($this->session->userdata('status')=='Pembimbing Dosen'){
-			$data['user'] = $this->m_data->tambahpengajuan();
-		$this->load->view('pembimbing_d/v_header');
-		$this->load->view('pembimbing_d/v_sidebar');
-		$this->load->view('pembimbing_d/v_pengajuan', $data);
-		}else{
-			echo "Anda tidak berhak mengakses halaman ini";
-			$this->load->view('back');
-		}
+		$data['user'] = $this->m_data->tambahpengajuan();
+		$string = $this->load->view('pembimbing_d/v_pengajuan',$data,true);
+		echo $string;
 	}
 	function tambah_aksi(){
-		$nim = $this->input->post('nim');
+		$nama =$this->Mahasiswa_model->getNim($this->input->post('nama'));
+		$nip = $this->m_data->getNip($this->session->userdata('email'));
 		$materi = $this->input->post('materi');
 		$penugasanmateri = $this->input->post('penugasanmateri');
 		$bahasatatatulis = $this->input->post('bahasatatatulis');
 		$catatan = $this->input->post('catatan');
+		$rata = ($penugasanmateri+$bahasatatatulis+$materi)/3;
 
 		$data = array(
-			'nim' => $nim,
+			'nim' =>$nama['0']->NIM ,
+			'NIP' => $nip['0']->NIP,
 			'materi' => $materi,
 			'penugasanmateri' => $penugasanmateri,
 			'bahasatatatulis' => $bahasatatatulis,
-			'catatan' => $catatan
+			'catatan' => $catatan,
+			'Rata_rata' => $rata
 			);
 		$this->m_data->input_data($data,'nilaidosen');
-		redirect('pembimbing_dosen/penilaian');
+		$this->penilaian();
 	}
+
 	function hapus($id){
 		$where = array('NIM' => $id);
 		$this->m_data->hapus_data($where,'nilaidosen');
 		redirect('pembimbing_dosen/penilaian');
 	}
+
 	function hapuspengajuan($id){
 		$where = array('Nama' => $id);
 		$this->m_data->hapus_data($where,'bimbingandosen');
 		redirect('pembimbing_dosen/pengajuan');
 	}
+
+	public function aksiPengajuan()
+	{
+		$this->m_data->aksiPengajuan($this->input->post('nim'),$this->input->post('aksi'));
+	}
+
 	function tambahpengajuan($id){
 		$where = array('NIM' => $id);
 		$this->m_data->terima($where, 'mahasiswa');

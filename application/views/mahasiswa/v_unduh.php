@@ -1,4 +1,7 @@
-
+<div class="box-header">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <h3 class="box-title text-center">Unduh Berkas</h3>
+<br>
 <p><a href="https://drive.google.com/open?id=1k2R8lX6wRvtv9nE1SkkDkOE_zv4xmHgq">(1) Formulir Permohonan Kerja Praktik</a></p>
 <p><a href="https://drive.google.com/open?id=17vj2OeGERIgr7blZ1TfNoPmm3hT2hiQ3">(2) Surat Pengantar Pembimbing Kerja Praktik</a></p>
 <p><a href="https://drive.google.com/open?id=179zeaSM3L0yrU38ZyvzcUGM105Fxhi2a">(3) Formulir Pendaftaran Kerja Praktik</a></p>

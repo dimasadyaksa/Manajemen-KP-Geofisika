@@ -2,6 +2,7 @@
     <title>Manajemen KP Geofisika</title>
     <script src="<?php echo base_url()?>assets/js/jquery_004.js"></script> 
     <script src="<?php echo base_url()?>assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url()?>assets/js/pl.js"></script>
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/css.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css" type="text/css" media="screen">

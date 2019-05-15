@@ -1,9 +1,17 @@
 function dashboard() {
-	active('dash');
+    $.post("pembimbing_lapangan/Dashboard","",function(data){
+             $('#isi').html(data);
+            active('dash');
+           
+     });
 }
 
 function profil() {
-	active('profil');
+    $.post("pembimbing_lapangan/Profil","",function(data){
+             $('#isi').html(data);
+            active('profil');
+           
+     });
 }
 
 function penilaian() {

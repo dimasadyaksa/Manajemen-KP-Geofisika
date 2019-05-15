@@ -12,6 +12,12 @@ class tempatkerja_m extends CI_Model {
 
 		}
 		
+	
+
+	public function insert($data)
+	{
+		$this->db->set($data);
+		$this->db->insert('tempatkerja',$data);
 	}
 	
 }

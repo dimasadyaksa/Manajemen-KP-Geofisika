@@ -25,10 +25,9 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}
 	public function daftar_mahasiswa() 
 	{
-		if($this->session->userdata('status')=='3'){
-		$this->load->view('Pembimbing_Lapangan/v_header');
-		$this->load->view('Pembimbing_Lapangan/v_sidebar');
-		$this->load->view('Pembimbing_Lapangan/v_daftar_m');
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$string = $this->load->view('Pembimbing_Lapangan/v_daftar_m','', true);
+		echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -41,7 +40,7 @@ class Pembimbing_Lapangan extends CI_Controller {
     	foreach ($data as $row)
 		{
 			$i++;
-			"<tr>
+			/*echo "<tr>
 							<td>".$i."</td>
 							<td id='email'>".$row->email."</td>
 							<td>".$row->password."</td>
@@ -50,7 +49,7 @@ class Pembimbing_Lapangan extends CI_Controller {
 								<button type='button' class='btn btn-info' data-toggle='modal' data-target='#update_user_popup' onclick=dataTable('".$row->email."','".$row->password."','".$row->status."') >Edit</button>
 								<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete_user_popup'>Delete</button>
 					</td>
-				</tr>"
+				</tr>";*/
 			echo "<tr>
               <td class='text-left'>".$i."</td>
               <td class='text-left'>".$row->NIM."</td>
@@ -75,10 +74,9 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}
 	public function logbook() 
 	{
-		if($this->session->userdata('status')=='3'){
-		$this->load->view('Pembimbing_Lapangan/v_header');
-		$this->load->view('Pembimbing_Lapangan/v_sidebar');
-		$this->load->view('Pembimbing_Lapangan/v_logbook');
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$string = $this->load->view('Pembimbing_Lapangan/v_logbook','', true);
+		echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');
@@ -86,10 +84,29 @@ class Pembimbing_Lapangan extends CI_Controller {
 	}	
 	public function Penilaian() 
 	{
-		if($this->session->userdata('status')=='3'){
-		$this->load->view('Pembimbing_Lapangan/v_header');
-		$this->load->view('Pembimbing_Lapangan/v_sidebar');
-		$this->load->view('Pembimbing_Lapangan/v_penilaian');
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$string = $this->load->view('Pembimbing_Lapangan/v_penilaian','', true);
+		echo $string;
+		}else{
+			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
+		}
+	}
+	public function Profil() 
+	{
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$string = $this->load->view('Pembimbing_Lapangan/v_profil','', true);
+		echo $string;
+		}else{
+			echo "Anda tidak berhak mengakses halaman ini";
+			$this->load->view('back');
+		}
+	}
+	public function Dashboard() 
+	{
+		if($this->session->userdata('status')=='Pembimbing Lapangan'){
+		$string = $this->load->view('Pembimbing_Lapangan/v_dashboard','', true);
+		echo $string;
 		}else{
 			echo "Anda tidak berhak mengakses halaman ini";
 			$this->load->view('back');

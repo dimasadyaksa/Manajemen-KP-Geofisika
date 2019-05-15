@@ -86,27 +86,7 @@ class Koordinator extends CI_Controller {
         }
     }
 
-    public function update_tempatKP($id) 
-    {
-        $row = $this->Tempatkerja_model->get_by_id($id);
-
-        if ($row) {
-            $data = array(
-                'button' => 'Update',
-                'action' => site_url('Koordinator/update_action_tempatKP'),
-                'idPerusahaan' => set_value('idPerusahaan', $row->idPerusahaan),
-                'NamaPerusahaan' => set_value('NamaPerusahaan', $row->NamaPerusahaan),
-                'Bidang' => set_value('Bidang', $row->Bidang),
-                'Alamat' => set_value('Alamat', $row->Alamat),
-                'kontak' => set_value('kontak', $row->kontak),
-            );
-            $this->load->view('koordinator/v_tempat_kp', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('Koordinator'));
-        }
-    }
-
+ 
     // Update Tempat KP
     public function update_action_tempatKP() 
     {
@@ -179,6 +159,7 @@ class Koordinator extends CI_Controller {
 		$data['a'] = "Nama";
 		$data['b'] = "NIM";
 		$data['c'] = "Angkatan";
+        $data['d'] = "Tempat KP";
 		$data['role'] = "Mahasiswa";
 		$string = $this->load->view('koordinator/v_daftar',$data, true);
 		echo $string;
@@ -335,21 +316,32 @@ class Koordinator extends CI_Controller {
 
     public function listMhs()
     {
-    	$data = $this->Mahasiswa_model->get_all();
+    	$data = $this->Mahasiswa_model->mhskp();
     	$i = 0;
     	foreach ($data as $row)
 		{
 			$i++;
+            if ($row->NamaPerusahaan==null) {
+                echo '<tr>
+              <td class="text-left">'.$i.'</td>
+              <td class="text-left">'.$row->Nama.'</td>
+              <td class="text-left">'.($this->Mahasiswa_model->getNim($row->Nama))['0']->NIM.'</td>
+              <td class="text-left">'.$row->Angkatan.'</td>
+              <td class="text-left">Belum mendapat tempat KP</td>
+              </tr>';
+
+            }else{
 			echo '<tr>
               <td class="text-left">'.$i.'</td>
               <td class="text-left">'.$row->Nama.'</td>
-              <td class="text-left">'.$row->NIM.'</td>
+              <td class="text-left">'.($this->Mahasiswa_model->getNim($row->Nama))['0']->NIM.'</td>
               <td class="text-left">'.$row->Angkatan.'</td>
-              <td class="text-left">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#update_user_popup">Detail</button>
-              </td>
+              <td class="text-left">'.
+                $row->NamaPerusahaan
+              .'</td>
               </tr>';
-	       
+	       echo $row->NamaPerusahaan;
+            }
 		}
     }
     public function listDp()

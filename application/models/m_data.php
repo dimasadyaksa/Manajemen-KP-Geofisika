@@ -1,24 +1,45 @@
 <?php 
  
 class M_data extends CI_Model{
+	
 	function tampil_data(){
-		$this->db->select("mahasiswa.nim, mahasiswa.nama, mahasiswa.Angkatan");
-		$this->db->from('mahasiswa');
-		$this->db->where('idDosenL = 1');
+		$nip = $this->getNip($this->session->userdata('email'));
+		$this->db->select("*");
+		$this->db->from('bimbingan_dosen');
+		$this->db->join('mahasiswa','mahasiswa.NIM = bimbingan_dosen.nim');
+		$this->db->join('magang','magang.NIM = mahasiswa.nim','left');
+		$this->db->join('tempatkerja','magang.idPerusahaan = tempatkerja.idPerusahaan','left');
+		$this->db->where('bimbingan_dosen.idDosen = '.$nip['0']->NIP);
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function tampilDataPerusahaan($nim)
+	{
+		$this->db->select('*');
+		$this->db->from('magang');
+		$this->db->join('tempatkerja','magang.idPerusahaan = tempatkerja.idPerusahaan');
+		$this->db->where('magang.nim = '.$nim);
+		$query = $this->db->get();
+		return $query;
+	}
+
 	function tampil_nilai(){
 		return $this->db->get('nilailapangan');
 	}
 	
+	public function getNilaiPd($nip)
+	{
+		$this->db->select("*");
+		$this->db->from("nilaidosen");
+		$this->db->where("NIP = ".$nip);
+		$this->db->join('mahasiswa', 'mahasiswa.nim = nilaidosen.nim');
+		$query = $this->db->get();
+		return $query;
+	}
+
 	function tampil_TPraktik(){
-        $this->load->model('User_m');
-		$nim = $this->User_m->getId($this->session->userdata('email'));
-				$this->session->set_userdata('nim', $nim->NIM);
-		//print_r($nim);
-		//echo $nim->NIM;
-		$hasil = $this->db->query("SELECT * FROM tempatkerja INNER JOIN magang on magang.idPerusahaan =tempatkerja.idPerusahaan where magang.NIM=".$nim->NIM);
+		$hasil = $this->db->query("SELECT * FROM tempatkerja");
 		return $hasil;
 	}
 	function input_TPraktik($data,$table){
@@ -52,13 +73,53 @@ class M_data extends CI_Model{
 		$this->db->insert($table,$data);
 	}
 	function tambahpengajuan(){
-		$this->db->select("bimbingandosen.nim, bimbingandosen.nama");
-		$this->db->from('bimbingandosen');
+		$nip = $this->getNip($this->session->userdata('email'));
+		$this->db->select("bimbingan_Dosen.nim, bimbingan_Dosen.nama,mahasiswa.PengajuanPembimbing");
+		$this->db->from('bimbingan_dosen');
+		$this->db->join('mahasiswa', 'mahasiswa.NIM = bimbingan_dosen.NIM');
+		$this->db->where('bimbingan_dosen.idDosen = '.$nip['0']->NIP);
 		$query = $this->db->get();
 		return $query->result();
 	}
 	function terima($where,$table){
 		$this->db->where($where, $table);
 		$this->db->set($table);
+	}
+
+	public function aksiPengajuan($nim,$aksi)
+	{
+		$this->db->set('PengajuanPembimbing',$aksi);
+		$this->db->where('nim',$nim);
+		$this->db->update('mahasiswa');
+	}
+
+	public function getNip($email)
+	{
+		$this->db->select("*");
+		$this->db->from('pembimbingdosen');
+		$this->db->where('email = "'.$email.'"');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function sumMhs()
+	{
+		$nip = $this->getNip($this->session->userdata('email'));
+		$this->db->select('COUNT(Nim)');
+		$this->db->from('bimbingan_dosen');
+		$this->db->where('idDosen = '.$nip['0']->NIP);
+		$query = $this->db->get()->result_array();
+		return $query;
+	}
+
+	public function getPL()
+	{
+		$this->db->select('*');
+		$this->db->from('pembimbinglapangan');
+		$this->db->join('bimbingan_lapangan','pembimbinglapangan.idDosenL = bimbingan_lapangan.idDosenL');
+		$this->db->join('user','user.idUser = bimbingan_lapangan.idDosenL');
+		$this->db->where('bimbingan_lapangan.NIMMhs='.$this->session->userdata('nim'));
+		$query = $this->db->get();
+		return $query->result();
 	}
 }

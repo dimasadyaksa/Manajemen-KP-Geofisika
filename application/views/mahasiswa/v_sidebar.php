@@ -3,7 +3,7 @@
     <div class="row"><div class="col-md-3">
 
   <div class="list-group">
-    <a href="javascript:dash()" class="list-group-item active" id="dash"><i class="fa fa-home tab10" aria-hidden="true"></i>Dashboard</a>
+    <a href="javascript:dashboard()" class="list-group-item active" id="dash"><i class="fa fa-home tab10" aria-hidden="true"></i>Dashboard</a>
     <a href="javascript:profil()" class="list-group-item " id="profil"><i class="fa fa-user-circle tab10" aria-hidden="true"></i>Profil</a>
     <a href="javascript:uploadLaporan()" class="list-group-item " id="unggah"><i class="fa fa-plus-circle tab10" aria-hidden="true"></i>Upload Laporan KP</a>
   </div>
@@ -15,6 +15,7 @@
     <a href="javascript:logBook()" class="list-group-item " id="logbook">
       <i class="fa fa-question-circle tab10" aria-hidden="true"></i> Log Book </a>
       <a href="javascript:TPraktik()" class="list-group-item " id="TPraktik"><i class="fa fa-calendar tab10" aria-hidden="true"></i>Tempat Kerja Praktik</a>
+      <a href="javascript:PembimbingDosen()" id="pd" class="list-group-item "><i class="fa fa-calendar tab10" aria-hidden="true"></i>Daftar Pembimbing Dosen</a>
   </div>
 
   <div class="list-group">

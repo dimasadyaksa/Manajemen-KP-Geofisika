@@ -20,7 +20,10 @@ $(function(){
 var isLaporan = false;
 
 function profil() {
+    $.post("mahasiswa/Profil","",function(data){
+             $('#isi').html(data);
     active('profil');
+     }); 
 }
 
 function seminar() {
@@ -31,6 +34,23 @@ function seminar() {
      }); 
 }
 
+function saveSeminar() {
+    var nim = document.getElementById('nim').value;
+    var ruang =  document.getElementById('ruang').value;
+    var gedung = document.getElementById('gedung').value;
+    var waktu = document.getElementById('waktu').value;
+
+    var data = {
+        'NIM':nim,
+        'Ruang':ruang,
+        'Gedung':gedung,
+        'waktu':waktu
+    }
+    $.post("mahasiswa/saveSeminar",data,function(data){
+         seminar();
+     });
+}
+
 function DataDiri() {
     $.post("mahasiswa/datadiri","",function(data){
              $('#isi').html(data);
@@ -39,13 +59,23 @@ function DataDiri() {
      }); 
 }
 function dashboard() {
+     $.post("mahasiswa/logbook","",function(data){
+             $('#isi').html(data);
+             $('#textKonten').html('Log Book');
     active('dash');
+     }); 
 }
 function logBook() {
     $.post("mahasiswa/logbook","",function(data){
              $('#isi').html(data);
              $('#textKonten').html('Log Book');
         active('logbook')
+     }); 
+}
+function PembimbingDosen() {
+    $.post("mahasiswa/PembimbingDosen","",function(data){
+             $('#isi').html(data);
+        active('pd')
      }); 
 }
 
@@ -101,7 +131,7 @@ function unduh() {
 }
 
 function active(param) {
-    var menu = ['dash','profil','unggah','data','logbook','tempatKP','PL','seminar','unduh'];
+    var menu = ['dash','profil','unggah','data','logbook','TPraktik','PL','seminar','unduh','pd'];
     for (var i = 0; i < menu.length; i++) {
         if (menu[i]==param){
            $('#'+menu[i]).addClass('active');
@@ -109,4 +139,114 @@ function active(param) {
             $('#'+menu[i]).removeClass('active');    
         }
     }
+}
+
+function submitLogbook() {
+    var nim = document.getElementById('nim').value;
+    var tanggal=  document.getElementById('tanggal').value;
+    var jammulai = document.getElementById('jammulai').value;
+    var jamselesai = document.getElementById('jamselesai').value;
+    var kegiatan = document.getElementById('tugas').value;
+
+    var data = {
+        'nim':nim,
+        'tanggal':tanggal,
+        'jammulai':jammulai,
+        'jamselesai':jamselesai,
+        'kegiatan':kegiatan
+    }
+
+    $.post("mahasiswa/submitLogbook",data,function(data){
+            logBook();
+     }); 
+}
+
+function hapusLogbook($arg) {
+    var tanggal = document.getElementById('tanggal').value;
+    data = {
+        'tanggal' : $arg
+    }
+    $.post("mahasiswa/hapusLogbook",data,function(data){
+            logBook();
+     }); 
+}
+
+function updatedatadiri() {
+    var nim = document.getElementById('nim').value;
+    var tanggal=  document.getElementById('tanggal').value;
+    var jammulai = document.getElementById('jammulai').value;
+    var jamselesai = document.getElementById('jamselesai').value;
+    var kegiatan = document.getElementById('tugas').value;
+
+    var data = {
+        'nim':nim,
+        'tanggal':tanggal,
+        'jammulai':jammulai,
+        'jamselesai':jamselesai,
+        'kegiatan':kegiatan
+    }
+
+    $.post("mahasiswa/submitLogbook",data,function(data){
+            logBook();
+     }); 
+}
+
+function permohonanKP() {
+    var nama = document.getElementById('nama').value;
+    var nim = document.getElementById('nim').value;
+    var ip = document.getElementById('ip').value;
+    var sks = document.getElementById('sks').value;
+    var angkatan = document.getElementById('angkatan').value;
+    var hp = document.getElementById('hp').value;
+    
+    var data = {
+        'nama':nama,
+        'nim':nim,
+        'ip':ip,
+        'sks':sks,
+        'angkatan':angkatan,
+        'hp':hp
+    }
+
+    $.post("mahasiswa/update_datadiri",data,function (data) {
+        DataDiri();
+    })
+}
+
+function tambahPerusahaan() {
+    var nama = document.getElementById('namaperusahaan').value;
+    var bidang = document.getElementById('bidang').value;
+    var alamat = document.getElementById('alamat').value;
+    var kontak = document.getElementById('kontak').value;
+
+    var data = {
+        'namaperusahaan':nama,
+        'bidang':bidang,
+        'alamat':alamat,
+        'kontak':kontak
+    }
+
+    $.post("mahasiswa/tambahPerusahaan",data,function (data) {
+        TPraktik();
+    })
+}
+
+function tambahPembimbing() {
+    var nama = document.getElementById('nama').value;
+    var pass = document.getElementById('password').value;
+    var email = document.getElementById('email').value;
+    var jabatan = document.getElementById('posisi').value
+    var kontak = document.getElementById('kontak').value;
+
+    var data = {
+        'nama':nama,
+        'pass':pass,
+        'email':email,
+        'jabatan':jabatan,
+        'kontak':kontak
+    }
+
+    $.post("mahasiswa/tambahPL",data,function (data) {
+        PLapangan();
+    })
 }

@@ -2,17 +2,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<div class="col-md-9">
-<div class="box box-success">
-    <div class="box-header">
+       <div class="box-header">
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <h1 class="box-title text-center">Daftar Mahasiswa Bimbingan</h1>
         <div class="row">
           <div class="col-md-6" >
       </div>
-
+<h4><p align="center">Daftar Mahasiswa Bimbingan</p></h4>
       </div>
-      <h4><p align="center">Daftar Mahasiswa Bimbingan</p></h4>
     <table class="table table-bordered" style="text-align: center">
     <thead>
       <tr>
@@ -67,7 +64,7 @@
         <p><h5><b>Judul Proposal</b></h5></p>
         <font color="grey"><p><h5 id="detJudul"><?php echo $u->JudulProposal ?></h5></p></font><br>
          <?php 
-     } 
+     
      ?>
         <p><h5><b>Tanggal Mulai Praktik</b></h5></p>
          <?php 

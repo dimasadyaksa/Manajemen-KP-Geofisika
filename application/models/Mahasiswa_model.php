@@ -24,6 +24,20 @@ class Mahasiswa_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    public function getDataDiri()
+    {
+        $this->db->select("*"); 
+        $this->db->from('mahasiswa');
+        $this->db->join('user','user.idUser=mahasiswa.idUser');
+        $this->db->join('magang','magang.NIM=mahasiswa.NIM');
+        $this->db->where('mahasiswa.NIM=14115050');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function tampilDosen(){
+        return $this->db->get('pembimbingdosen')->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
@@ -74,7 +88,7 @@ class Mahasiswa_model extends CI_Model
     // update data
     function update($idUser, $data)
     {
-        $this->db->where($this->idUser, $idUser);
+        $this->db->where($this->id, $idUser);
         $this->db->update($this->table, $data);
     }
 
@@ -85,6 +99,45 @@ class Mahasiswa_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    public function getNim($nama)
+    {
+        $this->db->select("*");
+        $this->db->from('mahasiswa');
+        $this->db->where('Nama = "'.$nama.'"');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getNama($nim)
+    {
+        $this->db->select("*");
+        $this->db->from('mahasiswa');
+        $this->db->where('Nim = "'.$nim.'"');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getNimEmail()
+    {
+        $this->db->select("*");
+        $this->db->from('mahasiswa');
+        $this->db->where('email = "'. $this->session->userdata('email').'"');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function mhskp()
+    {
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->join('magang','mahasiswa.NIM = magang.nim','left');
+        $this->db->join('tempatkerja','magang.idPerusahaan = magang.idPerusahaan','left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function seminar($data)
+    {
+         $this->db->set($data);
+        $this->db->insert('jadwalseminar', $data);
+    }
 }
 
 /* End of file Mahasiswa_model.php */

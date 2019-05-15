@@ -6,31 +6,37 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Nama</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" placeholder="Nama Pembimbing">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Username</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" placeholder="Username">
+                            <input type="email" id="nama" class="form-control" placeholder="Nama Pembimbing">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">Password</label>
                         <div class="col-sm-8">
-                            <input type="Password" class="form-control" placeholder="Password">
+                            <input type="Password" class="form-control" id="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">Email</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" placeholder="Email pembimbing">
+                            <input type="text" id="email" class="form-control" placeholder="Email pembimbing">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Jabatan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="posisi" placeholder="Jabatan pembimbing">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Kontak</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="kontak" placeholder="Kontak pembimbing">
                         </div>
                     </div>
 
                 </form>
                     <div class="text-right">
-                        <button class="btn btn-danger"><i class="fa fa-save"></i> Simpan</button>
+                        <button class="btn btn-danger" onclick="tambahPembimbing()" ><i class="fa fa-save"></i> Simpan</button>
                     </div>
             </div>
             <p style="padding-top: 30px"></p>
@@ -38,18 +44,24 @@
                 <thead>
                     <th class="text-left">No</th>
                     <th class="text-left">Nama</th>
-                    <th class="text-left">Username</th>
-                    <th class="text-left">Password</th>
                     <th class="text-left">Email</th>
+                    <th class="text-left">Password</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Hasibuan</td>
-                        <td>Hasi</td>
-                        <td>****</td>
-                        <td>hasi@gmail.com</td>
-                    </tr>
+                    <?php 
+                $no = 1;
+                foreach($data as $d){ 
+                ?>
+                <tr>
+                  <td><?php echo $no++ ?></td>
+                  <td><?php echo $d->Nama ?></td>
+                  <td><?php echo $d->email ?></td>
+                  <td><?php echo $d->password ?></td>
+           
+                  <td> </td>
+                  
+                </tr>
+                <?php } ?>
                 </tbody>
             </table>            
         </div>

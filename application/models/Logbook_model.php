@@ -20,6 +20,14 @@ class Logbook_model extends CI_Model
         return $query->result();
     }
 
+    public function getLogbook($nim)
+    {
+        $this->db->select('*');
+        $this->db->from('logbook');
+        $this->db->join('mahasiswa','logbook.nim = mahasiswa.nim');
+        $query = $this->db->get();
+        return $query->result();    }
+
     function getDetailLogbook($NIM){
        $this->db->select("mahasiswa.Nama,logbook.NIM, logbook.Tanggal, logbook.JamMulai, logbook.JamSelesai, logbook.Kegiatan"); 
        $this->db->from('logbook');
@@ -28,6 +36,15 @@ class Logbook_model extends CI_Model
        return $query->result();
    }
 	
+   public function insert($data)
+   {
+        $this->db->insert('logbook',$data);
+   }
+
+   public function delete($nim,$tgl)
+   {
+        $this->db->delete('logbook', array('Nim' => $nim,'Tanggal'=>$tgl)); 
+   }
 	//join tablemahasiswa dan logbook
     function daftar()
     {

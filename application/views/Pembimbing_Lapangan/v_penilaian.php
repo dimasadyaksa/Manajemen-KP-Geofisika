@@ -3,10 +3,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<div class="col-md-9">
-
-
-  <div class="box box-success">
     <div class="box-header">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <h1 class="box-title text-center">PENILAIAN KERJA PRAKTIK</h1>
@@ -120,7 +116,3 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
-  </div>
-
-</div>
-</div>
