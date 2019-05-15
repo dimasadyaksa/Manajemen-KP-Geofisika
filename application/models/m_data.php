@@ -25,7 +25,8 @@ class M_data extends CI_Model{
 	}
 
 	function tampil_nilai(){
-		return $this->db->get('nilailapangan');
+		$hasil = $this->db->query("SELECT * FROM nilaidosen INNER JOIN mahasiswa ON mahasiswa.NIM = nilaidosen.NIM");
+		return $hasil;
 	}
 	
 	public function getNilaiPd($nip)
@@ -78,14 +79,20 @@ class M_data extends CI_Model{
 		$this->db->from('bimbingan_dosen');
 		$this->db->join('mahasiswa', 'mahasiswa.NIM = bimbingan_dosen.NIM');
 		$this->db->where('bimbingan_dosen.idDosen = '.$nip['0']->NIP);
+		$this->db->select("mahasiswa.nim, mahasiswa.nama, mahasiswa.Angkatan, mahasiswa.Status");
+		$this->db->from('Mahasiswa');
+		$this->db->where('NIP = 20017731');
+		$this->db->where('Status = 0');
+		{
 		$query = $this->db->get();
 		return $query->result();
+		}
+	
 	}
 	function terima($where,$table){
 		$this->db->where($where, $table);
 		$this->db->set($table);
 	}
-
 	public function aksiPengajuan($nim,$aksi)
 	{
 		$this->db->set('PengajuanPembimbing',$aksi);
@@ -122,4 +129,9 @@ class M_data extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+	function updatepengajuan($id, $data)
+    {
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
 }

@@ -40,7 +40,10 @@
         <td>
             <button type="button" class="btn btn-success" onclick="aksiPengajuan(<?php echo $u->nim ?>,1)">Terima</button>
 
-            <button type="button" class="btn btn-danger" onclick="aksiPengajuan(<?php echo $u->nim ?>,2)" >Tolak</button>           
+            <button type="button" class="btn btn-danger" onclick="aksiPengajuan(<?php echo $u->nim ?>,2)" >Tolak</button>          
+            
+            <?php echo anchor('pembimbing_dosen/update/'.$u->nim, 'Terima');  ?>
+            <?php echo anchor('pembimbing_dosen/hapuspengajuan/'.$u->nim, 'Tolak');  ?>
         </td>
     </tr>
     <?php } ?>

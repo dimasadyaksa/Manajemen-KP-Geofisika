@@ -68,6 +68,7 @@
                       <input type="hidden" id="dtp_input2" value=""/>
                 </div>
                 </form>
+                <input type="date" name="waktu" id="waktu" placeholder=" tahun-bulan-tanggal:jam:menit:detik" class="form-control" value>
               </td>
             </tr>
 
